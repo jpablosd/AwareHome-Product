@@ -1,4 +1,3 @@
-
 <?php
 /*LOGIN */
 /*
@@ -10,7 +9,6 @@ $passw = '85575884';
 
 require_once 'funciones_bd.php';
 $db = new funciones_BD();
-
 	if($db->login($usuario,$passw)){
 	$resultado[]=array("logstatus"=>"0");
 	}else{
