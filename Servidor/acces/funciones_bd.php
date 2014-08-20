@@ -4,19 +4,16 @@ class funciones_BD {
     private $db;
     // constructor
     function __construct() {
-        require_once 'connectbd.php';
+        require '../bd_connect.php';
         // connecting to database
-        $this->db = new DB_Connect();
+        $this->db = new DB_CONNECT();
         $this->db->connect();
     }
- 
     // destructor
     function __destruct() {
- 
     }
   
 	public function login($user,$passw){
-
         $consulta = "SELECT COUNT(*) FROM usuario a, clave b WHERE a.nombre_usuario='$user' AND b.clave='$passw'";
         $result = mysql_query($consulta); 
         $count = mysql_fetch_row($result);
@@ -29,7 +26,7 @@ class funciones_BD {
             return false;
         }
         }//login
-  
+
 }//funciones bd
  
 ?>
