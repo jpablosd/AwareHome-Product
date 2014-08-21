@@ -3,10 +3,10 @@ require_once '../conexion/connectbd.php';
 $db = new DB_Connect();
 $db->connect();
 
-obtener_datos_regla();
+monitoreo_de_reglas();
 
 //obtengo los datos de la regla
-function obtener_datos_regla(){ 
+function monitoreo_de_reglas(){ 
 	//para saber cuantas reglas hay
 	$numero_de_reglas = "SELECT count(*) FROM regla_basica";
 	$query=mysql_query($numero_de_reglas);
@@ -52,6 +52,10 @@ function obtener_datos_regla(){
 					{
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
+					}else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
 					}
 				}
 				if($simbolo == ">")
@@ -61,12 +65,22 @@ function obtener_datos_regla(){
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
 					}
+					else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
+					}
 				}
 				if($simbolo == "=")
 				{
 					if($temperatura == $dato)
 					{
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
+					}
+					else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
 					}
 				}	
@@ -81,6 +95,11 @@ function obtener_datos_regla(){
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
 					}
+					else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
+					}
 				}
 				if($simbolo == ">")
 				{
@@ -89,12 +108,22 @@ function obtener_datos_regla(){
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
 					}
+					else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
+					}
 				}
 				if($simbolo == "=")
 				{
 					if($humedad == $dato)
 					{
 						$sql = "UPDATE regla_basica SET  estado = '1' WHERE id_regla_basica = '$i'";
+						mysql_query($sql);
+					}
+					else
+					{
+						$sql = "UPDATE regla_basica SET  estado = '0' WHERE id_regla_basica = '$i'";
 						mysql_query($sql);
 					}
 				}
