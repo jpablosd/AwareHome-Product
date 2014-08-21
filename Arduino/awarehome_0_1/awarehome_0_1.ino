@@ -7,7 +7,7 @@
 dht DHT;
 
 byte mac[] = {  0x90, 0xA2, 0xDA, 0x0D, 0x4E, 0xD7 }; // MAC de la tarjeta ethernet shield
-byte server[] = { 190,153,212,77 }; // Direccion ip del servidor
+byte server[] = { 192,168,1,158 }; // Direccion ip del servidor
 
 EthernetClient client;
 float temperatura;
@@ -47,7 +47,8 @@ void loop()
   if (client.connected()) {
     Serial.println("Enviando Datos al Servidor");
     
-    client.print("GET /JP/awarehome/arduino/arduino.php?id_habitacion=1");
+    
+    client.print("GET /servidor/arduino/arduino.php?id_usuario=1");
     client.print("&nombre_sensor=TyH");
     client.print("&temperatura=");
     client.print(temperatura);
