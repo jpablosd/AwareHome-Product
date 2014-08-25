@@ -64,5 +64,5 @@ void loop()
   }
   client.stop();
   client.flush();
-  delay(1000); // espera 5 segundos antes de volver a sensar la temperatura
+  delay(5000); // espera 5 segundos antes de volver a sensar la temperatura
 }

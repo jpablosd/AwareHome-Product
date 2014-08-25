@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cl.awarehome.aplicacion.MainActivity" >
+
+    <item
+        android:id="@+id/salir"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Salir"/>
+
+</menu>

@@ -1,6 +1,6 @@
 <?php
-//$buscar=$_POST["buscar"];
-$buscar = "1"; //id usuario
+$buscar=$_POST["buscar"];
+//$buscar = "1"; //id usuario
 
 // array for JSON response
 $response = array();
