@@ -12,7 +12,7 @@ package cl.awarehome.aplicacion.conexion;
 public class DatosServidor{
 
 	public static String IpServidor(){
-		String ip_servidor = "http://192.168.1.158";
+		String ip_servidor = "http://192.168.0.9";
 		return ip_servidor;
 	}
 	

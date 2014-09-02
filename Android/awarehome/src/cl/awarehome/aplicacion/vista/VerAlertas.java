@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
 import cl.awarehome.aplicacion.conexion.*;
 import cl.awarehome.aplicacion.R;
 import android.app.Activity;
@@ -22,16 +21,23 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
-public class VerAlertas extends ListActivity {
-	// Progress Dialog
+public class VerAlertas extends Activity {
+		
+    	ArrayList<Lista_entrada> datos;  
+		
+		// Progress Dialog
 		private ProgressDialog pDialog;
 		// Creating JSON Parser object
 		JSONParser jParser = new JSONParser();
-		ArrayList<HashMap<String, String>> ListaDeAlertas;
+		//ArrayList<HashMap<String, String>> ListaDeAlertas;
 		// url to get all empleados list Reemplaza la IP de tu equipo o la direccion de tu servidor 
 		// Si tu servidor es tu PC colocar IP Ej: "http://127.97.99.200/taller06oct/..", no colocar "http://localhost/taller06oct/.."
 		private static String url_alertas = DatosServidor.IpServidor() + DatosServidor.UrlMonitoreoDeReglas();
@@ -44,21 +50,32 @@ public class VerAlertas extends ListActivity {
 
 		// empleados JSONArray
 		JSONArray alertas = null;
+		
+		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ver_alertas);
 		
-		// Hashmap for ListView
-		ListaDeAlertas = new ArrayList<HashMap<String, String>>();
-		// Loading empleados in Background Thread
+		datos = new ArrayList<Lista_entrada>();
+		//datos.clear();
+
 		new CargarAlertas().execute();
-		// Get listview
-		ListView lv = getListView();
-		
+
+        
+        ListView lista = (ListView) findViewById(R.id.ListView_listado);
+        lista.setAdapter(new Lista_Adaptador(this, R.layout.list_item, datos){
+			@Override
+			public void onEntrada(Object entrada, View view) {
+		            TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior); 
+		            texto_superior_entrada.setText(((Lista_entrada) entrada).get_textoEncima()); 
+
+		            ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen); 
+		            imagen_entrada.setImageResource(((Lista_entrada) entrada).get_idImagen());
+			}
+		});
 		
 	}//oncreate
-	
 	
 	/**
 	 * Background Async Task to Load all Empleado by making HTTP Request
@@ -106,26 +123,21 @@ public class VerAlertas extends ListActivity {
 						// Storing each json item in variable
 						String estado = c.getString(TAG_estado);
 						String nombre = c.getString(TAG_nombre_alerta);
-						
 
-						// creating new HashMap
-						HashMap<String, String> map = new HashMap<String, String>();
-
-						// adding each child node to HashMap key => value
-						
-						map.put(TAG_estado, estado);
-						map.put(TAG_nombre_alerta, nombre);
-						
-						// adding HashList to ArrayList
-						ListaDeAlertas.add(map);
+						if (estado.equals("1")){
+							//map.put(TAG_estado, "luz_roja");
+							datos.add(new Lista_entrada(R.drawable.luz_roja, nombre));
+						}
+						if (estado.equals("0")){
+							datos.add(new Lista_entrada(R.drawable.luz_verde, nombre));
+						}
+						else{
+							//map.put(TAG_estado, "luz_verde");
+							datos.add(new Lista_entrada(R.drawable.luz_verde, nombre));
+						}
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					//Intent i = new Intent(getApplicationContext(),NewEmpladoActivity.class);
-					// Closing all previous activities
-					//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					//startActivity(i);
+
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -140,21 +152,8 @@ public class VerAlertas extends ListActivity {
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all empleados
 			pDialog.dismiss();
-			// updating UI from Background Thread
-			runOnUiThread(new Runnable() {
-				public void run() {
-					/**
-					 * Updating parsed JSON data into ListView
-					 * */
-					ListAdapter adapter = new SimpleAdapter(VerAlertas.this, ListaDeAlertas,
-							R.layout.list_item, new String[] { TAG_nombre_alerta },
-							new int[] { R.id.nombre_regla });
-					// updating listview
-					setListAdapter(adapter);
-				}
-			});
 		}
-	}
+	}//cargar alertas
 	
 	
 }//class
