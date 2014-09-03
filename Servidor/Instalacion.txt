@@ -11,7 +11,7 @@ Requerimientos:
 		- reglas
 		- awarehome.sql
 		- Instalacion.txt
-h
+
 
 Procedimiento:
 
@@ -44,7 +44,8 @@ Procedimiento:
 
 
 
-
+Juan Pablo Soto Del Pino.
+3 de septiembre de 2014.
 
 
 
