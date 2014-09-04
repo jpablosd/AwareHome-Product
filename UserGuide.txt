@@ -1,0 +1,31 @@
+
+-------------------- USER GUIDE ---------------------
+
+USER GUIDE de versión prototipo 0.2 AwareHome aplicación
+
+
+Para usar la aplicación AwareHome de la plataforma android se debe utilizar android 4.1.2
+o mayor versiones de android.
+
+Primeros pasos:
+
+Abrir la aplicación AwareHome en el smartphone, se abrira la ventana de inicio de sesión, luego de eso puede iniciar sesión con 
+el usuario entregado (user: juanpablo.soto; pass: 85575884) luego de eso se mostrará la ventana en donde se monitorea al temperatura 
+y humedad, estando en esta ventana al presionar sobre el boton opciones, se mostrará que se puede "crear alerta", "monitorear Alerta"
+y "cerrar sesión".
+
+Al presionar Crear Alerta ud puede ingresar nombre de alerta a su gusto, luego de eso puede seleccionar si desea hacer una alerta en
+en base a temperatura o humedad selecionando los distintos checkbox que existen en la visual de la aplicación, una vez selecionada
+la temperatura o humedad que desea utilizar, puede agregar el simbolo, que en esta versión soporta < (menor) > (mayor) ó = (igual),
+más el dato que desea, cualquier dato que este en el rango de 0 a 100, en donde si es en temperatura son los grados celcius y si 
+es humedad es en porcentaje (%) de humedad.
+
+
+
+Juan Pablo Soto Del Pino.
+3 de septiembre de 2014.
+
+
+
+
+

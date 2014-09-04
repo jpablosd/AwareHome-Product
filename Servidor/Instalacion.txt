@@ -1,0 +1,51 @@
+Instalación de servidor AWAREHOME
+
+Requerimientos:
+
+	Carpeta servidor, en donde se encuentran alojadas los siguientes directorios:
+		
+		- acces
+		- datos
+		- conexion
+		- arduino
+		- reglas
+		- awarehome.sql
+		- Instalacion.txt
+
+
+Procedimiento:
+
+	1) Tomar todos los archivos, copiar y pegar en la siguiente dirección:
+
+		http://190.153.212.77/jp/awarehome/
+
+
+	2) Una vez copiados los archivos, abrir el archivo (config.php) que se encuentra en /conexion/config.php
+	posterior a eso modificar los siguientes datos:
+
+		- Linea 6, "Usuario" de la base de datos.
+		- Linea 7, "password" del usuario de la base de datos.
+		- Linea 8, "awarehome" nombre de la base de datos.
+
+
+	3) Una vez realizado todos los pasos la estructura del directorio debe quedar de la siguiente forma:
+
+		http://190.153.212.77/jp/awarehome/acces
+		http://190.153.212.77/jp/awarehome/datos
+		http://190.153.212.77/jp/awarehome/conexion
+		http://190.153.212.77/jp/awarehome/arduino
+		http://190.153.212.77/jp/awarehome/reglas
+		http://190.153.212.77/jp/awarehome/awarehome.sql
+		http://190.153.212.77/jp/awarehome/Instalacion.txt
+
+
+	4) Entrar a phpMyAdmin, eliminar tablas de la base de datos, luego abrir el archivo awarehome.sql con un block de notas,
+	copiar todo el código y pegarlo en donde la base de datos recibe códigos sql para la modificación.
+
+
+
+Juan Pablo Soto Del Pino.
+3 de septiembre de 2014.
+
+
+

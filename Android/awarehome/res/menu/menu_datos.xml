@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/Opc1"
+        android:title="Crear Alerta"
+        android:textColor="#111111">
+    </item>
+    
+    <item
+        android:id="@+id/Opc2"
+        android:title="Ver Alertas"
+        android:textColor="#111111">
+    </item>
+
+    <item
+        android:id="@+id/Opc3"
+        android:title="Cerrar Sesión"
+        android:textColor="#111111">
+    </item>
+    
+</menu>
