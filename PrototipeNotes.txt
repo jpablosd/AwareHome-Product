@@ -3,7 +3,7 @@
 -------------------- RELEASE NOTES ---------------------
 
 
-Release Notes de Versión 0.1.9 AwareHome Aplicación
+Release Notes de Versión de prototipo 0.2 AwareHome Aplicación
 
 AwareHome es una aplicación que permite monitorear diferentes variables que existen en el hogar como
 temperatura, humedad, niveles de gas, niveles de humo entre otros.
