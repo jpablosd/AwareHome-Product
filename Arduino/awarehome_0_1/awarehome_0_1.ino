@@ -2,24 +2,25 @@
 #include <Ethernet.h>
 #include <dht.h>
 
-#define dht_dpin A2
+#define dht_dpin A0
 
 dht DHT;
 
 byte mac[] = {  0x90, 0xA2, 0xDA, 0x0D, 0x4E, 0xD7 }; // MAC de la tarjeta ethernet shield
-byte server[] = { 190,153,212,77 }; // Direccion ip del servidor
-
-
+byte server[] = { 192,168,1,158 }; // Direccion ip del servidor
+                 //190.107.177.241
 
 EthernetClient client;
-float temperatura;
-float humedad;
+int temperatura = 0;
+int humedad = 0;
+int gas = 0;
+
 
 void setup()
 {
   Serial.begin(9600);
-  
   // start the Ethernet connection:
+  
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Error al conectar Ethernet usando DHCP");
   }
@@ -28,9 +29,10 @@ void setup()
     // print the value of each byte of the IP address:
     Serial.print(Ethernet.localIP()[thisByte], DEC);
     Serial.print("."); 
-}
+  }
   Serial.println();
   delay(1000); // espera 1 segundo despues de inicializar
+  
 }
 
 void loop()
@@ -38,8 +40,19 @@ void loop()
   DHT.read11(dht_dpin);
   temperatura = DHT.temperature;
   humedad = DHT.humidity;
+  gas = analogRead(1); //imprime el valor de gas de 20ppm a 3000ppm (partes por millon de gas
+  
+  Serial.print("temperatura: ");
+  Serial.println(temperatura);
+  Serial.print("humedad: ");
+  Serial.println(humedad);
+  Serial.print("gas: ");
+  Serial.println(gas);
+  
   Serial.println("Conectando...");
-  if (client.connect(server,80)>0) {  // Se conecta al servidor    
+  
+  if (client.connect(server,80)>0) 
+  {  // Se conecta al servidor    
     Serial.println("Conexion exitosa");
   }
   else
@@ -49,12 +62,14 @@ void loop()
   if (client.connected()) {
     Serial.println("Enviando Datos al Servidor");
     
-    client.print("GET /awarehome/arduino/Arduino.php?id_usuario=1");
+    client.print("GET /servidor/arduino/Arduino.php?id_usuario=1");
     client.print("&nombre_sensor=TyH");
     client.print("&temperatura=");
     client.print(temperatura);
     client.print("&humedad=");
     client.print(humedad);
+    client.print("&gas=");
+    client.print(gas);
   
     //Serial.print(temperatura);
     //Serial.print(humedad);
@@ -68,5 +83,5 @@ void loop()
   }
   client.stop();
   client.flush();
-  delay(5000); // espera 10 segundos antes de volver a sensar la temperatura
+  delay(5000); // espera 5 segundos antes de volver a sensar la temperatura
 }

@@ -43,55 +43,59 @@
         android:text="Sensores:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/simbolo_regla"
-        android:textColor="#000"
+    <RadioButton
+        android:id="@+id/humedad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sensor_temperatura"
-        android:layout_below="@+id/sensor_temperatura"
-        android:layout_toLeftOf="@+id/textView1"
-        android:ems="10"
-        android:hint="&lt;" 
-    />
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="Humedad" />
+
+    <RadioButton
+        android:id="@+id/gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/humedad"
+        android:layout_below="@+id/humedad"
+        android:text="Gas" />
+
+    <RadioButton
+        android:id="@+id/sensor_tempa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gas"
+        android:layout_below="@+id/gas"
+        android:text="Temperatura" />
 
     <EditText
         android:id="@+id/dato_regla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/simbolo_regla"
-        android:layout_alignBottom="@+id/simbolo_regla"
-        android:layout_alignRight="@+id/nombre_alerta"
+        android:layout_alignLeft="@+id/crear"
+        android:layout_below="@+id/sensor_tempa"
+        android:layout_marginTop="37dp"
         android:ems="10"
         android:hint="10"
         android:inputType="number"
+        android:textColor="#000" />
+
+    <EditText
+        android:id="@+id/simbolo_regla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/crear"
+        android:layout_toLeftOf="@+id/dato_regla"
+        android:ems="10"
+        android:hint="&lt;"
         android:textColor="#000" />
 
     <Button
         android:id="@+id/crear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/simbolo_regla"
+        android:layout_below="@+id/dato_regla"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="20dp"
         android:text="Crear Alerta" />
-
-    <CheckBox
-        android:id="@+id/sensor_temperatura"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
-        android:text="Temperatura" />
-
-    <CheckBox
-        android:id="@+id/sensor_humedad"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sensor_temperatura"
-        android:layout_alignRight="@+id/dato_regla"
-        android:text="Humedad" />
 
 </RelativeLayout>

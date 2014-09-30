@@ -17,8 +17,15 @@ $query = "SELECT a.nombre_tarea, a.descripcion_tarea, a.estado, a.descripcion_es
 		  AND a.clientes_idClientes = b.idClientes";
 
 */
-$query = "SELECT temperatura,humedad FROM sensor_temperatura_humedad WHERE id_sensor_temperatura_humedad = (SELECT MAX(id_sensor_temperatura_humedad) FROM sensor_temperatura_humedad) AND usuario_id_usuario='$buscar'";  
+//$query = "SELECT temperatura,humedad FROM sensor_temperatura_humedad WHERE id_sensor_temperatura_humedad = (SELECT MAX(id_sensor_temperatura_humedad) FROM sensor_temperatura_humedad) AND usuario_id_usuario='$buscar'";  
 		  
+$query = "SELECT a.temperatura, a.humedad, b.gas FROM sensor_temperatura_humedad a, sensor_gas b 
+          WHERE a.id_sensor_temperatura_humedad = (SELECT MAX(id_sensor_temperatura_humedad) FROM sensor_temperatura_humedad) 
+          AND b.id_sensor_gas = (SELECT MAX(id_sensor_gas) FROM sensor_gas)
+          AND  a.usuario_id_usuario='$buscar'";  
+
+
+
 $result = mysql_query($query) or die(mysql_error());
 
 // check for empty result
@@ -31,6 +38,7 @@ if (mysql_num_rows($result) > 0) {
         $datos = array();
         $datos["temperatura"] = $row["temperatura"];
         $datos["humedad"] = $row["humedad"];
+        $datos["gas"] = $row["gas"];
         // push single product into final response array
         array_push($response["datos"], $datos);
     }

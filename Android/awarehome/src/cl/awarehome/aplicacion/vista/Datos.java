@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.splunk.mint.Mint;
+
 import cl.awarehome.aplicacion.R;
 import cl.awarehome.aplicacion.conexion.*;
 import de.passsy.holocircularprogressbar.HoloCircularProgressBar;
@@ -38,22 +40,24 @@ import android.widget.Toast;
 public class Datos extends Activity{
 
 	double temperatura, humedad;
+	int gas;
 	String buscar= "1";
 	String usuario;
-	
+
 	//progress Dialog
 	private ProgressDialog pDialog;
 	//creating JSON parser object
 	JSONParser jparser = new JSONParser();
-	
+
 	private static String url_all_empleados = DatosServidor.IpServidor() + DatosServidor.UrlDatos();
-	
+
 	//JSON node names
 	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_empleados = "datos";
-	private static final String TAG_NOMBRE = "temperatura";
-	private static final String TAG_CEDULA = "humedad";
-	
+	private static final String TAG_DATOS = "datos";
+	private static final String TAG_TEMPERATURA = "temperatura";
+	private static final String TAG_HUMEDAD = "humedad";
+	private static final String TAG_GAS = "gas";
+
 	JSONArray empleados = null;
 
 	private static final String TAG = Datos.class.getSimpleName();
@@ -66,72 +70,83 @@ public class Datos extends Activity{
 
 	private TextView temp;
 	private TextView hum;
+	private TextView valor_gas;
 	private TextView user;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.datos);
-		
+
+		Mint.initAndStartSession(Datos.this, "d609afeb");
+
+
 		user = (TextView) findViewById(R.id.usuario);
-		
+
 		Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-     	   usuario  = extras.getString("usuario");//usuario
-     	   user.setText(usuario);
-        }else{
-     	   usuario="error";
-     	}
+		if (extras != null) {
+			usuario  = extras.getString("usuario");//usuario
+			user.setText(usuario);
+		}else{
+			usuario="error";
+		}
 
 		mHoloCircularProgressBar = (HoloCircularProgressBar) findViewById(R.id.holoCircularProgressBar1);
-		
+
 		temp = (TextView) findViewById(R.id.temperatura);
 		hum = (TextView) findViewById(R.id.humedad);
-		
-        //Creamos el Timer
-      		Timer timer = new Timer();
-      		//Que actue cada 3000 milisegundos
-      		//Empezando des de el segundo 0
-      		timer.scheduleAtFixedRate(new TimerTask() {
-      			@Override
-      			public void run() {
-      				//La función que queremos ejecutar
-      				FuncionParaEsteHilo();
-      			}
-      		}, 0, 5000);
-		
-      		switchColor();
-			Animar();
+		valor_gas = (TextView) findViewById(R.id.estado_gas);
+
+		//Creamos el Timer
+		Timer timer = new Timer();
+		//Empezando des de el segundo 0
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				//La función que queremos ejecutar
+				FuncionParaEsteHilo();
+			}
+		}, 0, 5000); //cada 5 segundos
+
+		switchColor();
+		Animar();
 	}//onCreate
-	
+
+	/*
+	@Override
+	protected void onStop(){
+		Mint.closeSession(this);
+	}
+	 */
+
 	private void FuncionParaEsteHilo()
 	{
-	    //Esta función es llamada des de dentro del Timer
+		//Esta función es llamada des de dentro del Timer
 		//Para no provocar errores ejecutamos el Accion
 		//Dentro del mismo Hilo
-	    this.runOnUiThread(Accion);
+		this.runOnUiThread(Accion);
 	}
 
 	private Runnable Accion = new Runnable() {
-	    public void run() {
-	    //Aquí iría lo que queramos que haga,
-	    //en este caso mostrar un mensaje.
-	    	//Toast.makeText(getApplicationContext(), "Tiempo!", Toast.LENGTH_LONG).show();
-	    	new CargaDeDatos().execute();
-	    	switchColor();
-	    }
+		public void run() {
+			//Aquí iría lo que queramos que haga,
+			//en este caso mostrar un mensaje.
+			//Toast.makeText(getApplicationContext(), "Tiempo!", Toast.LENGTH_LONG).show();
+			new CargaDeDatos().execute();
+			switchColor();
+		}
 	};
-	
+
 	//Definimos que para cuando se presione la tecla BACK no volvamos para atras  	 
-	 @Override
-	 public boolean onKeyDown(int keyCode, KeyEvent event)  {
-	     if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-	         // no hacemos nada.
-	         return true;
-	     }
-	     return super.onKeyDown(keyCode, event);
-	 }
-	 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			// no hacemos nada.
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 	//___________________________________________
 	protected void Animar(){
 		animate(mHoloCircularProgressBar, new AnimatorListener() {
@@ -155,7 +170,7 @@ public class Datos extends Activity{
 			}
 		});
 	}
-	
+
 	/**
 	 * generates random colors for the ProgressBar
 	 */
@@ -209,8 +224,8 @@ public class Datos extends Activity{
 		mProgressBarAnimator.start();
 	}
 
-	 //--------------------------------------------------------
-	 class CargaDeDatos extends AsyncTask<String, String, String>{
+	//--------------------------------------------------------
+	class CargaDeDatos extends AsyncTask<String, String, String>{
 		@Override
 		protected void onPreExecute(){
 			super.onPreExecute();
@@ -220,7 +235,7 @@ public class Datos extends Activity{
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
-			*/
+			 */
 		}
 		@Override
 		protected String doInBackground(String... params) {
@@ -231,20 +246,20 @@ public class Datos extends Activity{
 			JSONObject json = jparser.makeHttpRequest(url_all_empleados,"POST", params1);
 			//checj your log cat for JSON response
 			Log.d("todas los datos: ", json.toString());
-			
+
 			try{
 				//checking for success tag
 				int success = json.getInt(TAG_SUCCESS);
 				if(success == 1){
 					//empleados found
-					empleados = json.getJSONArray(TAG_empleados);
+					empleados = json.getJSONArray(TAG_DATOS);
 					//looping through all empleados
 					for(int i=0; i<empleados.length();i++){
 						JSONObject c = empleados.getJSONObject(i);
 						//storig each json item in variable
-						temperatura = c.getDouble(TAG_NOMBRE);
-						humedad = c.getDouble(TAG_CEDULA);
-
+						temperatura = c.getDouble(TAG_TEMPERATURA);
+						humedad = c.getDouble(TAG_HUMEDAD);
+						gas = c.getInt(TAG_GAS);
 					}
 				}else{
 					//no empleados found
@@ -258,64 +273,66 @@ public class Datos extends Activity{
 			}
 			return null;
 		}//doInBackground
-		
+
 		protected void onPostExecute(String file_url){
 			//dismiss the dialog after getting all empleados
-			
-			//pDialog.dismiss();
-           //Toast.makeText(getApplicationContext(), "temperatura: "+temperatura+ "humedad: "+humedad, Toast.LENGTH_LONG).show();
-           String t = String.valueOf(temperatura);
-           temp.setText(t+"ºC");
-           String h = String.valueOf(humedad);
-           hum.setText(h+"%");
-           //float lat = Float.parseFloat(lati);	
-		}
-	 }//CargaDeDatos
-	 //--------------------------------------------------------
-	 
 
-	 @Override
-	 public boolean onCreateOptionsMenu(Menu menu) 
-		{
-			MenuInflater inflater = getMenuInflater();
-			inflater.inflate(R.menu.menu_datos, menu);
-			return true;
+			//pDialog.dismiss();
+			//Toast.makeText(getApplicationContext(), "temperatura: "+temperatura+ "humedad: "+humedad, Toast.LENGTH_LONG).show();
+			String t = String.valueOf(temperatura);
+			temp.setText(t+"ºC");
+			String h = String.valueOf(humedad);
+			hum.setText(h+"%");
+			String g = String.valueOf(gas);
+			valor_gas.setText(g+" PPM");
+			//float lat = Float.parseFloat(lati);	
 		}
-		@Override
-	    public boolean onOptionsItemSelected(MenuItem item) 
+	}//CargaDeDatos
+	//--------------------------------------------------------
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_datos, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
+		switch (item.getItemId()) 
 		{
-	        switch (item.getItemId()) 
-	        {
-	        	case R.id.Opc1:
-	        		//crear alerta
-	            	Toast.makeText(getApplicationContext(), "Crear alerta", Toast.LENGTH_LONG).show();
-	            	Intent a=new Intent(Datos.this, CrearAlerta.class);
-	         	   	startActivity(a);
-	         	   	//finish();
-	         	   	return true;
-	            	
-	            case R.id.Opc2:
-	            	Toast.makeText(getApplicationContext(), "Monitorear alerta", Toast.LENGTH_LONG).show(); 
-	            	Intent b=new Intent(Datos.this, VerAlertas.class);
-	         	   	startActivity(b);
-	         	   	//finish();
-	         	   	return true;
-	         	   	
-	            case R.id.Opc3:	            	
-	            	//cerrar  sesion nos regresa a la ventana anterior. 
-	            	Toast.makeText(getApplicationContext(), "Cerrando Sesion de "+usuario, Toast.LENGTH_LONG).show();
-	         	   	Intent c=new Intent(Datos.this, Login.class);
-	         	   	startActivity(c);
-	         	   	finish();
-	         	   	return true;
-	            	
-	            default:
-	                return super.onOptionsItemSelected(item);
-	        }
-	    }
-		//--------- menu ----------------------------
-	 
-	 
+		case R.id.Opc1:
+			//crear alerta
+			Toast.makeText(getApplicationContext(), "Crear alerta", Toast.LENGTH_LONG).show();
+			Intent a=new Intent(Datos.this, CrearAlerta.class);
+			startActivity(a);
+			//finish();
+			return true;
+
+		case R.id.Opc2:
+			Toast.makeText(getApplicationContext(), "Monitorear alerta", Toast.LENGTH_LONG).show(); 
+			Intent b=new Intent(Datos.this, VerAlertas.class);
+			startActivity(b);
+			//finish();
+			return true;
+
+		case R.id.Opc3:	            	
+			//cerrar  sesion nos regresa a la ventana anterior. 
+			Toast.makeText(getApplicationContext(), "Cerrando Sesion de "+usuario, Toast.LENGTH_LONG).show();
+			Intent c=new Intent(Datos.this, Login.class);
+			startActivity(c);
+			finish();
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	//--------- menu ----------------------------
+
+
 }//class
 
 
