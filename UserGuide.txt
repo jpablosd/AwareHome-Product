@@ -1,7 +1,7 @@
 
 -------------------- USER GUIDE ---------------------
 
-USER GUIDE de versión 0.1.9 AwareHome aplicación
+USER GUIDE de versión prototipo 0.2 AwareHome aplicación
 
 
 Para usar la aplicación AwareHome de la plataforma android se debe utilizar android 4.1.2
