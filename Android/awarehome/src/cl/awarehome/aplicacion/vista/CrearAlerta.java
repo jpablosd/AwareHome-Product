@@ -45,14 +45,14 @@ public class CrearAlerta extends Activity {
 	String nombreAlerta;
 	String simboloAlerta;
 	String datoAlerta;
-	String id_usuario = "1";
+	String id_usuario;
 	String id_sensor = "1";
 
 	JSONParser jsonParser = new JSONParser();
 	// JSON Node names
 	private static final String TAG_SUCCESS = "TAG_SUCCESS";
 
-	String URL_connect = DatosServidor.IpServidor() + DatosServidor.UrlCrearReglas();
+	String URL_connect = DatosServidor.IpServidor() + DatosServidor.UrlCrearAlerta();
 	private ProgressDialog pDialog;
 
 	@Override
@@ -62,15 +62,23 @@ public class CrearAlerta extends Activity {
 
 		Mint.initAndStartSession(CrearAlerta.this, "d609afeb");
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id_usuario  = extras.getString("id_usuario");//usuario
+            Toast.makeText(getApplicationContext(), "id usuario: "+id_usuario, Toast.LENGTH_LONG).show();
+        }else{
+            id_usuario="error";
+        }
+
 
 		nombre_alerta = (EditText) findViewById(R.id.nombre_alerta);
 		simbolo_alerta = (EditText) findViewById(R.id.simbolo_regla);
 		dato_alerta = (EditText) findViewById(R.id.dato_regla);
 		crear_alerta = (Button) findViewById(R.id.crear);
 
-		sensor_hum = (RadioButton) findViewById(R.id.humedad);
-		sensor_temp = (RadioButton) findViewById(R.id.sensor_tempa);
-		sensor_gas = (RadioButton) findViewById(R.id.gas);
+		sensor_hum = (RadioButton) findViewById(R.id.humedad_radiobutton);
+		sensor_temp = (RadioButton) findViewById(R.id.temperatura_radiobutton);
+		sensor_gas = (RadioButton) findViewById(R.id.gas_radiobutton);
 
 
 		sensor_temp.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){

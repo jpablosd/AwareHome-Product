@@ -12,27 +12,37 @@ package cl.awarehome.aplicacion.conexion;
 public class DatosServidor{
 
 	public static String IpServidor(){
-		String ip_servidor = "http://20.110.38.109";
+		String ip_servidor = "http://192.168.1.158";
 		return ip_servidor;
 	}
 
 	public static String UrlLogin(){
-		String url_login = "/servidor/acces/Login.php";
+		String url_login = "/awarehome/acces/Login.php";
 		return url_login;
 	}
 
 	public static String UrlDatos(){
-		String url_datos = "/servidor/datos/Datos.php";
+		String url_datos = "/awarehome/datos/Datos.php";
 		return url_datos;
 	}
 
-	public static String UrlCrearReglas(){
-		String url_crear_reglas = "/servidor/reglas/CreacionDeReglas.php";
+	public static String UrlCrearAlerta(){
+		String url_crear_reglas = "/awarehome/alertas/CreacionDeAlertas.php";
 		return url_crear_reglas;
 	}
 
-	public static String UrlMonitoreoDeReglas(){
-		String url_monitoreo_de_reglas = "/servidor/reglas/MonitoreoDeReglas.php";
+	public static String UrlMonitoreoDeAlertas(){
+		String url_monitoreo_de_reglas = "/awarehome/alertas/MonitoreoDeAlertas.php";
 		return url_monitoreo_de_reglas;
+	}
+	
+	public static String UrlDatosUsuario(){
+		String url_datos_usuario = "/awarehome/usuario/Usuario.php";
+		return url_datos_usuario;
+	}
+	
+	public static String UrlAgregarHogar(){
+		String url_datos_usuario = "/awarehome/hogar/CreacionDeHogar.php";
+		return url_datos_usuario;
 	}
 }//datosServidor
