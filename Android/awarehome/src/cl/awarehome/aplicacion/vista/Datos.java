@@ -16,6 +16,7 @@ import com.splunk.mint.Mint;
 
 import cl.awarehome.aplicacion.R;
 import cl.awarehome.aplicacion.conexion.*;
+
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -245,11 +246,14 @@ public class Datos extends Activity{
 						fecha_dato = c.getString(TAG_FECHA);
 					}
 				}else{
-					//no empleados found
-					Intent i = new Intent(getApplicationContext(),Datos.class);
+					//no datos found
+					
+					//Intent i = new Intent(getApplicationContext(),Datos.class);
 					//closing all previus activities
-					i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i);
+					//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					//startActivity(i);
+					
+					new CargaDeDatos().execute();
 				}
 			}catch(JSONException e){
 				e.printStackTrace();
@@ -289,6 +293,7 @@ public class Datos extends Activity{
 			Toast.makeText(getApplicationContext(), "Crear alerta", Toast.LENGTH_LONG).show();
 			Intent a=new Intent(Datos.this, CrearAlerta.class);
             a.putExtra("id_usuario",id_usuario_app);
+            a.putExtra("nombre_usuario", usuario);
 			startActivity(a);
 			//finish();
 			return true;
@@ -297,6 +302,7 @@ public class Datos extends Activity{
 			Toast.makeText(getApplicationContext(), "Monitorear alerta", Toast.LENGTH_LONG).show(); 
 			Intent b=new Intent(Datos.this, VerAlertas.class);
 			b.putExtra("id_usuario",id_usuario_app);
+			b.putExtra("nombre_usuario", usuario);
 			startActivity(b);
 			//finish();
 			return true;
@@ -312,11 +318,13 @@ public class Datos extends Activity{
         case R.id.Opc4:
              //cerrar  sesion nos regresa a la ventana anterior.
              Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
-             Intent d=new Intent(Datos.this, AgregarHogar.class);
-             startActivity(d);
+             Intent d=new Intent(Datos.this, PersonalizarHogar.class);
              d.putExtra("id_usuario",id_usuario_app);
+             Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
              d.putExtra("usuario", usuario);
-             //finish();
+             Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();
+             startActivity(d);
+             finish();
              return true;
 
 		default:

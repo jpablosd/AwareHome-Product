@@ -45,19 +45,17 @@ import org.json.JSONObject;
 
 public class AgregarHogar extends FragmentActivity {
 	
+	String id_usuario_agregar_hogar, nombre_usuario;
+	
 	JSONParser jsonParser = new JSONParser();
 	// JSON Node names
 	private static final String TAG_SUCCESS = "TAG_SUCCESS";
 
 	String URL_connect = DatosServidor.IpServidor() + DatosServidor.UrlAgregarHogar();
 
-	String id_usuario_agregar_hogar, nombre_usuario;
 	private GoogleMap googleMap;
 	double plong;
 	double plat;
-
-	private ProgressDialog pDialog;
-	
 	
 	String longitud_app, latitud_app;
 	
@@ -66,13 +64,13 @@ public class AgregarHogar extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.agregar_hogar);
 		Mint.initAndStartSession(AgregarHogar.this, "d609afeb");
-
-
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			id_usuario_agregar_hogar  = extras.getString("id_usuario");//usuario
+			Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_agregar_hogar, Toast.LENGTH_LONG).show();	
 			nombre_usuario = extras.getString("usuario");
-
+			Toast.makeText(getApplicationContext(), "nombre usuario: "+nombre_usuario, Toast.LENGTH_LONG).show();	
 		}else{
 			id_usuario_agregar_hogar="error";
 		}
@@ -84,6 +82,11 @@ public class AgregarHogar extends FragmentActivity {
 		MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
 		googleMap = mapFragment.getMap();
 		googleMap.setMyLocationEnabled(true);
+		googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+		
+	
+		
+		
 	}//oncreate
 
 	//----------- mylocationlistener -------------------
@@ -125,7 +128,7 @@ public class AgregarHogar extends FragmentActivity {
 	{
 		switch (item.getItemId()) 
 		{
-		case R.id.Opc1:
+		case R.id.Opc1_agregar_hogar:
 			//crear alerta
 			Toast.makeText(getApplicationContext(), "Agregando hogar", Toast.LENGTH_LONG).show();
 
@@ -138,10 +141,21 @@ public class AgregarHogar extends FragmentActivity {
 			latitud_app = Double.toString(plat);
 			longitud_app = Double.toString(plong);
 			
-			new AgregarHogarNuevo().execute();
+			//new AgregarHogarNuevo().execute();
 			
-			//finish();
+
 			return true;
+		case R.id.Opc2_agregar_hogar:
+			 Intent a=new Intent(AgregarHogar.this, PersonalizarHogar.class);
+             
+             a.putExtra("id_usuario",id_usuario_agregar_hogar);
+             a.putExtra("usuario", nombre_usuario);
+             a.putExtra("latitud",latitud_app);
+             a.putExtra("longitud",longitud_app);
+             startActivity(a);
+			
+			finish();
+			
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -150,64 +164,49 @@ public class AgregarHogar extends FragmentActivity {
 
 	
 
-	/**
-	 * Background Async Task to Create new Empleado
-	 * */
-	class AgregarHogarNuevo extends AsyncTask<String, String, String> {
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(AgregarHogar.this);
-			pDialog.setMessage("Registrando hogar..");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
-		}
-		/**
-		 * Creating Empleado
-		 * */
-		protected String doInBackground(String... args) {
-			// Building Parameters
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			//params.add(new BasicNameValuePair("descripcion", nombre_usuario));
-			params.add(new BasicNameValuePair("latitud", latitud_app));
-			params.add(new BasicNameValuePair("longitud", longitud_app));
-			params.add(new BasicNameValuePair("id_usuario", id_usuario_agregar_hogar));
-			// getting JSON Object
-			// Note that create Empleado url accepts POST method
-
-			JSONObject json = jsonParser.makeHttpRequest(URL_connect,"POST", params);
-			JSONArray json2 = new JSONArray();
-			// check for success tag
-			try {
-				int success = json.getInt(TAG_SUCCESS);
-
-				if (success == 1) 
-				{
-
-				} 
-				else {
-					// failed to create Empleado
-				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			// check log cat fro response
-			//Log.d("Create Response", json.toString());
-			return null;
-		}
-		/**
-		 * After completing background task Dismiss the progress dialog
-		 * **/
-		protected void onPostExecute(String file_url) {
-			// dismiss the dialog once done
-			pDialog.dismiss();
-			Toast.makeText(getApplicationContext(), "Hogar Agregado", Toast.LENGTH_LONG).show();
-			//finish();
-		}
-	}
-
-
+	
+	
+	/** 
+     * Distance in kilometers between two geo points. 
+     * 
+     * Example: 
+     * 
+     * double lat1 = -34.87001758635342; 
+     * double lon1 = -56.16755962371826; 
+     * double lat2 = -34.88487484011935; 
+     * double lon2 = -56.1661434173584; 
+     * 
+     * double distance = distFrom(lat1, lon1, lat2, lon2); 
+     * 
+     * @param lat1 
+     * @param lng1 
+     * @param lat2 
+     * @param lng2 
+     * @return 
+     */  
+	/*
+    double lat1 = -34.87001758635342; 
+    double lon1 = -56.16755962371826; 
+    double lat2 = -34.88487484011935; 
+    double lon2 = -56.1661434173584; 
+    
+    double distance = distFrom(lat1, lon1, lat2, lon2);
+    
+    public static double distFrom(double lat1, double lng1, double lat2, double lng2) {  
+        //double earthRadius = 3958.75;//miles  
+        double earthRadius = 6371;//kilometers  
+        double dLat = Math.toRadians(lat2 - lat1);  
+        double dLng = Math.toRadians(lng2 - lng1);  
+        double sindLat = Math.sin(dLat / 2);  
+        double sindLng = Math.sin(dLng / 2);  
+        double a = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)  
+                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));  
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));  
+        double dist = earthRadius * c;  
+  
+        return dist;  
+    } 
+*/
 	
 
 }//class

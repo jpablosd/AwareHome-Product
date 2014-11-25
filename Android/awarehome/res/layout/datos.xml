@@ -79,24 +79,11 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/circulo_verde_pequeno" />
-
-        <TextView
-            android:id="@+id/gas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/imageView4"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="21dp"
-            android:layout_marginLeft="14dp"
-            android:text="200"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="30dp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/fecha"
@@ -107,6 +94,30 @@
             android:text="22-10-2014 22:10"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/gas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView4"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="13dp"
+            android:text="200"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/gas"
+            android:layout_below="@+id/gas"
+            android:layout_marginLeft="11dp"
+            android:text="ppm"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
 
@@ -124,6 +135,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="5dp"
             android:orientation="horizontal" >
+
         </LinearLayout>
 
         <LinearLayout
