@@ -5,6 +5,7 @@
 #include <LiquidCrystal_I2C.h>
 
 #define dht_dpin A0
+#define movimiento_pin A3
  /*
  En arduino mega se conecta como dice en la pantalla, vcc, gnd, sda y scl
  En arduino uno se conecta vcc y gnd normal, luego para la coneccion 
@@ -72,7 +73,8 @@ void loop()
   temperatura = DHT.temperature;
   humedad = DHT.humidity;
   gas = analogRead(1); //imprime el valor de gas de 20ppm a 3000ppm (partes por millon de gas
-
+  
+  //movimiento.read11(movimiento_pin);
   
   Serial.print("temperatura: ");
   Serial.println(temperatura);
@@ -102,6 +104,9 @@ void loop()
     client.print(humedad);
     client.print("&gas=");
     client.print(gas);
+   
+   // client.print("&movimiento");
+   // client.print(movimiento);
   
     //Serial.print(temperatura);
     //Serial.print(humedad);
