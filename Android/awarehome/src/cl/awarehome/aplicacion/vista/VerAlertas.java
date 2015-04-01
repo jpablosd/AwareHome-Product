@@ -9,7 +9,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +19,7 @@ import com.splunk.mint.Mint;
 
 
 import cl.awarehome.aplicacion.conexion.*;
-import cl.awarehome.aplicacion.vista.Datos.DatosUsuario;
+import cl.awarehome.aplicacion.vista.Datos.CargaDeDatos;
 import cl.awarehome.aplicacion.R;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -36,7 +35,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RemoteViews;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class VerAlertas extends ListActivity {
 	// Progress Dialog
@@ -46,12 +44,13 @@ public class VerAlertas extends ListActivity {
 	ArrayList<HashMap<String, String>> ListaDeAlertas;
 	// url to get all empleados list Reemplaza la IP de tu equipo o la direccion de tu servidor 
 	// Si tu servidor es tu PC colocar IP Ej: "http://127.97.99.200/taller06oct/..", no colocar "http://localhost/taller06oct/.."
-	private static String url_alertas = DatosServidor.IpServidor() + DatosServidor.UrlMonitoreoDeAlertas();
+	private static String url_alertas = DatosServidor.IpServidor() + DatosServidor.UrlMonitoreoDeReglas();
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_alertas = "alertas";
-	private static final String TAG_nombre_alerta = "nombre_alerta";
+	private static final String TAG_nombre_alerta = "nombre_regla";
 	private static final String TAG_estado = "estado";
+
 
 	// empleados JSONArray
 	JSONArray alertas = null;
@@ -59,8 +58,7 @@ public class VerAlertas extends ListActivity {
 	static final int codigo_noti = 1234;
 	String estado_alerta;
 	String nombre_alerta;
-	
-	String id_usuario = "0";
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,14 +66,7 @@ public class VerAlertas extends ListActivity {
 		setContentView(R.layout.ver_alertas);
 
 		Mint.initAndStartSession(VerAlertas.this, "d609afeb");
-		
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-            id_usuario  = extras.getString("id_usuario");//usuario
-			Toast.makeText(getApplicationContext(), "id usuario: "+id_usuario, Toast.LENGTH_LONG).show();
-		}else{
-            id_usuario="error";
-		}
+
 
 		// Hashmap for ListView
 		ListaDeAlertas = new ArrayList<HashMap<String, String>>();
@@ -148,19 +139,14 @@ public class VerAlertas extends ListActivity {
 		protected String doInBackground(String... args) {
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			params.add(new BasicNameValuePair("id_usuario", id_usuario));
-            //Toast.makeText(getApplicationContext(), "agrega los parametros", Toast.LENGTH_LONG).show();
-
-            // getting JSON string from URL
+			// getting JSON string from URL
 			JSONObject json = jParser.makeHttpRequest(url_alertas, "POST", params);
 
 			// Check your log cat for JSON reponse
 			Log.d("Alertas: ", json.toString());
 
 			try {
-                //Toast.makeText(getApplicationContext(), "entra al try", Toast.LENGTH_LONG).show();
-
-                // Checking for SUCCESS TAG
+				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
 
 				if (success == 1) {
@@ -177,8 +163,7 @@ public class VerAlertas extends ListActivity {
 						nombre_alerta = c.getString(TAG_nombre_alerta);
 
 
-
-                        // creating new HashMap
+						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
 
 						// adding each child node to HashMap key => value
@@ -200,9 +185,7 @@ public class VerAlertas extends ListActivity {
 						ListaDeAlertas.add(map);
 					}
 				} else {
-                    Toast.makeText(getApplicationContext(), "No hay alertas por ahora", Toast.LENGTH_LONG).show();
-
-                    // no empleados found
+					// no empleados found
 					// Launch Add New Empleado Activity
 					//Intent i = new Intent(getApplicationContext(),NewEmpladoActivity.class);
 					// Closing all previous activities
@@ -210,9 +193,7 @@ public class VerAlertas extends ListActivity {
 					//startActivity(i);
 				}
 			} catch (JSONException e) {
-                //Toast.makeText(getApplicationContext(), "entra al catch", Toast.LENGTH_LONG).show();
-
-                e.printStackTrace();
+				e.printStackTrace();
 			}
 
 			return null;
@@ -235,7 +216,7 @@ public class VerAlertas extends ListActivity {
 
 					ListAdapter adapter = new SimpleAdapter(VerAlertas.this, ListaDeAlertas,
 							R.layout.list_item, new String[] { TAG_nombre_alerta, TAG_estado },
-							new int[] { R.id.nombre_regla, R.id.estado_alerta });
+							new int[] { R.id.nombre_regla, R.id.estado });
 					// updating listview
 					setListAdapter(adapter);
 

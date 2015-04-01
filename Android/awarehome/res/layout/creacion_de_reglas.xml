@@ -1,144 +1,101 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
-    android:orientation="vertical" >
+    android:background="#D6D6D6"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Acces" >
 
-    <!-- android:background="#F2F0ED" -->
+    <TextView
+        android:id="@+id/textView1"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Crear de Alerta"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#3F6ABB" >
+    <EditText
+        android:id="@+id/nombre_alerta"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:hint="Nombre Alerta" >
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Crear Alerta"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFF" />
-    </RelativeLayout>
+        <requestFocus />
+    </EditText>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:padding="5dp" >
+    <TextView
+        android:id="@+id/textView2"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nombre_alerta"
+        android:layout_below="@+id/nombre_alerta"
+        android:text="Sensores:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <EditText
-            android:id="@+id/nombre_alerta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:hint="Nombre Alerta"
-            android:inputType="textPersonName"
-            android:textColorHint="#3F6ABB" >
+    <RadioButton
+        android:id="@+id/humedad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="Humedad" />
 
-            <requestFocus />
-        </EditText>
+    <RadioButton
+        android:id="@+id/gas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/humedad"
+        android:layout_below="@+id/humedad"
+        android:text="Gas" />
 
-        <RadioButton
-            android:id="@+id/temperatura_radiobutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:layout_centerHorizontal="true"
-            android:text="Temperatura" />
+    <RadioButton
+        android:id="@+id/sensor_tempa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gas"
+        android:layout_below="@+id/gas"
+        android:text="Temperatura" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/nombre_alerta"
-            android:layout_below="@+id/nombre_alerta"
-            android:text="Sensor: "
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+    <EditText
+        android:id="@+id/dato_regla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/crear"
+        android:layout_below="@+id/sensor_tempa"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:hint="10"
+        android:inputType="number"
+        android:textColor="#000" />
 
-        <RadioButton
-            android:id="@+id/humedad_radiobutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/temperatura_radiobutton"
-            android:layout_alignTop="@+id/temperatura_radiobutton"
-            android:layout_marginTop="33dp"
-            android:text="Humedad" />
+    <EditText
+        android:id="@+id/simbolo_regla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/crear"
+        android:layout_toLeftOf="@+id/dato_regla"
+        android:ems="10"
+        android:hint="&lt;"
+        android:textColor="#000" />
 
-        <RadioButton
-            android:id="@+id/gas_radiobutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/humedad_radiobutton"
-            android:layout_below="@+id/temperatura_radiobutton"
-            android:layout_marginTop="17dp"
-            android:text="Gas" />
+    <Button
+        android:id="@+id/crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dato_regla"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Crear Alerta" />
 
-        <RadioButton
-            android:id="@+id/movimiento_radiobutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/gas_radiobutton"
-            android:layout_below="@+id/humedad_radiobutton"
-            android:layout_marginTop="14dp"
-            android:text="Movimiento" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp" >
-
-            <EditText
-                android:id="@+id/simbolo_regla"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="&lt;"
-                android:textColorHint="#3F6ABB" />
-
-            <EditText
-                android:id="@+id/dato_regla"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/button_ver_alertas_preestablecidas"
-                android:layout_alignRight="@+id/linearLayout1"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="20"
-                android:inputType="number"
-                android:textColorHint="#3F6ABB" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_ver_alertas_preestablecidas"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignLeft="@+id/linearLayout1"
-            android:layout_alignRight="@+id/linearLayout1"
-            android:layout_below="@+id/linearLayout1"
-            android:layout_marginTop="10dp"
-            android:background="#3F6ABB"
-            android:text="Ver Alertas Preestablecidas"
-            android:textColor="#FFF"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/crear"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp"
-            android:layout_alignLeft="@+id/button_ver_alertas_preestablecidas"
-            android:layout_below="@+id/button_ver_alertas_preestablecidas"
-            android:layout_marginTop="10dp"
-            android:background="#3F6ABB"
-            android:text="Crear Alerta"
-            android:textColor="#FFF"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

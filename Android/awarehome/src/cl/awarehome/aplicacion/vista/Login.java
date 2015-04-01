@@ -16,7 +16,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -28,15 +27,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
 
-
-
-
-	TextView crear_cuenta;
 	EditText nombre,clave;
 	Button entrar;
 	Coneccion post;
@@ -48,7 +42,6 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-
 		Mint.initAndStartSession(Login.this, "d609afeb");
 
 		post = new Coneccion();
@@ -56,7 +49,6 @@ public class Login extends Activity {
 		nombre = (EditText) findViewById(R.id.nombre_usuario);
 		clave = (EditText) findViewById(R.id.clave);
 		entrar = (Button) findViewById(R.id.entrar);
-		crear_cuenta = (TextView) findViewById(R.id.crear_cuenta);
 
 		entrar.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -70,21 +62,7 @@ public class Login extends Activity {
 				}
 			}
 		});
-
-		crear_cuenta.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.awarehome.cl/"));
-				startActivity(intent);
-			}
-		});
-
 	}//oncreate
-
-	//---------------------------------------------
-
-
 
 	/*
     @Override
@@ -225,10 +203,4 @@ public class Login extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-
-
-
-
-
-
 }

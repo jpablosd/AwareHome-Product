@@ -1,95 +1,42 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Acces"
-    android:orientation="vertical" >
+	android:background="#D6D6D6"    >
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/entrar"
         android:layout_width="fill_parent"
-        android:layout_height="15dp" >
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/clave"
+        android:layout_centerVertical="true"
+        android:text="ingresar" />
 
-    <RelativeLayout
+    <EditText
+        android:id="@+id/clave"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="6" >
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/entrar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:hint="clave"
+        android:inputType="textPassword" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/icono" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    <EditText
+        android:id="@+id/nombre_usuario"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:padding="15dp" >
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/clave"
+        android:layout_alignLeft="@+id/clave"
+        android:ems="10"
+        android:hint="Usuario" >
+        <requestFocus />
+    </EditText>
 
-        <EditText
-            android:id="@+id/clave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/nombre_usuario"
-            android:layout_marginTop="18dp"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColorHint="#3F6ABB" />
-
-        <Button
-            android:id="@+id/entrar"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp"
-            android:layout_below="@+id/clave"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:background="#3F6ABB"
-            android:text="Login"
-            android:textColor="#FFF"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/nombre_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="Nombre"
-            android:inputType="textPersonName"
-            android:textColorHint="#3F6ABB" >
-
-            <requestFocus />
-        </EditText>
-
-        <TextView
-            android:id="@+id/crear_cuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/entrar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
-            android:paddingTop="5dp"
-            android:text="No Tengo Cuenta"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="#3F6ABB" />
-
-    </RelativeLayout>
-
-    <!--
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" >
-    </RelativeLayout>
-    -->
-
-</LinearLayout>
+</RelativeLayout>

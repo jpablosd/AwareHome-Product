@@ -7,29 +7,11 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="16" />
-
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <permission
-        android:name="cl.awarehome.aplicacion.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-
-    <permission
-        android:name="cl.awarehome.aplicacion"
-        android:protectionLevel="signature" >
-    </permission>
-
-    <uses-permission android:name="cl.awarehome.aplicacion.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -38,50 +20,28 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".vista.Login"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.Datos"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        <activity 	
+            android:name="cl.awarehome.aplicacion.vista.Datos" 
+       		android:label="@string/app_name"
+       		android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity>  
+         <activity 	
+            android:name="cl.awarehome.aplicacion.vista.CrearAlerta" 
+       		android:label="@string/app_name"
+       		android:theme="@android:style/Theme.Light.NoTitleBar">
+        </activity> 
+        <activity 	
+            android:name="cl.awarehome.aplicacion.vista.VerAlertas" 
+       		android:label="@string/app_name"
+       		android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.CrearAlerta"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.VerAlertas"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.AgregarHogar"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.AlertasPreestablecidas"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-        <activity
-            android:name="cl.awarehome.aplicacion.vista.PersonalizarHogar"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
-        </activity>
-
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAzGBcMLWudMGX3FEEuYQBc8XE5nCpZxO8" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
