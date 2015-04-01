@@ -20,10 +20,13 @@ import cl.awarehome.aplicacion.conexion.*;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -37,6 +40,7 @@ public class CrearAlerta extends Activity {
 	EditText nombre_alerta, simbolo_alerta, dato_alerta;
 	RadioButton sensor_temp, sensor_hum, sensor_gas;
 	Button crear_alerta;
+	Button button_ver_alertas_preestablecidas;
 
 	boolean sensorTemperatura;
 	boolean sensorHumedad;
@@ -45,33 +49,58 @@ public class CrearAlerta extends Activity {
 	String nombreAlerta;
 	String simboloAlerta;
 	String datoAlerta;
-	String id_usuario = "1";
+	String id_usuario;
 	String id_sensor = "1";
+	public String nombreAlertaPreestablecida, sensorAlertaPreestablecida, simboloAlertaPreestablecida,datoAlertaPreestablecida;
 
 	JSONParser jsonParser = new JSONParser();
 	// JSON Node names
 	private static final String TAG_SUCCESS = "TAG_SUCCESS";
 
-	String URL_connect = DatosServidor.IpServidor() + DatosServidor.UrlCrearReglas();
+	String URL_connect = DatosServidor.IpServidor() + DatosServidor.UrlCrearAlerta();
 	private ProgressDialog pDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.creacion_de_reglas);
-
 		Mint.initAndStartSession(CrearAlerta.this, "d609afeb");
+		
 
-
+		
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id_usuario  = extras.getString("id_usuario");//usuario
+            Toast.makeText(getApplicationContext(), "id usuario: "+id_usuario, Toast.LENGTH_LONG).show();
+            
+            nombreAlertaPreestablecida  = extras.getString("nombreAlerta");
+            sensorAlertaPreestablecida  = extras.getString("sensorAlerta");
+            simboloAlertaPreestablecida = extras.getString("simboloAlerta");
+            datoAlertaPreestablecida    = extras.getString("datoAlerta");
+            
+            Toast.makeText(getApplicationContext(), nombreAlertaPreestablecida, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), sensorAlertaPreestablecida, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), simboloAlertaPreestablecida, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), datoAlertaPreestablecida, Toast.LENGTH_LONG).show();
+            
+        }else{
+            id_usuario="error";
+        }
 		nombre_alerta = (EditText) findViewById(R.id.nombre_alerta);
 		simbolo_alerta = (EditText) findViewById(R.id.simbolo_regla);
 		dato_alerta = (EditText) findViewById(R.id.dato_regla);
 		crear_alerta = (Button) findViewById(R.id.crear);
+		button_ver_alertas_preestablecidas = (Button) findViewById(R.id.button_ver_alertas_preestablecidas);
+		
+		
+		nombre_alerta.setText(nombreAlertaPreestablecida);
+		simbolo_alerta.setText(simboloAlertaPreestablecida);
+		dato_alerta.setText(datoAlertaPreestablecida);
+		sensor = sensorAlertaPreestablecida;
 
-		sensor_hum = (RadioButton) findViewById(R.id.humedad);
-		sensor_temp = (RadioButton) findViewById(R.id.sensor_tempa);
-		sensor_gas = (RadioButton) findViewById(R.id.gas);
-
+		sensor_hum = (RadioButton) findViewById(R.id.humedad_radiobutton);
+		sensor_temp = (RadioButton) findViewById(R.id.temperatura_radiobutton);
+		sensor_gas = (RadioButton) findViewById(R.id.gas_radiobutton);
 
 		sensor_temp.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
 			@Override
@@ -171,6 +200,18 @@ public class CrearAlerta extends Activity {
 		});
 		 */		
 
+		
+		button_ver_alertas_preestablecidas.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				Intent i=new Intent(CrearAlerta.this, AlertasPreestablecidas.class);
+				i.putExtra("id_usuario", id_usuario);
+				startActivity(i); 
+				finish();
+			}
+		});
+		
+		
 		crear_alerta.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -280,5 +321,14 @@ public class CrearAlerta extends Activity {
 
 	}
 
-
+	/*
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_alerta_basica, menu);
+		return true;
+	}
+*/
+	
 }//CrearAlerta

@@ -16,7 +16,7 @@ import com.splunk.mint.Mint;
 
 import cl.awarehome.aplicacion.R;
 import cl.awarehome.aplicacion.conexion.*;
-import de.passsy.holocircularprogressbar.HoloCircularProgressBar;
+
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -39,10 +39,10 @@ import android.widget.Toast;
 
 public class Datos extends Activity{
 
-	double temperatura, humedad;
+	int temperatura, humedad;
 	int gas;
-	String buscar= "1";
-	String usuario;
+	String id_usuario_app = "0";
+	String usuario, fecha_dato;
 
 	//progress Dialog
 	private ProgressDialog pDialog;
@@ -50,6 +50,7 @@ public class Datos extends Activity{
 	JSONParser jparser = new JSONParser();
 
 	private static String url_all_empleados = DatosServidor.IpServidor() + DatosServidor.UrlDatos();
+	private static String url_datos_usuario = DatosServidor.IpServidor() + DatosServidor.UrlDatosUsuario();
 
 	//JSON node names
 	private static final String TAG_SUCCESS = "success";
@@ -57,21 +58,23 @@ public class Datos extends Activity{
 	private static final String TAG_TEMPERATURA = "temperatura";
 	private static final String TAG_HUMEDAD = "humedad";
 	private static final String TAG_GAS = "gas";
+	private static final String TAG_FECHA = "fecha";
+
+	private static final String TAG_ID_USUARIO = "id_usuario";
+	private static final String TAG_DATOS_USUARIO = "usuario";
 
 	JSONArray empleados = null;
+	JSONArray datos_usuario = null;
 
 	private static final String TAG = Datos.class.getSimpleName();
 
-	private Button mColorSwitchButton;
-
-	private HoloCircularProgressBar mHoloCircularProgressBar;
-	private ObjectAnimator mProgressBarAnimator;
 	protected boolean mAnimationHasEnded = false;
 
 	private TextView temp;
 	private TextView hum;
 	private TextView valor_gas;
 	private TextView user;
+	private TextView fecha;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -80,22 +83,24 @@ public class Datos extends Activity{
 
 		Mint.initAndStartSession(Datos.this, "d609afeb");
 
-
 		user = (TextView) findViewById(R.id.usuario);
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			usuario  = extras.getString("usuario");//usuario
 			user.setText(usuario);
+			Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();	
+
+			new DatosUsuario().execute();
+
 		}else{
 			usuario="error";
 		}
 
-		mHoloCircularProgressBar = (HoloCircularProgressBar) findViewById(R.id.holoCircularProgressBar1);
-
 		temp = (TextView) findViewById(R.id.temperatura);
 		hum = (TextView) findViewById(R.id.humedad);
-		valor_gas = (TextView) findViewById(R.id.estado_gas);
+		valor_gas = (TextView) findViewById(R.id.gas);
+		fecha = (TextView) findViewById(R.id.fecha);
 
 		//Creamos el Timer
 		Timer timer = new Timer();
@@ -107,9 +112,6 @@ public class Datos extends Activity{
 				FuncionParaEsteHilo();
 			}
 		}, 0, 5000); //cada 5 segundos
-
-		switchColor();
-		Animar();
 	}//onCreate
 
 	/*
@@ -133,7 +135,6 @@ public class Datos extends Activity{
 			//en este caso mostrar un mensaje.
 			//Toast.makeText(getApplicationContext(), "Tiempo!", Toast.LENGTH_LONG).show();
 			new CargaDeDatos().execute();
-			switchColor();
 		}
 	};
 
@@ -147,82 +148,64 @@ public class Datos extends Activity{
 		return super.onKeyDown(keyCode, event);
 	}
 
-	//___________________________________________
-	protected void Animar(){
-		animate(mHoloCircularProgressBar, new AnimatorListener() {
-			@Override
-			public void onAnimationCancel(final Animator animation) {
-				animation.end();
-			}
-			@Override
-			public void onAnimationEnd(final Animator animation) {
-				if (!mAnimationHasEnded) {
-					animate(mHoloCircularProgressBar, this);
-				} else {
-					mAnimationHasEnded = false;
-				}
-			}
-			@Override
-			public void onAnimationRepeat(final Animator animation) {
-			}
-			@Override
-			public void onAnimationStart(final Animator animation) {
-			}
-		});
-	}
-
-	/**
-	 * generates random colors for the ProgressBar
-	 */
-	protected void switchColor() {
-		Random r = new Random();
-		int randomColor = Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256));
-		mHoloCircularProgressBar.setProgressColor(randomColor);
-
-		randomColor = Color.rgb(r.nextInt(256), r.nextInt(256), r.nextInt(256));
-		mHoloCircularProgressBar.setProgressBackgroundColor(randomColor);
-	}
-
-	private void animate(final HoloCircularProgressBar progressBar, final AnimatorListener listener) {
-		final float progress = (float) (Math.random() * 2);
-		int duration = 30000;
-		animate(progressBar, listener, progress, duration);
-	}
-
-	private void animate(final HoloCircularProgressBar progressBar, final AnimatorListener listener,
-			final float progress, final int duration) {
-
-		mProgressBarAnimator = ObjectAnimator.ofFloat(progressBar, "progress", progress);
-		mProgressBarAnimator.setDuration(duration);
-		mProgressBarAnimator.addListener(new AnimatorListener() {
-			@Override
-			public void onAnimationCancel(final Animator animation) {
-			}
-			@Override
-			public void onAnimationEnd(final Animator animation) {
-				progressBar.setProgress(progress);
-			}
-			@Override
-			public void onAnimationRepeat(final Animator animation) {
-			}
-			@Override
-			public void onAnimationStart(final Animator animation) {
-			}
-		});
-		if (listener != null) {
-			mProgressBarAnimator.addListener(listener);
+	//--------------------------------------------------------
+	class DatosUsuario extends AsyncTask<String, String, String>{
+		@Override
+		protected void onPreExecute(){
+			super.onPreExecute();
+			/*
+					pDialog = new ProgressDialog(CircularProgressBarSample.this);
+					pDialog.setMessage("cargando direccion");
+					pDialog.setIndeterminate(false);
+					pDialog.setCancelable(false);
+					pDialog.show();
+			 */
 		}
-		mProgressBarAnimator.reverse();
-		mProgressBarAnimator.addUpdateListener(new AnimatorUpdateListener() {
+		@Override
+		protected String doInBackground(String... params) {
+			//building parameters	
+			List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+			params2.add(new BasicNameValuePair("usuario", usuario));
+			//getting JSON string from URL
+			JSONObject json = jparser.makeHttpRequest(url_datos_usuario,"POST", params2);
+			//checj your log cat for JSON response
+			Log.d("todas los datos: ", json.toString());
 
-			@Override
-			public void onAnimationUpdate(final ValueAnimator animation) {
-				progressBar.setProgress((Float) animation.getAnimatedValue());
+			try{
+				//checking for success tag
+				int success = json.getInt(TAG_SUCCESS);
+				if(success == 1){
+					//empleados found
+					datos_usuario = json.getJSONArray(TAG_DATOS_USUARIO);
+					//looping through all empleados
+					for(int i=0; i<datos_usuario.length();i++){
+						JSONObject c = datos_usuario.getJSONObject(i);
+						//storig each json item in variable
+						id_usuario_app = c.getString(TAG_ID_USUARIO);
+					}
+				}else{
+					/*
+						//no empleados found
+						Intent i = new Intent(getApplicationContext(),Datos.class);
+						//closing all previus activities
+						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(i);
+					 */
+				}
+			}catch(JSONException e){
+				e.printStackTrace();
 			}
-		});
-		progressBar.setMarkerProgress(progress);
-		mProgressBarAnimator.start();
-	}
+			return null;
+		}//doInBackground
+
+		protected void onPostExecute(String file_url){
+			//dismiss the dialog after getting all empleados
+
+			//pDialog.dismiss();
+			Toast.makeText(getApplicationContext(), "Id usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
+		}
+	}//Carda de datos usuaro
+	//--------------------------------------------------------
 
 	//--------------------------------------------------------
 	class CargaDeDatos extends AsyncTask<String, String, String>{
@@ -241,7 +224,7 @@ public class Datos extends Activity{
 		protected String doInBackground(String... params) {
 			//building parameters	
 			List<NameValuePair> params1 = new ArrayList<NameValuePair>();
-			params1.add(new BasicNameValuePair("buscar", buscar));
+			params1.add(new BasicNameValuePair("buscar", id_usuario_app));
 			//getting JSON string from URL
 			JSONObject json = jparser.makeHttpRequest(url_all_empleados,"POST", params1);
 			//checj your log cat for JSON response
@@ -257,26 +240,28 @@ public class Datos extends Activity{
 					for(int i=0; i<empleados.length();i++){
 						JSONObject c = empleados.getJSONObject(i);
 						//storig each json item in variable
-						temperatura = c.getDouble(TAG_TEMPERATURA);
-						humedad = c.getDouble(TAG_HUMEDAD);
+						temperatura = c.getInt(TAG_TEMPERATURA);
+						humedad = c.getInt(TAG_HUMEDAD);
 						gas = c.getInt(TAG_GAS);
+						fecha_dato = c.getString(TAG_FECHA);
 					}
 				}else{
-					//no empleados found
-					Intent i = new Intent(getApplicationContext(),Datos.class);
+					//no datos found
+					
+					//Intent i = new Intent(getApplicationContext(),Datos.class);
 					//closing all previus activities
-					i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i);
+					//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					//startActivity(i);
+					
+					new CargaDeDatos().execute();
 				}
 			}catch(JSONException e){
 				e.printStackTrace();
 			}
 			return null;
 		}//doInBackground
-
 		protected void onPostExecute(String file_url){
 			//dismiss the dialog after getting all empleados
-
 			//pDialog.dismiss();
 			//Toast.makeText(getApplicationContext(), "temperatura: "+temperatura+ "humedad: "+humedad, Toast.LENGTH_LONG).show();
 			String t = String.valueOf(temperatura);
@@ -284,12 +269,12 @@ public class Datos extends Activity{
 			String h = String.valueOf(humedad);
 			hum.setText(h+"%");
 			String g = String.valueOf(gas);
-			valor_gas.setText(g+" PPM");
+			valor_gas.setText(g);
+			fecha.setText(fecha_dato);
 			//float lat = Float.parseFloat(lati);	
 		}
 	}//CargaDeDatos
 	//--------------------------------------------------------
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -307,6 +292,8 @@ public class Datos extends Activity{
 			//crear alerta
 			Toast.makeText(getApplicationContext(), "Crear alerta", Toast.LENGTH_LONG).show();
 			Intent a=new Intent(Datos.this, CrearAlerta.class);
+            a.putExtra("id_usuario",id_usuario_app);
+            a.putExtra("nombre_usuario", usuario);
 			startActivity(a);
 			//finish();
 			return true;
@@ -314,6 +301,8 @@ public class Datos extends Activity{
 		case R.id.Opc2:
 			Toast.makeText(getApplicationContext(), "Monitorear alerta", Toast.LENGTH_LONG).show(); 
 			Intent b=new Intent(Datos.this, VerAlertas.class);
+			b.putExtra("id_usuario",id_usuario_app);
+			b.putExtra("nombre_usuario", usuario);
 			startActivity(b);
 			//finish();
 			return true;
@@ -326,13 +315,22 @@ public class Datos extends Activity{
 			finish();
 			return true;
 
+        case R.id.Opc4:
+             //cerrar  sesion nos regresa a la ventana anterior.
+             Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
+             Intent d=new Intent(Datos.this, PersonalizarHogar.class);
+             d.putExtra("id_usuario",id_usuario_app);
+             Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
+             d.putExtra("usuario", usuario);
+             Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();
+             startActivity(d);
+             finish();
+             return true;
+
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 	//--------- menu ----------------------------
 
-
 }//class
-
-

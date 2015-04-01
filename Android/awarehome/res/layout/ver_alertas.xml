@@ -1,40 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#D6D6D6"
-    >
-	<!-- Main ListView 
-		 Always give id value as list(@android:id/list)
-	-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/nombre_alerta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:text="Nombre de Alerta"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <!-- android:background="#F2F0ED" -->
 
-    <TextView
-        android:id="@+id/estado_alerta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="16dp"
-        android:text="Estado"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#3F6ABB" >
 
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="434dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/nombre_alerta" >
-    </ListView>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Mis Alertas"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFF"/>
+    </RelativeLayout>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+        </ListView>
+    </RelativeLayout>
+</LinearLayout>
