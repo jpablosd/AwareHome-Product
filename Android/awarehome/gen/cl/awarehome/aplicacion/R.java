@@ -419,14 +419,14 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f02002a;
     }
     public static final class id {
-        public static final int Opc1=0x7f0a0042;
-        public static final int Opc1_agregar_hogar=0x7f0a0040;
-        public static final int Opc2=0x7f0a0043;
-        public static final int Opc2_agregar_hogar=0x7f0a0041;
-        public static final int Opc3=0x7f0a0045;
-        public static final int Opc4=0x7f0a0044;
-        public static final int agregar_direccion=0x7f0a003d;
-        public static final int agregar_hogar=0x7f0a003e;
+        public static final int Opc1=0x7f0a0040;
+        public static final int Opc1_agregar_hogar=0x7f0a003e;
+        public static final int Opc2=0x7f0a0041;
+        public static final int Opc2_agregar_hogar=0x7f0a003f;
+        public static final int Opc3=0x7f0a0043;
+        public static final int Opc4=0x7f0a0042;
+        public static final int agregar_direccion=0x7f0a003b;
+        public static final int agregar_hogar=0x7f0a003c;
         public static final int alertas_preestablecidas=0x7f0a0015;
         public static final int book_now=0x7f0a000e;
         public static final int button_ver_alertas_preestablecidas=0x7f0a0026;
@@ -434,16 +434,15 @@ containing a value of this type.
         public static final int buy_now=0x7f0a000f;
         public static final int buy_with_google=0x7f0a0010;
         public static final int classic=0x7f0a0011;
-        public static final int clave=0x7f0a0035;
+        public static final int clave=0x7f0a0033;
         public static final int crear=0x7f0a0027;
-        public static final int crear_cuenta=0x7f0a0038;
+        public static final int crear_cuenta=0x7f0a0036;
         public static final int dato_alerta_preestablecida=0x7f0a0019;
         public static final int dato_regla=0x7f0a0025;
-        public static final int descripcion_hogar=0x7f0a003c;
-        public static final int entrar=0x7f0a0037;
-        public static final int estado_alerta=0x7f0a0034;
-        public static final int fecha=0x7f0a002f;
-        public static final int gas=0x7f0a0030;
+        public static final int descripcion_hogar=0x7f0a003a;
+        public static final int entrar=0x7f0a0035;
+        public static final int estado_alerta=0x7f0a0032;
+        public static final int fecha=0x7f0a002e;
         public static final int gas_radiobutton=0x7f0a0021;
         public static final int grayscale=0x7f0a0012;
         public static final int holo_dark=0x7f0a0005;
@@ -454,10 +453,9 @@ containing a value of this type.
         public static final int imageButton1=0x7f0a0029;
         public static final int imageView1=0x7f0a002a;
         public static final int imageView3=0x7f0a002c;
-        public static final int imageView4=0x7f0a002e;
-        public static final int imageView5=0x7f0a0031;
-        public static final int imageView6=0x7f0a0032;
-        public static final int img_notification=0x7f0a0039;
+        public static final int imageView5=0x7f0a002f;
+        public static final int imageView6=0x7f0a0030;
+        public static final int img_notification=0x7f0a0037;
         public static final int linearLayout1=0x7f0a0023;
         public static final int lista_alertas_preestablecidas=0x7f0a0016;
         public static final int map=0x7f0a0014;
@@ -466,13 +464,13 @@ containing a value of this type.
         public static final int movimiento_radiobutton=0x7f0a0022;
         public static final int nombre_alerta=0x7f0a001d;
         public static final int nombre_alerta_preestablecida=0x7f0a0017;
-        public static final int nombre_hogar=0x7f0a003b;
-        public static final int nombre_regla=0x7f0a0033;
-        public static final int nombre_usuario=0x7f0a0036;
+        public static final int nombre_hogar=0x7f0a0039;
+        public static final int nombre_regla=0x7f0a0031;
+        public static final int nombre_usuario=0x7f0a0034;
         public static final int none=0x7f0a0001;
         public static final int normal=0x7f0a0002;
         public static final int production=0x7f0a0007;
-        public static final int salir=0x7f0a003f;
+        public static final int salir=0x7f0a003d;
         public static final int sandbox=0x7f0a0008;
         public static final int satellite=0x7f0a0003;
         public static final int seleccionar_alerta_preestablecida=0x7f0a001b;
@@ -486,7 +484,7 @@ containing a value of this type.
         public static final int terrain=0x7f0a0004;
         public static final int textView1=0x7f0a001f;
         public static final int textView3=0x7f0a001c;
-        public static final int txt_notification=0x7f0a003a;
+        public static final int txt_notification=0x7f0a0038;
         public static final int usuario=0x7f0a0028;
         public static final int wrap_content=0x7f0a000d;
     }
