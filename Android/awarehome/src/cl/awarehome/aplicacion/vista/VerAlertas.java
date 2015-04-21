@@ -185,13 +185,18 @@ public class VerAlertas extends ListActivity {
 						String nombre_estado = null;
 						if (estado_alerta.equals("0")){
 							nombre_estado = "desactivada";
+							
 						}
+
 						if (estado_alerta.equals("1")){
 							nombre_estado = "activada";
-
+							
 							triggerNotification();
 
 						}
+							
+							
+						
 
 						map.put(TAG_estado, nombre_estado);
 						map.put(TAG_nombre_alerta, nombre_alerta);
@@ -243,7 +248,9 @@ public class VerAlertas extends ListActivity {
 			});
 		}
 	}
-
+	
+	
+	
 
 	private void triggerNotification(){
 

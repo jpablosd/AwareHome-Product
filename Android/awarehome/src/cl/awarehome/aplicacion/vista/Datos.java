@@ -99,7 +99,7 @@ public class Datos extends Activity{
 
 		temp = (TextView) findViewById(R.id.temperatura);
 		hum = (TextView) findViewById(R.id.humedad);
-		//valor_gas = (TextView) findViewById(R.id.gas);
+		valor_gas = (TextView) findViewById(R.id.gas);
 		fecha = (TextView) findViewById(R.id.fecha);
 
 		//Creamos el Timer
@@ -242,7 +242,7 @@ public class Datos extends Activity{
 						//storig each json item in variable
 						temperatura = c.getInt(TAG_TEMPERATURA);
 						humedad = c.getInt(TAG_HUMEDAD);
-						//gas = c.getInt(TAG_GAS);
+						gas = c.getInt(TAG_GAS);
 						fecha_dato = c.getString(TAG_FECHA);
 					}
 				}else{
@@ -269,8 +269,8 @@ public class Datos extends Activity{
 			String h = String.valueOf(humedad);
 			hum.setText(h+"%");
 			String g = String.valueOf(gas);
-			//valor_gas.setText(g);
-			//valor_gas.setText("");
+			valor_gas.setText(g);
+			//valor_gas.setText("gas");
 			fecha.setText(fecha_dato);
 			//float lat = Float.parseFloat(lati);	
 		}
@@ -316,17 +316,17 @@ public class Datos extends Activity{
 			finish();
 			return true;
 
-        case R.id.Opc4:
-             //cerrar  sesion nos regresa a la ventana anterior.
-             Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
-             Intent d=new Intent(Datos.this, PersonalizarHogar.class);
-             d.putExtra("id_usuario",id_usuario_app);
-             Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
-             d.putExtra("usuario", usuario);
-             Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();
-             startActivity(d);
-             finish();
-             return true;
+//        case R.id.Opc4:
+//             //cerrar  sesion nos regresa a la ventana anterior.
+//             Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
+//             Intent d=new Intent(Datos.this, PersonalizarHogar.class);
+//             d.putExtra("id_usuario",id_usuario_app);
+//             Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
+//             d.putExtra("usuario", usuario);
+//             Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();
+//             startActivity(d);
+//             finish();
+//             return true;
 
 		default:
 			return super.onOptionsItemSelected(item);

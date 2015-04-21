@@ -76,7 +76,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="30dp"
             android:textStyle="bold" />
-<!-- 
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="75dp"
@@ -84,7 +84,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/circulo_verde_pequeno" />
- -->
+
         <TextView
             android:id="@+id/fecha"
             android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="20dp" />
 
-        <!-- 
+        
         <TextView
             android:id="@+id/gas"
             android:layout_width="wrap_content"
@@ -108,8 +108,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="30dp"
             android:textStyle="bold" />
- -->
- <!-- 
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -120,7 +119,7 @@
             android:text="ppm"
             android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceSmall" />
- -->
+ 
     </RelativeLayout>
 
     <RelativeLayout

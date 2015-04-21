@@ -76,7 +76,7 @@
             android:layout_below="@+id/temperatura_radiobutton"
             android:layout_marginTop="17dp"
             android:text="Gas" />
-
+		<!-- 
         <RadioButton
             android:id="@+id/movimiento_radiobutton"
             android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
             android:layout_below="@+id/humedad_radiobutton"
             android:layout_marginTop="14dp"
             android:text="Movimiento" />
-
+	 -->
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                 android:inputType="number"
                 android:textColorHint="#3F6ABB" />
         </LinearLayout>
-
+		<!-- 
         <Button
             android:id="@+id/button_ver_alertas_preestablecidas"
             android:layout_width="wrap_content"
@@ -127,18 +127,19 @@
             android:text="Ver Alertas Preestablecidas"
             android:textColor="#FFF"
             android:textStyle="bold" />
+	 -->
 
         <Button
             android:id="@+id/crear"
             android:layout_width="fill_parent"
             android:layout_height="35dp"
-            android:layout_alignLeft="@+id/button_ver_alertas_preestablecidas"
-            android:layout_below="@+id/button_ver_alertas_preestablecidas"
-            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/linearLayout1"
+            android:layout_below="@+id/linearLayout1"
             android:background="#3F6ABB"
             android:text="Crear Alerta"
             android:textColor="#FFF"
             android:textStyle="bold" />
+
     </RelativeLayout>
 
 </LinearLayout>

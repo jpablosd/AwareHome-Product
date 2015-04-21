@@ -90,7 +90,7 @@ public class CrearAlerta extends Activity {
 		simbolo_alerta = (EditText) findViewById(R.id.simbolo_regla);
 		dato_alerta = (EditText) findViewById(R.id.dato_regla);
 		crear_alerta = (Button) findViewById(R.id.crear);
-		button_ver_alertas_preestablecidas = (Button) findViewById(R.id.button_ver_alertas_preestablecidas);
+		//button_ver_alertas_preestablecidas = (Button) findViewById(R.id.button_ver_alertas_preestablecidas);
 		
 		
 		nombre_alerta.setText(nombreAlertaPreestablecida);
@@ -201,15 +201,15 @@ public class CrearAlerta extends Activity {
 		 */		
 
 		
-		button_ver_alertas_preestablecidas.setOnClickListener(new View.OnClickListener() {			
-			@Override
-			public void onClick(View v) {
-				Intent i=new Intent(CrearAlerta.this, AlertasPreestablecidas.class);
-				i.putExtra("id_usuario", id_usuario);
-				startActivity(i); 
-				finish();
-			}
-		});
+//		button_ver_alertas_preestablecidas.setOnClickListener(new View.OnClickListener() {			
+//			@Override
+//			public void onClick(View v) {
+//				Intent i=new Intent(CrearAlerta.this, AlertasPreestablecidas.class);
+//				i.putExtra("id_usuario", id_usuario);
+//				startActivity(i); 
+//				finish();
+//			}
+//		});
 		
 		
 		crear_alerta.setOnClickListener(new View.OnClickListener() {
