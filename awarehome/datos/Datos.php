@@ -1,6 +1,6 @@
 <?php
-$buscar=$_POST["buscar"];
-//$buscar = "1"; //id usuario
+//$buscar=$_POST["buscar"];
+$buscar = "1"; //id usuario
 
 // array for JSON response
 $response = array();
@@ -33,11 +33,12 @@ if (mysql_num_rows($result) > 0) {
     $response["datos"] = array();
     while ($row = mysql_fetch_array($result)) {
         // temp user array
-        $datos = array();
+        $date = date_create($row['fecha']);
+	$datos = array();
         $datos["temperatura"] = $row["temperatura"];
         $datos["humedad"]     = $row["humedad"];
         $datos["gas"]         = $row["gas"];
-        $datos["fecha"]       = $row["fecha"];
+        $datos["fecha"]       = date_format($date, 'H:i:s d-m-Y');
         // push single product into final response array
         array_push($response["datos"], $datos);
     }
