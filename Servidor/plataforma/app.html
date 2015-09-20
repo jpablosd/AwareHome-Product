@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AwareHome</title>
+
+        <!--  Android 5 Chrome Color-->
+        <meta name="theme-color" content="#1976d2">
+
+        <!-- CSS-->
+        <link href="css/prism.css" rel="stylesheet">
+        <link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+        <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+        <!--        <script src="js/interact.js"></script>-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.6/angular-route.min.js"></script>
+
+        <script src="https://www.google.com/jsapi"></script>
+        <!--        <script src="scripts/routers/router.js"></script>-->
+<!--        <script src="scripts/controllers/aplication.js"></script>-->
+
+
+
+        <style type="text/css">
+            body { font-family: Helvetica, Arial, sans-serif; }
+            .dropzone-wrapper {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .dropzone {
+                overflow: hidden;
+                margin: .5em;
+                padding: 1em;
+                color: #666;
+                text-align: center;
+                background: #ccc;
+                line-height: 4em;
+                border: 4px dashed transparent;
+                transition: background .15s linear, border-color .15s linear;
+            }
+            .dropzone.-drop-possible { border-color: #666; }
+            .dropzone.-drop-over {
+                background: #666;
+                color: #fff;
+            }
+            .draggable {
+                position: relative;
+                z-index: 10;
+                width: 200px;
+                margin: .25em;
+                padding: 1em 2em;
+                background-color: #29e;
+                color: #fff;
+                text-align: center;
+                -ms-touch-action: none;
+                touch-action: none;
+            }
+
+            .draggable.-drop-possible { background-color: #42bd41; }
+        </style>
+    </head>
+
+    <body ng-app="awarehome" ng-controller="controladorInicio">
+        <!--  incluir el menu-->
+        <div ng-include src="'views/menu.html'"></div>
+
+        <main >
+            <div ng-view></div>
+
+            <!--            <div ng-include src="'../views/datos.html'"></div>-->
+
+        </main>
+        
+        <script>
+            var awarehome =  angular.module( 'awarehome',['ngRoute']);  
+            awarehome.controller('controladorInicio', ['$scope', function($scope){
+                    Materialize.toast('BIENVENIDO!', 4000);
+                    $scope.verDatos = function(){
+                        console.log("hola");
+                    }     
+                    $scope.crearAlerta = function(){
+                    }
+                }])
+
+
+               awarehome.config(['$routeProvider', function($routeProvider){
+                    $routeProvider.
+                    when('/',{
+                        templateUrl: 'views/datos.html' 
+                    }).
+                    when('/verDatos', {
+                        templateUrl: 'views/datos.html'
+                    }).
+                    when('/crearAlerta', {
+                        templateUrl: 'views/crearAlerta.html'
+                    }).
+                    when('/verAlertas',{
+                        templateUrl: 'views/verAlertas.html'
+                    }).
+                    when('/crearAlertaInteligente',{
+                        templateUrl: 'views/crearAlertaInteligente.html' 
+                    }).
+                    when('/verAlertaInteligente',{
+                        templateUrl: 'views/verAlertaInteligente.html'
+                    }).
+                    when('/!',{
+                        templateUrl: 'views/404.html' 
+                    }).
+                    otherwise({
+                        redirecTo: '/',
+                        templateUrl: 'app.html#/verDatos'
+                    })
+                }])
+        </script>
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/jquery.timeago.min.js"></script>  
+        <script src="js/prism.js"></script>
+        <script src="bin/materialize.js"></script>
+        <script src="js/init.js"></script>
+    </body>
+</html>

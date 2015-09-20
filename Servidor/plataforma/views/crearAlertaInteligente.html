@@ -1,0 +1,409 @@
+<!-- CREAR ALERTA INTELIGENTE -->
+<div id="crear_alertas_inteligentes" class="row ">
+    <div class="col s12 m12 l12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Alerta Inteligente</span>
+                <br>
+                <div class="col s12 m12 l12">
+                    <div class="input-field col s9 m9 l9">
+                        <input id="nombre_alerta_inteligente" type="text" class="validate">
+                        <label for="valor">Nombre Alerta Inteligente:</label>
+                    </div>
+                    <br>
+                    <div class="col s3 m3 l3">
+                        <a class="btn waves-effect waves-light" onclick="guardarAlertaInteligente()">Guardar</a>
+                    </div>
+
+                </div>
+
+                <br><br> 
+                <br><br>
+                <br>
+
+                <div id="arrastrables" class="col s4 m1 l1">
+                    <!--
+<p>HOLA 1</p>
+-->
+                    <div id="drag1" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag1">
+                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <div id="drag4" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag3">
+                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <div id="drag5" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag5">
+                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <div id="drag2" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag2">
+                        <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <div id="drag6" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag4">
+                        <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
+                    </div>
+                    <br><br>
+                    <br><br>
+
+                    <!--
+<div id="drag3" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag6">
+<i class="small mdi-action-alarm tooltipped"  data-position="top" data-delay="50" data-tooltip="Tiempo"></i>
+</div>
+-->
+                    <br><br>
+                    <br><br>
+                    <!--
+<div id="drag4" class="col s12 m12 l12 z-depth-2 amber draggable js-drag" >
+<i class="small mdi-content-add tooltipped"  data-position="top" data-delay="50" data-tooltip="Agregar más"></i>
+</div>
+-->
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+
+
+                </div>
+                <div class="col s8 m11 l11">
+                    <!--
+<p>HOLA 2</p>
+-->
+                    <div class=" col s12 m12 l12 z-depth-2">
+                        <div id="drop1" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p> Sensor</p>
+                            <br><br>
+                        </div>
+                        <div class="col s1 m1 l1"><br></div>
+                        <div id="drop2" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p> conector</p>
+                            <br><br>
+                        </div>
+                        <div class="col s1 m1 l1"><br></div>
+                        <div id="drop3" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p>Sensor</p>
+                            <br><br>
+                        </div>
+                        <div class="col s1 m1 l1"><br></div>
+                        <div id="drop4" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p>conector</p>
+                            <br><br>
+                        </div>
+                        <div class="col s1 m1 l1"><br></div>
+                        <div id="drop5" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p>Sensor</p>
+                            <br><br>
+                        </div>
+
+                        <div class="col s1 m1 l1"><br></div>
+                        <div id="drop6" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                            <p>reloj</p>
+                            <br><br>
+                        </div>
+
+
+                        <br><br>
+                        <br><br>                                        
+                        <br><br>
+                        <br><br>
+                        <br><br>
+
+                    </div>
+
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- CREAR ALERTA INTELIGENTE-->
+
+
+<!-- Asignar sensor a arrastrable drag1 -->
+<div id="modaldrag1" class="row modal">
+    <div class="col s12 m1 l2 "><p></p></div>
+    <div class="col s12 m10 l8">
+        <div class="modal-content">
+            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+            <form action="#">
+                <div class="input-field col s12">
+                    <select onchange='tipoSensor1(this.value)'>
+                        <option value="" disabled selected>Escoja sensor</option>
+                        <option value="temperatura">Temperatura</option>
+                        <option value="humedad">Humedad</option>
+                        <option value="gas">Gas</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <br>
+                <div class="input-field col s6">
+                    <select onchange='simboloSensor1(this.value)'>
+                        <option value="" disabled selected>Escoja símbolo</option>
+                        <option value="menor">Menor</option>
+                        <option value="mayor">Mayor</option>
+                        <option value="igual">Igual</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="valorSensor1" type="text" class="validate">
+                    <label for="valor">Valor</label>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor1()">Guardar</a>
+                </div>
+                <br><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+</div>
+<!-- Asignar sensor a arrastrable drag1 -->
+<!-- Asignar sensor a arrastrable drag3 -->
+<div id="modaldrag3" class="row modal">
+    <div class="col s12 m1 l2 "><p></p></div>
+    <div class="col s12 m10 l8">
+        <div class=" modal-content">
+            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+            <form action="#">
+                <div class="input-field col s12">
+                    <select onchange='tipoSensor2(this.value)'>
+                        <option value="" disabled selected>Escoja sensor</option>
+                        <option value="temperatura">Temperatura</option>
+                        <option value="humedad">Humedad</option>
+                        <option value="gas">Gas</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <br>
+                <div class="input-field col s6">
+                    <select onchange='simboloSensor2(this.value)'>
+                        <option value="" disabled selected>Escoja símbolo</option>
+                        <option value="menor">Menor</option>
+                        <option value="mayor">Mayor</option>
+                        <option value="igual">Igual</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="valorSensor2" type="text" class="validate">
+                    <label for="valor">Valor</label>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor2()">Guardar</a>
+                </div>
+                <br><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+</div>
+<!-- Asignar sensor a arrastrable drag3 -->
+<!-- Asignar sensor a arrastrable drag5 -->
+<div id="modaldrag5" class="row modal">
+    <div class="col s12 m1 l2 "><p></p></div>
+    <div class="col s12 m10 l8">
+        <div class=" modal-content">
+            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+            <form action="#">
+                <div class="input-field col s12">
+                    <select onchange='tipoSensor3(this.value)'>
+                        <option value="" disabled selected>Escoja sensor</option>
+                        <option value="temperatura">Temperatura</option>
+                        <option value="humedad">Humedad</option>
+                        <option value="gas">Gas</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <br>
+                <div class="input-field col s6">
+                    <select onchange='simboloSensor3(this.value)'>
+                        <option value="" disabled selected>Escoja símbolo</option>
+                        <option value="menor">Menor</option>
+                        <option value="mayor">Mayor</option>
+                        <option value="igual">Igual</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="valorSensor3" type="text" class="validate">
+                    <label for="valor">Valor</label>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor3()">Guardar</a>
+                </div>
+                <br><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+</div>
+<!-- Asignar sensor a arrastrable drag5 -->
+<!-- Asignar sensor a arrastrable drag2 -->
+<div id="modaldrag2" class="row modal">
+    <div class="col s12 m1 l2 "><p></p></div>
+    <div class="col s12 m10 l8">
+        <div class=" modal-content">
+            <form action="#">
+                <br>
+                <div class="input-field col s12">
+                    <select onchange="tipoOperador1(this.value)">
+                        <option value="" disabled selected>Escoja símbolo</option>
+                        <option value="and">And</option>
+                        <option value="or">Or</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <div class="input-field col s12">
+                    <span class="grey-text text-darken-4">Descripcion símbolo</span>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador1()">Guardar</a>
+                </div>
+                <br><br><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+</div>
+<!-- Asignar sensor a arrastrable drag2 -->
+<!-- Asignar sensor a arrastrable drag4 -->
+<div id="modaldrag4" class="row modal">
+    <div class="col s12 m1 l2 "><p></p></div>
+    <div class="col s12 m10 l8">
+        <div class=" modal-content">
+            <form action="#">
+                <br>
+                <div class="input-field col s12">
+                    <select onchange="tipoOperador2(this.value)">
+                        <option value="" disabled selected>Escoja símbolo</option>
+                        <option value="and">And</option>
+                        <option value="or">Or</option>
+                    </select>
+                    <label>Seleccione:</label>
+                </div>
+                <div class="input-field col s12">
+                    <span class="grey-text text-darken-4">Descripcion símbolo</span>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador2()">Guardar</a>
+                </div>
+                <br><br><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+</div>
+<!-- Asignar sensor a arrastrable drag4 -->
+<!-- Asignar sensor a arrastrable drag6 -->
+<div id="modaldrag6" class="row modal">
+    <div class="col s12 m12 l12 "><p>Seleccione Repetición</p></div>
+
+    <div class="col s12 m12 l12">
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="lunes" />
+                <label for="test1">Lunes.  </label>
+                <br>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="martes" />
+                <label for="test2">Martes.  </label>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="miercoles" />
+                <label for="test3">Miércoles.  </label>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="jueves" />
+                <label for="test4">Jueves.  </label>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="viernes" />
+                <label for="test5">Viernes.  </label>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="sabado" />
+                <label for="test6">Sabado.  </label>
+                <br>
+            </p>
+        </div>
+        <div class="col s1 m1 l1">
+            <p>
+                <input type="checkbox" id="domingo" />
+                <label for="test7">Domingo.  </label>
+                <br>
+            </p>
+        </div>
+    </div>
+    <div class="col s12 m1 l2 "><p></p></div>
+
+    <div class="col s12 m10 l8">
+        <div class=" modal-content">
+            <!--
+<span class=" activator grey-text text-darken-4">Seleccione la fecha o repetición</span>
+
+<form action="#">
+<br>
+<div class = "col s6">
+<form action="#">
+<p class="range-field">
+<input type="range" id="test5" min="0" max="60" />
+</p>
+</form>
+</div>
+<div class="input-field col s6">
+<select>
+<option value="" disabled selected>Escoja escala</option>
+<option value="1">segundos</option>
+<option value="2">minutos</option>
+<option value="3">horas</option>
+<option value="4">días</option>
+</select>
+<label>Seleccione:</label>
+</div>
+<div class="col s12">
+<label>Seleccione fecha:</label>
+<input id="fecha_accion_alerta"type="date" class="datepicker">
+</div>
+</form>
+
+-->
+            <br><br><br><br><br><br><br><br><br>
+            <div class="center-align">
+                <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorFecha()">Guardar</a>
+            </div>
+            <br><br><br>
+        </div>
+    </div>
+    <div class="col s12 m1 l2"><p></p></div>
+    <!-- Asignar sensor a arrastrable drag6 -->

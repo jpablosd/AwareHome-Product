@@ -1,0 +1,107 @@
+<div>
+    <!-- CREAR ALERTA -->
+    <div id="crear_alertas" class="row ">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Crear Alerta</span>
+                    <form action="#">
+                        <div class="input-field col s12 ">
+                            <input name="nombre_alerta" id="nombre_alerta_simple" type="text" class="validate">
+                            <label for="nombre_alerta">Nombre Alerta</label>
+                        </div>
+                        <span class="card-title activator grey-text text-darken-4">Sensor:</span>
+
+                        <div class="input-field col s12">
+                            <label>Seleccione:</label>
+                            <br><br>
+                            <select class="browser-default">
+                                <option value="" disabled selected>Escoja sensor</option>
+                                <option value="1">Temperatura</option>
+                                <option value="2">Humedad</option>
+                                <option value="3">Gas</option>
+                            </select>
+                        </div>
+
+                        <br>
+                        <div class="input-field col s6">
+                            <select class="browser-default">
+                                <option value="" disabled selected >Escoja símbolo</option>
+                                <option value="<">Menor</option>
+                                <option value=">">Mayor</option>
+                                <option value="=">Igual</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <input id="dato_alerta_simple" type="text" class="validate">
+                            <label for="valor">Valor</label>
+                        </div>
+                        <br><br><br><br><br><br><br><br><br>
+                        <div class="center-align">
+                            <a class="btn waves-effect waves-light">Crear</a>
+                        </div>
+
+                        <br><br><br><br>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m1 l2"><p></p></div>
+    </div>
+</div>
+<!-- CREAR ALERTA -->
+<!--
+
+<script>
+alert("asdas");
+//CREACION DE ALERTA SIMPLE
+var sensor_alerta_simple;
+var simbolo_alerta_simple;
+var nombre_alerta_simple;
+var dato_alerta_simple;
+//al escojer el tipo de sensor
+function sensorAlertaSimple(value){
+sensor_alerta_simple = value;
+}
+//al seleccionar el simbolo de la alerta simple
+function simboloAlertaSimple(value){
+simbolo_alerta_simple = value;
+}
+//al apretar el boton crear alerta
+function crearAlertaSimple(){
+Materialize.toast('Alerta Creada!', 4000);
+nombre_alerta_simple = document.getElementById('nombre_alerta_simple').value;
+dato_alerta_simple = document.getElementById('dato_alerta_simple').value;
+
+console.log("alerta simple: "+nombre_alerta_simple+" "+sensor_alerta_simple+" "+simbolo_alerta_simple+" "+dato_alerta_simple);
+
+var xmlhttp = new XMLHttpRequest();
+var url = "php/crearAlertaSimple.php?nombre_alerta_simple="+nombre_alerta_simple+"&nombre_sensor_alerta="+sensor_alerta_simple+"&simbolo_alerta="+simbolo_alerta_simple+"&dato_alerta="+dato_alerta_simple;
+
+xmlhttp.onreadystatechange=function() {
+if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+myFunction(xmlhttp.responseText);
+}
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(response) {
+console.log(response);
+var arr = JSON.parse(response);
+var i;
+var out = "";
+
+for(i = 0; i < arr.length; i++) {
+console.log(arr[i].success);
+}
+}
+}
+//CREACION DE ALERTA SIMPLE
+</script>
+-->
+
