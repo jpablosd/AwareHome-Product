@@ -102,7 +102,6 @@ function actualizar_alertas(){
                 }
             }
             elseif($sensor == 2){
-                echo "ver humedad";
                 if($simbolo == "<"){
                     if (ultimaMedicion($sensor) < $dato){
                         actualizarAlerta($id_regla_basica, 1);
