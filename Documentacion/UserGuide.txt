@@ -1,29 +1,54 @@
-
 -------------------- USER GUIDE ---------------------
 
-USER GUIDE de versión prototipo 0.2 AwareHome aplicación
+USER GUIDE de versión prototipo 0.6 AwareHome
 
 
 Para usar la aplicación AwareHome de la plataforma android se debe utilizar android 4.1.2
-o mayor versiones de android.
+o mayor versiones de android, la plataforma web de la aplicación se recomienda utilizarla en el
+navegador Chrome, Firefox y/o Internet Explorer en sus versiones más actualizadas.
 
-Primeros pasos:
+Primeros pasos Android:
 
 Abrir la aplicación AwareHome en el smartphone, se abrira la ventana de inicio de sesión, luego de eso puede iniciar sesión con 
-el usuario entregado (user: juanpablo.soto; pass: 85575884) luego de eso se mostrará la ventana en donde se monitorea al temperatura 
-y humedad, estando en esta ventana al presionar sobre el boton opciones, se mostrará que se puede "crear alerta", "monitorear Alerta"
-y "cerrar sesión".
+el usuario entregado (user: unab ; pass: unab) luego de eso se mostrará la ventana en donde se monitorea la temperatura, niveles de humedad y niveles de gas, 
+estando en esta ventana al presionar sobre el boton opciones, se mostrará que se puede "crear alerta", "monitorear Alerta" y "cerrar sesión".
 
 Al presionar Crear Alerta ud puede ingresar nombre de alerta a su gusto, luego de eso puede seleccionar si desea hacer una alerta en
-en base a temperatura o humedad selecionando los distintos checkbox que existen en la visual de la aplicación, una vez selecionada
-la temperatura o humedad que desea utilizar, puede agregar el simbolo, que en esta versión soporta < (menor) > (mayor) ó = (igual),
-más el dato que desea, cualquier dato que este en el rango de 0 a 100, en donde si es en temperatura son los grados celcius y si 
-es humedad es en porcentaje (%) de humedad.
+en base a temperatura, humedad o niveles de gas, selecionando los distintos checkbox que existen en la visual de la aplicación, una vez selecionada
+la temperatura, humedad o niveles de gas que desea utilizar, puede agregar el simbolo, que en esta versión soporta < (menor) > (mayor) ó = (igual),
+más el dato que desea, cualquier dato que este en el rango de 0 a 100, en donde si es en temperatura son los grados celcius y si es humedad es en porcentaje (%) de humedad, si es gas los niveles van desde 20 a 2000 ppm.
+
+
+Primeros pasos Web:
+
+La plataforma web de AwareHome, se creo pensando en ser una replica de la aplicación móvil, puesto que la aplicación pasa a ser un “notificado” de un sistema completo de monitoreo, para ingresar a la aplicación web debe ingresar con el mismo usuario y contraseña entregados, (user: unab ; pass: unab),
+una vez que se inicia sesión ud podrá:
+
+1- Monitorear Datos.
+	Ud, podrá monitorear los valores de los datos obtenidos desde el hogar.
+
+2- Crear Alerta.
+	Ud, podrá crear alertas simples basadas en los valores obtenidos desde el hogar.
+
+3- Ver Alertas.
+	Ud, podrá monitorear las alertas creadas en pasos anteriores.
+
+4- Crear Alerta Compuestas.
+	Ud, podrá crear alertas basadas en un conjunto de sensores, con el fin de crear alertas más 	especificas y aumentando las posibilidades de monitoreo.
+5- Ver Alertas Compuestas.
+	Ud, podrá monitorear las alertas compuestas creadas anteriormente.
+
+6- Ver Historial (gráficos).
+	Ud, puede cargar gráficos de los datos basado en una fecha especifica, para poder cargarlos, seleccione una fecha y el tipo de sensor que desea ver, luego de eso se desplegara un gráfico representando los datos obtenidos.
+
+7- Ver Hogar (ver mi hogar en google maps).
+	Ud, podrá ver su hogar desde un mapa interactivo, al hacer click en el marker de su hogar podrá acceder a ver las alertas que tiene activas en el momento.
+
 
 
 
 Juan Pablo Soto Del Pino.
-3 de septiembre de 2014.
+28 de septiembre de 2015.
 
 
 

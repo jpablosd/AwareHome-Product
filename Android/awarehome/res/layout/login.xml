@@ -71,15 +71,17 @@
         </EditText>
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/crear_cuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/entrar"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="18dp"
             android:paddingTop="5dp"
             android:text="No Tengo Cuenta"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#3F6ABB" />
+
     </RelativeLayout>
 
     <!--

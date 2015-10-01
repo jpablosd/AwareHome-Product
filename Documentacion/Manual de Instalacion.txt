@@ -1,0 +1,90 @@
+Manual de Instalación Donde Comprarlo
+
+Requerimientos:
+
+	Carpeta liberación AwareHome versión 0.6 - Septiembre 2015, en donde se encuentran alojadas los siguientes directorios y archivos:
+		
+		- “Liberacion Version 0.6 - Septiembre 2015”
+			- apk
+				- awarehome.apk
+			- PlataformaWeb
+				- bin/
+				- css/
+				- font/
+				- images/
+				- js/
+				- php/
+				- plugins/
+				- res/
+				- scripts/
+				- views/
+				- index.html
+				- app.html
+				- config.txt
+			- Servidor
+				- acces/
+				- alertas/
+				- arduino/
+				- conexion/
+				- datos/
+				- hogar/
+				- regas/
+				- usuario/
+			- Base de Datos
+				- 
+			- Manual de Instalacion.txt
+			- ReleaseNotes.txt
+			- UserGuide.txt
+
+
+
+
+
+Procedimiento:
+
+	1) Tomar las carpetas dentro de “Liberacion Version 0.6 - Septiembre 2015”, copiar y pegar el contenido en la siguiente dirección y sustituir todos los archivos que ya puedan existir:
+
+		http://han.ing.unab.cl/jp/
+
+
+	2) Una vez copiados los archivos, abrir el archivo (connectbd.php) que se encuentra en “PlataformaWeb/php/conexion/“
+	posterior a eso modificar los siguientes datos:
+
+		- Linea 4: define('DB_USER', 'Usuario'); 
+		- Linea 5: define('DB_PASSWORD', 'Password');
+		- Linea 6: define(‘DB_DATABASE’, ‘DataBase’);
+
+		En 'Usuario' poner Usuario de la Base de datos.
+		En 'Password' poner Password de la Base de datos.
+		En ‘DataBase’ poner el nombre de la base de datos.
+
+
+	3) Siguiendo con el procedimiento se debe abrir el archivo (connectbd.php) que se encuentra en “Servidor/conexion/“ posteriormente modificar los siguientes datos:
+
+		- Linea 7: define('DB_USER', 'Usuario'); 
+		- Linea 8: define('DB_PASSWORD', 'Password');
+		- Linea 9: define(‘DB_DATABASE’, ‘DataBase’); 
+
+		En 'Usuario' poner Usuario de la Base de datos.
+		En 'Password' poner Password de la Base de datos.
+		En ‘DataBase’ poner el nombre de la base de datos.
+
+	4) Una vez realizado todos los pasos la estructura del directorio debe quedar de la siguiente forma:
+
+		http://han.ing.unab.cl/jp/
+
+		http://han.ing.unab.cl/jp/apk
+		http://han.ing.unab.cl/jp/PlataformaWeb
+		http://han.ing.unab.cl/jp/Servidor
+		http://han.ing.unab.cl/jp/Base de Datos	
+		http://han.ing.unab.cl/jp/Manual de Instalacion.txt
+		http://han.ing.unab.cl/jp/ReleaseNotes.txt
+		http://han.ing.unab.cl/jp/UserGuide.txt
+
+
+	5) Entrar a phpMyAdmin, e instalar el archivo “bd.sql” cambiar nombre de bd, el cual se encuentra en “Base de Datos/bd.sql“
+		
+		
+
+
+

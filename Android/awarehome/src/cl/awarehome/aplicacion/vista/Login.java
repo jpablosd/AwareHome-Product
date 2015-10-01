@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -27,10 +28,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
 
+	TextView crear_cuenta;
 	EditText nombre,clave;
 	Button entrar;
 	Coneccion post;
@@ -49,6 +52,7 @@ public class Login extends Activity {
 		nombre = (EditText) findViewById(R.id.nombre_usuario);
 		clave = (EditText) findViewById(R.id.clave);
 		entrar = (Button) findViewById(R.id.entrar);
+		crear_cuenta = (TextView) findViewById(R.id.crear_cuenta);
 
 		entrar.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -62,7 +66,19 @@ public class Login extends Activity {
 				}
 			}
 		});
+
+		crear_cuenta.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("http://www.awarehome.cl/"));
+				startActivity(intent);
+			}
+		});
+
 	}//oncreate
+
+	//---------------------------------------------
 
 	/*
     @Override
@@ -85,7 +101,7 @@ public class Login extends Activity {
 	public void err_login(){
 		Vibrator vibrator =(Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		vibrator.vibrate(200);
-		Toast toast1 = Toast.makeText(getApplicationContext(),"Error: Nombre de Usuario o Contrase–a Incorrecto.", Toast.LENGTH_SHORT);
+		Toast toast1 = Toast.makeText(getApplicationContext(),"Error: Nombre de Usuario o Contraseña Incorrecto.", Toast.LENGTH_SHORT);
 		toast1.show();    	
 	}
 	//_______________________________________________________
@@ -158,22 +174,16 @@ public class Login extends Activity {
 
 				Toast toast1 = Toast.makeText(getApplicationContext(),"Bienvenido: "+user, Toast.LENGTH_SHORT);
 				toast1.show();
-
-
+				
 				Intent i=new Intent(Login.this, Datos.class);
-
 				i.putExtra("usuario",user);
-
 				startActivity(i); 
-
 				finish();
 			}else{
 				err_login();
 			}
 		}//onPostExecute
-
 	}//asyncLogin
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -203,4 +213,4 @@ public class Login extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-}
+}//login

@@ -15,10 +15,22 @@ if (( $id_usuario != "" ) and ( $temperatura != "" ) and ( $humedad != "" ) and 
 	$db = new DB_Connect();
 	$db->connect();
 	
-	$sql = "INSERT INTO sensor (temperatura, humedad, gas, fecha, usuario_id_usuario) 
-			VALUES ('$temperatura', '$humedad', '$gas', NOW(), $id_usuario)";
 
+
+	$sql = "INSERT INTO medicion (medicion, fecha, hogar_id_hogar, sensor_id_sensor) 
+			VALUES ('$temperatura', NOW(), 1, 1)";
 	mysql_query($sql);
+
+	$sql1 = "INSERT INTO medicion (medicion, fecha, hogar_id_hogar, sensor_id_sensor) 
+			VALUES ('$gas', NOW(), 1, 3)";
+	mysql_query($sql1);
+
+	$sql2 = "INSERT INTO medicion (medicion, fecha, hogar_id_hogar, sensor_id_sensor) 
+			VALUES ('$humedad', NOW(), 1, 2)";
+	mysql_query($sql2);
+
+
+
 }
 ?>
 

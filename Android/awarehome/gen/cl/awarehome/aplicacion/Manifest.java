@@ -9,7 +9,6 @@ package cl.awarehome.aplicacion;
 
 public final class Manifest {
     public static final class permission {
-        public static final String MAPS_RECEIVE="cl.awarehome.aplicacion.permission.MAPS_RECEIVE";
         public static final String aplicacion="cl.awarehome.aplicacion";
     }
 }

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="libs/mint-4.0.jar"/>
-	<classpathentry kind="lib" path="/Users/juanpablo/Documents/adt-bundle-mac-x86_64-20140702/sdk/add-ons/addon-google_apis-google-16/libs/maps.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/juanpablo/Documents/adt-bundle-mac-x86_64-20140702/sdk/add-ons/addon-google_apis-google-16/docs/reference"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="libs/mint-4.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/firebase-client-android-2.3.0.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
