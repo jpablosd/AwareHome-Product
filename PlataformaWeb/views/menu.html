@@ -1,11 +1,62 @@
+<!--
+<header>
+<div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav"><i class="mdi-navigation-menu"></i></a></div>
+<ul id="nav-mobile" class="side-nav fixed">
+<li class="logo">
+<a id="logo-container" href="#" class="brand-logo">
+<object id="front-page-logo"  data="res/awarehome.png" style="height: 100%; width: 80%; "></object>
+</a>
+</li>
+<li class="bold"><a ng-click="verDatos()" href="#/verDatos" class="waves-effect waves-teal">Datos</a></li>
+<li class="bold"><a href="#/crearAlerta" ng-click="crearAlerta()" class="waves-effect waves-teal">Crear Alerta</a></li>
+<li class="bold"><a href="#/verAlertas" class="waves-effect waves-teal">Ver Alerta</a></li>
+<li class="bold"><a href="#/crearAlertaInteligente" class="waves-effect waves-teal">Crear Alerta Inteligente</a></li>
+<li class="bold"><a href="#/verAlertaInteligente" class="waves-effect waves-teal">Ver Alerta Inteligente</a></li>
+<li class="bold"><a href="#/verHistorial" class="waves-effect waves-teal">Ver Historial</a></li>
+<li class="bold"><a href="#/verMapa" class="waves-effect waves-teal">Ver Mapa</a></li>
+
+</ul>
+</header>
+
+<main>
+<nav>
+<div class="nav-wrapper blue darken-2 z-depth-3">
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" href="#!" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+</ul>
+</div>
+</nav>
+</main>
+-->
+
+<!--
+<script>
+function cerrarSesion(){
+location.href='index.html'); 
+}
+</script>-->
+
+
 
 
 <header>
-    <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav"><i class="mdi-navigation-menu"></i></a></div>
-    <ul id="nav-mobile" class="side-nav fixed">
-        <li class="logo">
+    <nav class = "blue darken-2 z-depth-3">
+        <div class="container">
+            <div class="nav-wrapper">
+                <ul class="right">
+                    <li><a class="hover1" href="index.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+                </ul>
+
+                <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
+            </div>
+        </div>
+    </nav>
+
+
+    <ul id="nav-mobile" class="side-nav fixed" style="width: 240px;">
+        <li class="logo">    
             <a id="logo-container" href="#" class="brand-logo">
-                <object id="front-page-logo"  data="res/awarehome.png" style="height: 100%; width: 80%; "></object>
+                <object id="front-page-logo"  data="res/awarehome.png" style="height: 100%; width: 80%; ">Your browser does not support SVG</object>
             </a>
         </li>
         <li class="bold"><a ng-click="verDatos()" href="#/verDatos" class="waves-effect waves-teal">Datos</a></li>
@@ -15,26 +66,12 @@
         <li class="bold"><a href="#/verAlertaInteligente" class="waves-effect waves-teal">Ver Alerta Inteligente</a></li>
         <li class="bold"><a href="#/verHistorial" class="waves-effect waves-teal">Ver Historial</a></li>
         <li class="bold"><a href="#/verMapa" class="waves-effect waves-teal">Ver Mapa</a></li>
-
     </ul>
 </header>
 
-<main>
-
-    <nav>
-        <div class="nav-wrapper blue darken-2 z-depth-3">
-            <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" href="#!" onclick="cerrarSesion()">Cerrar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>
-
-</main>
-
-<!--
 
 <script>
-    function cerrarSesion(){
-        location.href='index.html'); 
-    }
-</script>-->
+    $( document ).ready(function(){
+        $(".button-collapse").sideNav();
+    });
+</script>

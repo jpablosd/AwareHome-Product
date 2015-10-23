@@ -1,10 +1,12 @@
-<!-- VER ALERTAS -->
-<div id="ver_alertas" class="row ">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="z-depth-3">
-        <ul id="lista" class="collection col s12 m11 l12">
+<div>
+    <div id="ver_alertas" class="row">
+        <!--        <div class="col s2 m1 l1 "><p></p></div>-->
+        <div class="col s12 m12 l12">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <ul id="lista" class="collection">
 
-            <!--
+                        <!--
 <li class="collection-item avatar">
 <i class="mdi-action-assessment circle green"></i>
 <span class="title">Title</span>
@@ -15,18 +17,22 @@ Second Line
 </li>
 -->
 
-        </ul>
-    </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- VER ALERTAS -->
+                    </ul>
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
 <script>
+
     cargarAlertas();
     //------------------- VER ALERTAS ----------------------
     function cargarAlertas(){
         var out = "";
-        document.getElementById("lista").innerHTML = out;
+        $("#lista").prepend(out);
+
+        //document.getElementById("lista").innerHTML = out;
 
         var xmlhttp = new XMLHttpRequest();
         var url = "php/verActualizarAlertas.php";
@@ -73,7 +79,6 @@ Second Line
             }
             //document.getElementById("lista").innerHTML = out;
             //$("#lista").html(out);
-
             $("#lista").prepend(out);
         }
     }

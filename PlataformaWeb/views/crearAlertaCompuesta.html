@@ -1,0 +1,175 @@
+<div>
+    <div class="row">
+        <!--        <div class="col s2 m1 l1 "><p></p></div>-->
+        <div class="col s12 m12 l12">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Crear Alerta Compuesta</span>
+
+                    <div class="input-field col s12 m12 l12">
+                        <input name="nombre_alerta" id="nombre_alerta_simple" type="text" class="validate">
+                        <label for="nombre_alerta">Nombre Alerta</label>
+                    </div>
+                    <div>
+                        <div class="input-field col s6 m6 l6">
+                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                                <option value="" disabled selected>Escoja alerta</option>
+                                <option value="1">alerta 1</option>
+                                <option value="2">alerta 2</option>
+                                <option value="3">alerta 3</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                                <option value="" disabled selected>Escoja operador</option>
+                                <option value="1">AND</option>
+                                <option value="2">OR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-field col s6 m6 l6">
+                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                                <option value="" disabled selected>Escoja alerta</option>
+                                <option value="1">alerta 1</option>
+                                <option value="2">alerta 2</option>
+                                <option value="3">alerta 3</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                                <option value="" disabled selected>Escoja operador</option>
+                                <option value="0">VACIO</option>
+                                <option value="1">AND</option>
+                                <option value="2">OR</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="agregarDatos">
+
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 center-align">
+                        <!-- <a class="waves-effect waves-light btn">Stuff</a>-->
+                        <a  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" onclick="agregarComposicion()">add</i></a>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <br><br>
+                    </div>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light" onclick="verRepeticion()">Repetición</a>
+                        <a class="btn waves-effect waves-light" onclick="crearAlertaCompuesta()">Crear</a>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <br><br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+
+<div id="repeticion" class="modal">
+    <div class="modal-content">
+        <h4>Asignar Repetición</h4>
+        <div class="row">
+<!--
+            <div class="col s12 m12 l12">
+                <p></p>
+-->
+<!--
+                <div class="card">
+                    <div class="card-content">
+-->
+                        <ul id="lista" class="collection">
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test1" />
+                                    <label for="test1">Los Lunes</label>
+                                </p>   
+                            </li>
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test2" />
+                                    <label for="test2">Los Martes</label>
+                                </p>
+                            </li>
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test3" />
+                                    <label for="test3">Los Miercoles</label>
+                                </p>   
+                            </li>
+
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test4" />
+                                    <label for="test4">Los Jueves</label>
+                                </p>   
+                            </li>                            <li class="collection-item">
+                            <p>
+                                <input type="checkbox" id="test5" />
+                                <label for="test5">Los Viernes</label>
+                            </p>   
+                            </li>
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test6" />
+                                    <label for="test6">Los Sabado</label>
+                                </p>   
+                            </li>
+                            <li class="collection-item">
+                                <p>
+                                    <input type="checkbox" id="test7" />
+                                    <label for="test7">Los Domingo</label>
+                                </p>   
+                            </li>
+                        </ul>
+<!--
+                    </div>
+                </div>
+                </div>
+-->
+            
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-green btn-flat modal-action modal-close">Aceptar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function crearAlertaCompuesta(){
+        alert("asdas");
+    }
+
+    function agregarComposicion(){      
+
+        var hola = '<div class="input-field col s6 m6 l6"><select class="browser-default">';
+
+        hola += '<option value="" disabled selected>Escoja alerta</option><option value="1">alerta 1</option><option value="2">alerta 2</option><option value="3">alerta 3</option>';
+
+        hola += '</select></div>'
+        hola += '<div class="input-field col s6 m6 l6"><select class="browser-default" >';
+        hola += '<option value="" disabled selected>Escoja operador</option><option value="0">VACIO</option><option value="1">AND</option><option value="2">OR</option>';
+        hola +='</select></div>';
+
+        document.getElementById('agregarDatos').innerHTML += hola;
+    }
+    function verRepeticion(){
+        $('#repeticion').openModal();
+    }
+</script>
+
+
+
+
+
+
+
+

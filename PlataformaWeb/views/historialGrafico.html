@@ -1,126 +1,52 @@
 <div>
     <div class="row ">
-        <div class="col s2 m1 l1 "><p></p></div>
-        <div class="col s8 m10 l10">
+        <!--        <div class="col s2 m1 l1 "><p></p></div>-->
+        <div class="col s12 m12 l12">
             <div class="card z-depth-3">
                 <div class="card-content">
                     <h4>Historial</h4>                    
                     <div class="row">
-                    <div class="col s6 m6 l6">
-                        <!--                    <input id="fecha" placeholder="Fecha" type="date" class="datepicker">-->
-                        <input id="fecha" type="date" name="fecha">
-                    </div>
-                    <div class="col s6 m6 l6">
-                        <select class="browser-default" onchange="buscarDatos(this.value)">
-                            <option value="" disabled selected>Seleccione Sensor</option>
-                            <option value="temperatura">Temperatura</option>
-                            <option value="humedad">Humedad</option>
-                            <option value="gas">Gas</option>
-                        </select>
-                    </div>
+                        <div class="col s5 m5 l4">
+                            <!--                    <input id="fecha" placeholder="Fecha" type="date" class="datepicker">-->
+                            <input id="fecha" type="date" name="fecha">
+                        </div>
+                        <div class="col s4 m4 l6">
+                            <select class="browser-default" onchange="buscarDatos(this.value)">
+                                <option value="" disabled selected>Seleccione Sensor</option>
+                                <option value="temperatura">Temperatura</option>
+                                <option value="humedad">Humedad</option>
+                                <option value="gas">Gas</option>
+                            </select>
+                        </div>
+
+                        <div class="col s3 m3 l2 center">
+                           <label>Real Time</label>
+                            <!-- Switch -->
+                            <div class="switch">
+                                <label>
+                                    Off
+                                    <input type="checkbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <!--                    <span class="card-title activator grey-text text-darken-4">Historial</span>-->
+                    <div class="progress" id="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <div id="curve_chart" class="grafico"></div>
 
-                    <div id="curve_chart" style="width: 900px; height: 500px"></div>
 
                 </div>
             </div>
         </div>
-        <div class="col s2 m1 l1"><p></p></div>
+        <!--        <div class="col s2 m1 l1"><p></p></div>-->
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 <script>
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-
-    var fecha;
-    var sensorGrafico;
-    function buscarDatos(valor){
-        fecha = document.getElementById("fecha").value;
-        sensorGrafico = valor;
-        google.load('visualization', '1', {"callback" : drawChart, 'packages': ['corechart']});
-        google.setOnLoadCallback(drawChart);
-    }
-
-
-
-
-    function drawChart() {
-        var xmlhttp = new XMLHttpRequest();
-        var url = "php/verDatosGrafico.php?fecha="+fecha;
-        console.log(url);
-        xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                myFunction(xmlhttp.responseText);
-            }
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-        function myFunction(response) {
-            //console.log(response);
-            var arr = JSON.parse(response);
-            console.log(arr);
-
-            var hola = [['Fecha', 'Medición']];
-            
-            for(var i = 0; i < arr.length; i++) {
-                if (arr[i].sensor == sensorGrafico){
-                    var med = parseInt(arr[i].medicion);
-                    hola.push([arr[i].fecha,med]);
-                }
-            }
-            var data = google.visualization.arrayToDataTable(hola);
-            var options = {
-                title: 'Historial '+sensorGrafico,
-                curveType: 'function',
-                legend: { position: 'bottom' }
-            };
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-            chart.draw(data, options);
-        }//myFunction
-    }
-
-    //    datosHistorial();
-    //
-    //
-    //
-    //    function datosHistorial(){
-    //        var xmlhttp = new XMLHttpRequest();
-    //        var url = "php/verDatosGrafico.php";
-    //        xmlhttp.onreadystatechange=function() {
-    //            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    //                myFunction(xmlhttp.responseText);
-    //            }
-    //        }
-    //        xmlhttp.open("GET", url, true);
-    //        xmlhttp.send();
-    //        function myFunction(response) {
-    //            //console.log(response);
-    //            var arr = JSON.parse(response);
-    //            console.log(arr);
-    //            //console.log(arr[0].fecha);
-    //            //console.log(arr[0].medicion);
-    //            var i;
-    //            for(i = 0; i < arr.length; i++) {
-    //                console.log(arr[i].fecha);
-    //                console.log(arr[i].medicion);
-    //            }//for
-    //        }//myFunction
-    //    }//datosHistorial
-
+    document.getElementById('progress').style.display = 'none';
 
 </script>

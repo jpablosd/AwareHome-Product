@@ -14,7 +14,7 @@
         <link href="css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
 
-<!--        <script type="text/javascript" src="scripts/controllers/login.js"></script>-->
+        <!--        <script type="text/javascript" src="scripts/controllers/login.js"></script>-->
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -22,10 +22,14 @@
         <script src="js/prism.js"></script>
         <script src="bin/materialize.js"></script>
         <script src="js/init.js"></script>
+
     </head>
-    <body onload="init()">
+
+
+
+    <body>
         <br><br><br>
-        
+
         <div class="row">
             <div class="col s12 m3 l2"><p></p></div>
             <!-- INICIO DE SESION -->
@@ -62,62 +66,63 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="row">
-                <div class="col s12 m3 l2"><p></p></div>
 
-                <!-- REGISTRO -->
-                <div class="col s12 m6 l8">
-                    <div id="registro" class="card">
-                        <div class="card-content">
-                            <div class="center-align">
-                                <a id="logo-container" href="#" class="brand-logo">
-                                    <object id="front-page-logo"  data="res/awarehome.png" style="height:110%; width: 40%; "></object>
-                                </a>
-                            </div>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s6 ">
-                                            <input id="last_name" type="text" class="validate">
-                                            <label for="last_name">Nombre</label>
-                                        </div>
-                                        <div class="input-field col s6 ">
-                                            <input id="last_name" type="text" class="validate">
-                                            <label for="last_name">Apellido</label>
-                                        </div>
-
-                                        <div class="input-field col s12">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email">Email</label>
-                                        </div>
+                <div id="registro" class="card">
+                    <div class="card-content">
+                        <div class="center-align">
+                            <a id="logo-container" href="#" class="brand-logo">
+                                <object id="front-page-logo"  data="res/awarehome.png" style="height:110%; width: 40%; "></object>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s6 ">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Nombre</label>
                                     </div>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="password" type="password" class="validate">
-                                            <label for="password">clave</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <input id="password" type="password" class="validate">
-                                            <label for="password">Repita clave</label>
-                                        </div>
-                                    </div>
-                                    <div class="center-align">
-                                        <a class="waves-effect waves-light btn ">Registrarme</a>
-                                        <a class="amber waves-effect  btn" onclick="volver()">Volver</a>
+                                    <div class="input-field col s6 ">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Apellido</label>
                                     </div>
 
-                                </form>
-                            </div>
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">clave</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">Repita clave</label>
+                                    </div>
+                                </div>
+                                <div class="center-align">
+                                    <a class="waves-effect waves-light btn ">Registrarme</a>
+                                    <a class="amber waves-effect  btn" onclick="volver()">Volver</a>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
     </body>
+    <script type="text/javascript">
+        document.getElementById('registro').style.display = 'none';
+
+        function registro_usuario(){
+            document.getElementById('inicio_sesion').style.display = 'none';
+            document.getElementById('registro').style.display = 'block';
+        }
+        function volver(){
+            document.getElementById('inicio_sesion').style.display = 'block';
+            document.getElementById('registro').style.display = 'none';
+        }
+    </script>
 </html>

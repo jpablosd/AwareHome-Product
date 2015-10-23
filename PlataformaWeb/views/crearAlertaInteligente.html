@@ -1,375 +1,376 @@
-<!-- CREAR ALERTA INTELIGENTE -->
-<div id="crear_alertas_inteligentes" class="row ">
-    <div class="col s12 m12 l12">
-        <div class="card z-depth-3">
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Alerta Inteligente</span>
-                <br>
-                <div class="col s12 m12 l12">
-                    <div class="input-field col s9 m9 l9">
-                        <input id="nombre_alerta_inteligente" type="text" class="validate">
-                        <label for="valor">Nombre Alerta Inteligente:</label>
-                    </div>
+<div>
+    <!-- CREAR ALERTA INTELIGENTE -->
+    <div id="crear_alertas_inteligentes" class="row ">
+        <div class="col s12 m12 l12">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Alerta Inteligente</span>
                     <br>
-                    <div class="col s3 m3 l3">
-                        <a class="btn waves-effect waves-light" onclick="guardarAlertaInteligente()">Guardar</a>
+                    <div class="col s12 m12 l12">
+                        <div class="input-field col s9 m9 l9">
+                            <input id="nombre_alerta_inteligente" type="text" class="validate">
+                            <label for="valor">Nombre Alerta Inteligente:</label>
+                        </div>
+                        <br>
+                        <div class="col s3 m3 l3">
+                            <a class="btn waves-effect waves-light" onclick="guardarAlertaInteligente()">Guardar</a>
+                        </div>
+
                     </div>
 
-                </div>
+                    <br><br> 
+                    <br><br>
+                    <br>
 
-                <br><br> 
-                <br><br>
-                <br>
-
-                <div id="arrastrables" class="col s4 m1 l1">
-                    <!--
+                    <div id="arrastrables" class="col s4 m1 l1">
+                        <!--
 <p>HOLA 1</p>
 -->
-                    <div id="drag1" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag1">
-                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
-                    </div>
-                    <br><br>
-                    <br><br>
-                    <div id="drag4" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag3">
-                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
-                    </div>
-                    <br><br>
-                    <br><br>
-                    <div id="drag5" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag5">
-                        <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
-                    </div>
-                    <br><br>
-                    <br><br>
-                    <div id="drag2" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag2">
-                        <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
-                    </div>
-                    <br><br>
-                    <br><br>
-                    <div id="drag6" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag4">
-                        <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
-                    </div>
-                    <br><br>
-                    <br><br>
+                        <div id="drag1" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag1">
+                            <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div id="drag4" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag3">
+                            <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div id="drag5" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag5">
+                            <i class="small mdi-device-nfc tooltipped"  data-position="top" data-delay="50" data-tooltip="Sensor"></i>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div id="drag2" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag2">
+                            <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div id="drag6" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag4">
+                            <i class="small mdi-navigation-apps tooltipped"  data-position="top" data-delay="50" data-tooltip="Operador"></i>
+                        </div>
+                        <br><br>
+                        <br><br>
 
-                    <!--
+                        <!--
 <div id="drag3" class="col s12 m12 l12 z-depth-2 draggable js-drag modal-trigger" href="#modaldrag6">
 <i class="small mdi-action-alarm tooltipped"  data-position="top" data-delay="50" data-tooltip="Tiempo"></i>
 </div>
 -->
-                    <br><br>
-                    <br><br>
-                    <!--
+                        <br><br>
+                        <br><br>
+                        <!--
 <div id="drag4" class="col s12 m12 l12 z-depth-2 amber draggable js-drag" >
 <i class="small mdi-content-add tooltipped"  data-position="top" data-delay="50" data-tooltip="Agregar más"></i>
 </div>
 -->
-                    <br><br>
-                    <br><br>
-                    <br><br>
-                    <br><br>
-
-
-                </div>
-                <div class="col s8 m11 l11">
-                    <!--
-<p>HOLA 2</p>
--->
-                    <div class=" col s12 m12 l12 z-depth-2">
-                        <div id="drop1" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p> Sensor</p>
-                            <br><br>
-                        </div>
-                        <div class="col s1 m1 l1"><br></div>
-                        <div id="drop2" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p> conector</p>
-                            <br><br>
-                        </div>
-                        <div class="col s1 m1 l1"><br></div>
-                        <div id="drop3" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p>Sensor</p>
-                            <br><br>
-                        </div>
-                        <div class="col s1 m1 l1"><br></div>
-                        <div id="drop4" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p>conector</p>
-                            <br><br>
-                        </div>
-                        <div class="col s1 m1 l1"><br></div>
-                        <div id="drop5" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p>Sensor</p>
-                            <br><br>
-                        </div>
-
-                        <div class="col s1 m1 l1"><br></div>
-                        <div id="drop6" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
-                            <p>reloj</p>
-                            <br><br>
-                        </div>
-
-
-                        <br><br>
-                        <br><br>                                        
                         <br><br>
                         <br><br>
                         <br><br>
+                        <br><br>
+
 
                     </div>
+                    <div class="col s8 m11 l11">
+                        <!--
+<p>HOLA 2</p>
+-->
+                        <div class=" col s12 m12 l12 z-depth-2">
+                            <div id="drop1" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p> Sensor</p>
+                                <br><br>
+                            </div>
+                            <div class="col s1 m1 l1"><br></div>
+                            <div id="drop2" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p> conector</p>
+                                <br><br>
+                            </div>
+                            <div class="col s1 m1 l1"><br></div>
+                            <div id="drop3" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p>Sensor</p>
+                                <br><br>
+                            </div>
+                            <div class="col s1 m1 l1"><br></div>
+                            <div id="drop4" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p>conector</p>
+                                <br><br>
+                            </div>
+                            <div class="col s1 m1 l1"><br></div>
+                            <div id="drop5" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p>Sensor</p>
+                                <br><br>
+                            </div>
 
-                    <br><br>
-                    <br><br>
-                    <br><br>
-                    <br><br>
+                            <div class="col s1 m1 l1"><br></div>
+                            <div id="drop6" class="col s1 m1 l1 z-depth-2 dropzone js-drop">
+                                <p>reloj</p>
+                                <br><br>
+                            </div>
+
+
+                            <br><br>
+                            <br><br>                                        
+                            <br><br>
+                            <br><br>
+                            <br><br>
+
+                        </div>
+
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
-<!-- CREAR ALERTA INTELIGENTE-->
+    <!-- CREAR ALERTA INTELIGENTE-->
 
 
-<!-- Asignar sensor a arrastrable drag1 -->
-<div id="modaldrag1" class="row modal">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="col s12 m10 l8">
-        <div class="modal-content">
-            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
-            <form action="#">
-                <div class="input-field col s12">
-                    <select onchange='tipoSensor1(this.value)'>
-                        <option value="" disabled selected>Escoja sensor</option>
-                        <option value="temperatura">Temperatura</option>
-                        <option value="humedad">Humedad</option>
-                        <option value="gas">Gas</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <br>
-                <div class="input-field col s6">
-                    <select onchange='simboloSensor1(this.value)'>
-                        <option value="" disabled selected>Escoja símbolo</option>
-                        <option value="menor">Menor</option>
-                        <option value="mayor">Mayor</option>
-                        <option value="igual">Igual</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="valorSensor1" type="text" class="validate">
-                    <label for="valor">Valor</label>
-                </div>
-                <br><br><br><br><br><br><br><br><br>
-                <div class="center-align">
-                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor1()">Guardar</a>
-                </div>
-                <br><br><br>
-            </form>
+    <!-- Asignar sensor a arrastrable drag1 -->
+    <div id="modaldrag1" class="row modal">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class="modal-content">
+                <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+                <form action="#">
+                    <div class="input-field col s12">
+                        <select onchange='tipoSensor1(this.value)'>
+                            <option value="" disabled selected>Escoja sensor</option>
+                            <option value="temperatura">Temperatura</option>
+                            <option value="humedad">Humedad</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <br>
+                    <div class="input-field col s6">
+                        <select onchange='simboloSensor1(this.value)'>
+                            <option value="" disabled selected>Escoja símbolo</option>
+                            <option value="menor">Menor</option>
+                            <option value="mayor">Mayor</option>
+                            <option value="igual">Igual</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="valorSensor1" type="text" class="validate">
+                        <label for="valor">Valor</label>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor1()">Guardar</a>
+                    </div>
+                    <br><br><br>
+                </form>
+            </div>
         </div>
+        <div class="col s12 m1 l2"><p></p></div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- Asignar sensor a arrastrable drag1 -->
-<!-- Asignar sensor a arrastrable drag3 -->
-<div id="modaldrag3" class="row modal">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="col s12 m10 l8">
-        <div class=" modal-content">
-            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
-            <form action="#">
-                <div class="input-field col s12">
-                    <select onchange='tipoSensor2(this.value)'>
-                        <option value="" disabled selected>Escoja sensor</option>
-                        <option value="temperatura">Temperatura</option>
-                        <option value="humedad">Humedad</option>
-                        <option value="gas">Gas</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <br>
-                <div class="input-field col s6">
-                    <select onchange='simboloSensor2(this.value)'>
-                        <option value="" disabled selected>Escoja símbolo</option>
-                        <option value="menor">Menor</option>
-                        <option value="mayor">Mayor</option>
-                        <option value="igual">Igual</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="valorSensor2" type="text" class="validate">
-                    <label for="valor">Valor</label>
-                </div>
-                <br><br><br><br><br><br><br><br><br>
-                <div class="center-align">
-                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor2()">Guardar</a>
-                </div>
-                <br><br><br>
-            </form>
+    <!-- Asignar sensor a arrastrable drag1 -->
+    <!-- Asignar sensor a arrastrable drag3 -->
+    <div id="modaldrag3" class="row modal">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class=" modal-content">
+                <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+                <form action="#">
+                    <div class="input-field col s12">
+                        <select onchange='tipoSensor2(this.value)'>
+                            <option value="" disabled selected>Escoja sensor</option>
+                            <option value="temperatura">Temperatura</option>
+                            <option value="humedad">Humedad</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <br>
+                    <div class="input-field col s6">
+                        <select onchange='simboloSensor2(this.value)'>
+                            <option value="" disabled selected>Escoja símbolo</option>
+                            <option value="menor">Menor</option>
+                            <option value="mayor">Mayor</option>
+                            <option value="igual">Igual</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="valorSensor2" type="text" class="validate">
+                        <label for="valor">Valor</label>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor2()">Guardar</a>
+                    </div>
+                    <br><br><br>
+                </form>
+            </div>
         </div>
+        <div class="col s12 m1 l2"><p></p></div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- Asignar sensor a arrastrable drag3 -->
-<!-- Asignar sensor a arrastrable drag5 -->
-<div id="modaldrag5" class="row modal">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="col s12 m10 l8">
-        <div class=" modal-content">
-            <span class=" activator grey-text text-darken-4">Crear Alerta</span>
-            <form action="#">
-                <div class="input-field col s12">
-                    <select onchange='tipoSensor3(this.value)'>
-                        <option value="" disabled selected>Escoja sensor</option>
-                        <option value="temperatura">Temperatura</option>
-                        <option value="humedad">Humedad</option>
-                        <option value="gas">Gas</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <br>
-                <div class="input-field col s6">
-                    <select onchange='simboloSensor3(this.value)'>
-                        <option value="" disabled selected>Escoja símbolo</option>
-                        <option value="menor">Menor</option>
-                        <option value="mayor">Mayor</option>
-                        <option value="igual">Igual</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="valorSensor3" type="text" class="validate">
-                    <label for="valor">Valor</label>
-                </div>
-                <br><br><br><br><br><br><br><br><br>
-                <div class="center-align">
-                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor3()">Guardar</a>
-                </div>
-                <br><br><br>
-            </form>
+    <!-- Asignar sensor a arrastrable drag3 -->
+    <!-- Asignar sensor a arrastrable drag5 -->
+    <div id="modaldrag5" class="row modal">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class=" modal-content">
+                <span class=" activator grey-text text-darken-4">Crear Alerta</span>
+                <form action="#">
+                    <div class="input-field col s12">
+                        <select onchange='tipoSensor3(this.value)'>
+                            <option value="" disabled selected>Escoja sensor</option>
+                            <option value="temperatura">Temperatura</option>
+                            <option value="humedad">Humedad</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <br>
+                    <div class="input-field col s6">
+                        <select onchange='simboloSensor3(this.value)'>
+                            <option value="" disabled selected>Escoja símbolo</option>
+                            <option value="menor">Menor</option>
+                            <option value="mayor">Mayor</option>
+                            <option value="igual">Igual</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="valorSensor3" type="text" class="validate">
+                        <label for="valor">Valor</label>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light modal-action modal-close" onclick="valoresSensor3()">Guardar</a>
+                    </div>
+                    <br><br><br>
+                </form>
+            </div>
         </div>
+        <div class="col s12 m1 l2"><p></p></div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- Asignar sensor a arrastrable drag5 -->
-<!-- Asignar sensor a arrastrable drag2 -->
-<div id="modaldrag2" class="row modal">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="col s12 m10 l8">
-        <div class=" modal-content">
-            <form action="#">
-                <br>
-                <div class="input-field col s12">
-                    <select onchange="tipoOperador1(this.value)">
-                        <option value="" disabled selected>Escoja símbolo</option>
-                        <option value="and">And</option>
-                        <option value="or">Or</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <div class="input-field col s12">
-                    <span class="grey-text text-darken-4">Descripcion símbolo</span>
-                </div>
-                <br><br><br><br><br><br><br><br><br>
-                <div class="center-align">
-                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador1()">Guardar</a>
-                </div>
-                <br><br><br><br>
-            </form>
+    <!-- Asignar sensor a arrastrable drag5 -->
+    <!-- Asignar sensor a arrastrable drag2 -->
+    <div id="modaldrag2" class="row modal">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class=" modal-content">
+                <form action="#">
+                    <br>
+                    <div class="input-field col s12">
+                        <select onchange="tipoOperador1(this.value)">
+                            <option value="" disabled selected>Escoja símbolo</option>
+                            <option value="and">And</option>
+                            <option value="or">Or</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <span class="grey-text text-darken-4">Descripcion símbolo</span>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador1()">Guardar</a>
+                    </div>
+                    <br><br><br><br>
+                </form>
+            </div>
         </div>
+        <div class="col s12 m1 l2"><p></p></div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- Asignar sensor a arrastrable drag2 -->
-<!-- Asignar sensor a arrastrable drag4 -->
-<div id="modaldrag4" class="row modal">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="col s12 m10 l8">
-        <div class=" modal-content">
-            <form action="#">
-                <br>
-                <div class="input-field col s12">
-                    <select onchange="tipoOperador2(this.value)">
-                        <option value="" disabled selected>Escoja símbolo</option>
-                        <option value="and">And</option>
-                        <option value="or">Or</option>
-                    </select>
-                    <label>Seleccione:</label>
-                </div>
-                <div class="input-field col s12">
-                    <span class="grey-text text-darken-4">Descripcion símbolo</span>
-                </div>
-                <br><br><br><br><br><br><br><br><br>
-                <div class="center-align">
-                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador2()">Guardar</a>
-                </div>
-                <br><br><br><br>
-            </form>
+    <!-- Asignar sensor a arrastrable drag2 -->
+    <!-- Asignar sensor a arrastrable drag4 -->
+    <div id="modaldrag4" class="row modal">
+        <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m10 l8">
+            <div class=" modal-content">
+                <form action="#">
+                    <br>
+                    <div class="input-field col s12">
+                        <select onchange="tipoOperador2(this.value)">
+                            <option value="" disabled selected>Escoja símbolo</option>
+                            <option value="and">And</option>
+                            <option value="or">Or</option>
+                        </select>
+                        <label>Seleccione:</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <span class="grey-text text-darken-4">Descripcion símbolo</span>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br>
+                    <div class="center-align">
+                        <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorOperador2()">Guardar</a>
+                    </div>
+                    <br><br><br><br>
+                </form>
+            </div>
         </div>
+        <div class="col s12 m1 l2"><p></p></div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
-</div>
-<!-- Asignar sensor a arrastrable drag4 -->
-<!-- Asignar sensor a arrastrable drag6 -->
-<div id="modaldrag6" class="row modal">
-    <div class="col s12 m12 l12 "><p>Seleccione Repetición</p></div>
+    <!-- Asignar sensor a arrastrable drag4 -->
+    <!-- Asignar sensor a arrastrable drag6 -->
+    <div id="modaldrag6" class="row modal">
+        <div class="col s12 m12 l12 "><p>Seleccione Repetición</p></div>
 
-    <div class="col s12 m12 l12">
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="lunes" />
-                <label for="test1">Lunes.  </label>
-                <br>
-                <br>
-            </p>
+        <div class="col s12 m12 l12">
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="lunes" />
+                    <label for="test1">Lunes.  </label>
+                    <br>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="martes" />
+                    <label for="test2">Martes.  </label>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="miercoles" />
+                    <label for="test3">Miércoles.  </label>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="jueves" />
+                    <label for="test4">Jueves.  </label>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="viernes" />
+                    <label for="test5">Viernes.  </label>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="sabado" />
+                    <label for="test6">Sabado.  </label>
+                    <br>
+                </p>
+            </div>
+            <div class="col s1 m1 l1">
+                <p>
+                    <input type="checkbox" id="domingo" />
+                    <label for="test7">Domingo.  </label>
+                    <br>
+                </p>
+            </div>
         </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="martes" />
-                <label for="test2">Martes.  </label>
-                <br>
-            </p>
-        </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="miercoles" />
-                <label for="test3">Miércoles.  </label>
-                <br>
-            </p>
-        </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="jueves" />
-                <label for="test4">Jueves.  </label>
-                <br>
-            </p>
-        </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="viernes" />
-                <label for="test5">Viernes.  </label>
-                <br>
-            </p>
-        </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="sabado" />
-                <label for="test6">Sabado.  </label>
-                <br>
-            </p>
-        </div>
-        <div class="col s1 m1 l1">
-            <p>
-                <input type="checkbox" id="domingo" />
-                <label for="test7">Domingo.  </label>
-                <br>
-            </p>
-        </div>
-    </div>
-    <div class="col s12 m1 l2 "><p></p></div>
+        <div class="col s12 m1 l2 "><p></p></div>
 
-    <div class="col s12 m10 l8">
-        <div class=" modal-content">
-            <!--
+        <div class="col s12 m10 l8">
+            <div class=" modal-content">
+                <!--
 <span class=" activator grey-text text-darken-4">Seleccione la fecha o repetición</span>
 
 <form action="#">
@@ -398,88 +399,94 @@
 </form>
 
 -->
-            <br><br><br><br><br><br><br><br><br>
-            <div class="center-align">
-                <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorFecha()">Guardar</a>
+                <br><br><br><br><br><br><br><br><br>
+                <div class="center-align">
+                    <a class="btn waves-effect waves-light modal-action modal-close" onclick="valorFecha()">Guardar</a>
+                </div>
+                <br><br><br>
             </div>
-            <br><br><br>
         </div>
-    </div>
-    <div class="col s12 m1 l2"><p></p></div>
-    <!-- Asignar sensor a arrastrable drag6 -->
-    <script>
+        <div class="col s12 m1 l2"><p></p></div>
+        <!-- Asignar sensor a arrastrable drag6 -->
+        
+        
+        
+        
+        
+        
+        <script>
 
-        document.getElementById('modaldrag1').style.display = 'none';
-        document.getElementById('modaldrag2').style.display = 'none';
-        document.getElementById('modaldrag3').style.display = 'none';
-        document.getElementById('modaldrag4').style.display = 'none';
-        document.getElementById('modaldrag5').style.display = 'none';
-        document.getElementById('modaldrag6').style.display = 'none';
+            document.getElementById('modaldrag1').style.display = 'none';
+            document.getElementById('modaldrag2').style.display = 'none';
+            document.getElementById('modaldrag3').style.display = 'none';
+            document.getElementById('modaldrag4').style.display = 'none';
+            document.getElementById('modaldrag5').style.display = 'none';
+            document.getElementById('modaldrag6').style.display = 'none';
 
-        //------- DRAG AND DROP ----------
-        //recoje el valor del sensor1
-        var tipoSensor1,simboloSensor1,valorSensor1;
-        function tipoSensor1(valor){
-            tipoSensor1 = valor;
-        }
-        function simboloSensor1(valor){
-            simboloSensor1 = valor;
-        }
-        function valoresSensor1(){
-            valorSensor1 = document.getElementById('valorSensor1').value;
-        }
-        //recoje el valor del sensor1
-
-
-        //recoje el valor del sensor2
-        var tipoSensor2,simboloSensor2,valorSensor2;
-        function tipoSensor2(valor){
-            tipoSensor2 = valor;
-        }
-        function simboloSensor2(valor){
-            simboloSensor2 = valor;
-        }
-        function valoresSensor2(){
-            valorSensor2 = document.getElementById('valorSensor2').value;
-        }
-        //recoje el valor del sensor2
+            //------- DRAG AND DROP ----------
+            //recoje el valor del sensor1
+            var tipoSensor1,simboloSensor1,valorSensor1;
+            function tipoSensor1(valor){
+                tipoSensor1 = valor;
+            }
+            function simboloSensor1(valor){
+                simboloSensor1 = valor;
+            }
+            function valoresSensor1(){
+                valorSensor1 = document.getElementById('valorSensor1').value;
+            }
+            //recoje el valor del sensor1
 
 
-        //recoje el valor del sensor3
-        var tipoSensor3,simboloSensor3,valorSensor3;
-        function tipoSensor3(valor){
-            tipoSensor3 = valor;
-        }
-        function simboloSensor3(valor){
-            simboloSensor3 = valor;
-        }
-        function valoresSensor3(){
-            valorSensor3 = document.getElementById('valorSensor3').value;
-        }
-        //recoje el valor del sensor3
+            //recoje el valor del sensor2
+            var tipoSensor2,simboloSensor2,valorSensor2;
+            function tipoSensor2(valor){
+                tipoSensor2 = valor;
+            }
+            function simboloSensor2(valor){
+                simboloSensor2 = valor;
+            }
+            function valoresSensor2(){
+                valorSensor2 = document.getElementById('valorSensor2').value;
+            }
+            //recoje el valor del sensor2
 
 
-        //recoje el valor del operador 1
-        var tipoOperador1;
-        function tipoOperador1(valor){
-            tipoOperador1 = valor;
-        }
-        function valorOperador1(){
-            console.log("valorOperador1 " + tipoOperador1);
-        }
+            //recoje el valor del sensor3
+            var tipoSensor3,simboloSensor3,valorSensor3;
+            function tipoSensor3(valor){
+                tipoSensor3 = valor;
+            }
+            function simboloSensor3(valor){
+                simboloSensor3 = valor;
+            }
+            function valoresSensor3(){
+                valorSensor3 = document.getElementById('valorSensor3').value;
+            }
+            //recoje el valor del sensor3
 
 
-        //recoje el valor del operador 1
-        var tipoOperador2;
-        function tipoOperador2(valor){
-            tipoOperador2 = valor;
-        }
-        function valorOperador2(){
-            console.log("valorOperador2 " + tipoOperador2);
-        }
+            //recoje el valor del operador 1
+            var tipoOperador1;
+            function tipoOperador1(valor){
+                tipoOperador1 = valor;
+            }
+            function valorOperador1(){
+                console.log("valorOperador1 " + tipoOperador1);
+            }
 
 
-        /*
+            //recoje el valor del operador 1
+            var tipoOperador2;
+            function tipoOperador2(valor){
+                tipoOperador2 = valor;
+            }
+            function valorOperador2(){
+                console.log("valorOperador2 " + tipoOperador2);
+            }
+
+
+            /*
 //fecha
 var fecha;
 function valorFecha(){
@@ -491,291 +498,286 @@ function valorFecha(){
 }
 */
 
-        //alerta_inteligente
-        var alerta_inteligente = "";
+            //alerta_inteligente
+            var alerta_inteligente = "";
+            
+            var sensor_agregado1 = 0;
+            var operador_agregado1 = 0;
+            var sensor_agregado2 = 0;
+            var operador_agregado2 = 0;
+            var sensor_agregado3 = 0;
+            var fecha_agregada = 0;
 
+            //------- DRAG AND DROP ----------
 
+            (function (interact) {
 
+                'use strict';
 
+                var transformProp;
 
-        var sensor_agregado1 = 0;
-        var operador_agregado1 = 0;
-        var sensor_agregado2 = 0;
-        var operador_agregado2 = 0;
-        var sensor_agregado3 = 0;
-        var fecha_agregada = 0;
+                interact.maxInteractions(Infinity);
 
+                // setup draggable elements.
+                interact('.js-drag')
+                    .draggable({ max: Infinity })
+                    .on('dragstart', function (event) {
+                    event.interaction.x = parseInt(event.target.getAttribute('data-x'), 10) || 0;
+                    event.interaction.y = parseInt(event.target.getAttribute('data-y'), 10) || 0;
+                })
+                    .on('dragmove', function (event) {
+                    event.interaction.x += event.dx;
+                    event.interaction.y += event.dy;
 
+                    if (transformProp) {
+                        event.target.style[transformProp] =
+                            'translate(' + event.interaction.x + 'px, ' + event.interaction.y + 'px)';
+                    }
+                    else {
+                        event.target.style.left = event.interaction.x + 'px';
+                        event.target.style.top  = event.interaction.y + 'px';
+                    }
+                })
+                    .on('dragend', function (event) {
+                    event.target.setAttribute('data-x', event.interaction.x);
+                    event.target.setAttribute('data-y', event.interaction.y);
+                });
 
-        //------- DRAG AND DROP ----------
+                // setup drop areas.
+                // dropzone #1 accepts draggable #1
+                setupDropzone('#drop1', '#drag1');
+                // dropzone #2 accepts draggable #1 and #2
+                setupDropzone('#drop2', '#drag2');
+                // every dropzone accepts draggable #3
+                //setupDropzone('.js-drop', '#drag3');
+                setupDropzone('#drop3', '#drag4');
+                setupDropzone('#drop5', '#drag5');
+                setupDropzone('#drop4', '#drag6');
+                setupDropzone('#drop6', '#drag3');
 
-        (function (interact) {
-
-            'use strict';
-
-            var transformProp;
-
-            interact.maxInteractions(Infinity);
-
-            // setup draggable elements.
-            interact('.js-drag')
-                .draggable({ max: Infinity })
-                .on('dragstart', function (event) {
-                event.interaction.x = parseInt(event.target.getAttribute('data-x'), 10) || 0;
-                event.interaction.y = parseInt(event.target.getAttribute('data-y'), 10) || 0;
-            })
-                .on('dragmove', function (event) {
-                event.interaction.x += event.dx;
-                event.interaction.y += event.dy;
-
-                if (transformProp) {
-                    event.target.style[transformProp] =
-                        'translate(' + event.interaction.x + 'px, ' + event.interaction.y + 'px)';
-                }
-                else {
-                    event.target.style.left = event.interaction.x + 'px';
-                    event.target.style.top  = event.interaction.y + 'px';
-                }
-            })
-                .on('dragend', function (event) {
-                event.target.setAttribute('data-x', event.interaction.x);
-                event.target.setAttribute('data-y', event.interaction.y);
-            });
-
-            // setup drop areas.
-            // dropzone #1 accepts draggable #1
-            setupDropzone('#drop1', '#drag1');
-            // dropzone #2 accepts draggable #1 and #2
-            setupDropzone('#drop2', '#drag2');
-            // every dropzone accepts draggable #3
-            //setupDropzone('.js-drop', '#drag3');
-            setupDropzone('#drop3', '#drag4');
-            setupDropzone('#drop5', '#drag5');
-            setupDropzone('#drop4', '#drag6');
-            setupDropzone('#drop6', '#drag3');
-
-            /**
+                /**
      * Setup a given element as a dropzone.
      *
      * @param {HTMLElement|String} el
      * @param {String} accept
      */
-            function setupDropzone(el, accept) {
-                interact(el)
-                    .dropzone({
-                    accept: accept,
-                    ondropactivate: function (event) {
-                        addClass(event.relatedTarget, '-drop-possible');
-                        //console.log("1");
-                    },
-                    ondropdeactivate: function (event) {
-                        removeClass(event.relatedTarget, '-drop-possible');
-                        //console.log("2");
-                    }
-                })
-                    .on('dropactivate', function (event) {
-                    var active = event.target.getAttribute('active')|0;
-                    //console.log("3");
+                function setupDropzone(el, accept) {
+                    interact(el)
+                        .dropzone({
+                        accept: accept,
+                        ondropactivate: function (event) {
+                            addClass(event.relatedTarget, '-drop-possible');
+                            //console.log("1");
+                        },
+                        ondropdeactivate: function (event) {
+                            removeClass(event.relatedTarget, '-drop-possible');
+                            //console.log("2");
+                        }
+                    })
+                        .on('dropactivate', function (event) {
+                        var active = event.target.getAttribute('active')|0;
+                        //console.log("3");
 
-                    // change style if it was previously not active
-                    if (active === 0) {
-                        //console.log("4");
-                        addClass(event.target, '-drop-possible');
-                        event.target.textContent = 'Drop me here!';
-                    }
-                    event.target.setAttribute('active', active + 1);
-                    //console.log("5");
-                })
-                    .on('dropdeactivate', function (event) {
+                        // change style if it was previously not active
+                        if (active === 0) {
+                            //console.log("4");
+                            addClass(event.target, '-drop-possible');
+                            event.target.textContent = 'Drop me here!';
+                        }
+                        event.target.setAttribute('active', active + 1);
+                        //console.log("5");
+                    })
+                        .on('dropdeactivate', function (event) {
 
-                    var active = event.target.getAttribute('active')|0;
-                    //console.log("6");
+                        var active = event.target.getAttribute('active')|0;
+                        //console.log("6");
 
-                    // change style if it was previously active
-                    // but will no longer be active
-                    if (active === 1) {
-                        //suelto el div q estoy arrastrando
-                        removeClass(event.target, '-drop-possible');
-                        //console.log("7");
-                        //event.target.textContent = 'asd';
-                    }
-                    event.target.setAttribute('active', active - 1);
-                })
-                    .on('dragenter', function (event) {
-                    addClass(event.target, '-drop-over');
-                    //console.log("8");
-                    //event.relatedTarget.textContent = 'I\'m in';
-                })
-                    .on('dragleave', function (event) {
-                    removeClass(event.target, '-drop-over');
-                    //event.relatedTarget.textContent = 'Drag me…';
-                    //console.log("9");
-                })
-                    .on('drop', function (event) {
-                    removeClass(event.target, '-drop-over');
-                    //event.relatedTarget.textContent = 'Dropped';
+                        // change style if it was previously active
+                        // but will no longer be active
+                        if (active === 1) {
+                            //suelto el div q estoy arrastrando
+                            removeClass(event.target, '-drop-possible');
+                            //console.log("7");
+                            //event.target.textContent = 'asd';
+                        }
+                        event.target.setAttribute('active', active - 1);
+                    })
+                        .on('dragenter', function (event) {
+                        addClass(event.target, '-drop-over');
+                        //console.log("8");
+                        //event.relatedTarget.textContent = 'I\'m in';
+                    })
+                        .on('dragleave', function (event) {
+                        removeClass(event.target, '-drop-over');
+                        //event.relatedTarget.textContent = 'Drag me…';
+                        //console.log("9");
+                    })
+                        .on('drop', function (event) {
+                        removeClass(event.target, '-drop-over');
+                        //event.relatedTarget.textContent = 'Dropped';
 
-                    /*AQUI CAPTURO CUANDO SUELTO EL DIV DENTRO DEL DIV QUE LE DI PERMISO*/
-                    //console.log(event.target.id);
-                    if (event.target.id == 'drop1'){
-                        console.log("drop1 sensor");
-                        console.log(tipoSensor1);
-                        console.log(simboloSensor1);
-                        console.log(valorSensor1);
+                        /*AQUI CAPTURO CUANDO SUELTO EL DIV DENTRO DEL DIV QUE LE DI PERMISO*/
+                        //console.log(event.target.id);
+                        if (event.target.id == 'drop1'){
+                            console.log("drop1 sensor");
+                            console.log(tipoSensor1);
+                            console.log(simboloSensor1);
+                            console.log(valorSensor1);
 
-                        if(sensor_agregado1 == 0){
-                            alerta_inteligente += tipoSensor1 + " " +simboloSensor1 + " " +valorSensor1 +" ";
-                            console.log(alerta_inteligente);
-                            sensor_agregado1 = 1;
+                            if(sensor_agregado1 == 0){
+                                alerta_inteligente += tipoSensor1 + " " +simboloSensor1 + " " +valorSensor1 +" ";
+                                console.log(alerta_inteligente);
+                                sensor_agregado1 = 1;
 
-                        }else{
-                            alert("Este sensor ya fue agregado");
+                            }else{
+                                alert("Este sensor ya fue agregado");
+                            }
+
+
                         }
 
+                        if (event.target.id == 'drop2'){
+                            console.log("drop2 operador");
 
-                    }
+                            if (operador_agregado1 == 0){
+                                alerta_inteligente += tipoOperador1 + " ";
+                                console.log(alerta_inteligente);
+                                operador_agregado1 = 1;
 
-                    if (event.target.id == 'drop2'){
-                        console.log("drop2 operador");
-
-                        if (operador_agregado1 == 0){
-                            alerta_inteligente += tipoOperador1 + " ";
-                            console.log(alerta_inteligente);
-                            operador_agregado1 = 1;
-
-                        }else{
-                            alert("Este operador ya fue agregado");
+                            }else{
+                                alert("Este operador ya fue agregado");
+                            }
                         }
-                    }
 
-                    if (event.target.id == 'drop3'){
-                        console.log("drop3 sensor");
-                        console.log(tipoSensor2);
-                        console.log(simboloSensor2);
-                        console.log(valorSensor2);
+                        if (event.target.id == 'drop3'){
+                            console.log("drop3 sensor");
+                            console.log(tipoSensor2);
+                            console.log(simboloSensor2);
+                            console.log(valorSensor2);
 
-                        if (sensor_agregado2 == 0){
-                            alerta_inteligente += tipoSensor2 + " " + simboloSensor2 + " " + valorSensor2 + " ";
-                            console.log(alerta_inteligente);
-                            sensor_agregado2 = 1;
+                            if (sensor_agregado2 == 0){
+                                alerta_inteligente += tipoSensor2 + " " + simboloSensor2 + " " + valorSensor2 + " ";
+                                console.log(alerta_inteligente);
+                                sensor_agregado2 = 1;
 
-                        }else{
-                            alert("Este sensor ya fue agregado");
+                            }else{
+                                alert("Este sensor ya fue agregado");
+                            }
                         }
-                    }
 
-                    if (event.target.id == 'drop4'){
-                        console.log("drop4 operador");
-                        if(operador_agregado2 == 0){
-                            alerta_inteligente += tipoOperador2+" ";
-                            operador_agregado2 = 1;
+                        if (event.target.id == 'drop4'){
+                            console.log("drop4 operador");
+                            if(operador_agregado2 == 0){
+                                alerta_inteligente += tipoOperador2+" ";
+                                operador_agregado2 = 1;
 
 
-                        }else{
-                            alert("Este operador ya fue agregado");
+                            }else{
+                                alert("Este operador ya fue agregado");
+                            }
                         }
-                    }
 
-                    if (event.target.id == 'drop5'){
-                        console.log("drop5 sensor");
-                        console.log(tipoSensor3);
-                        console.log(simboloSensor3);
-                        console.log(valorSensor3);
+                        if (event.target.id == 'drop5'){
+                            console.log("drop5 sensor");
+                            console.log(tipoSensor3);
+                            console.log(simboloSensor3);
+                            console.log(valorSensor3);
 
-                        if(sensor_agregado3 == 0){
-                            alerta_inteligente += tipoSensor3 + " " + simboloSensor3 + " " + valorSensor3 + " ";
-                            console.log(alerta_inteligente);
-                            sensor_agregado3 = 1;
+                            if(sensor_agregado3 == 0){
+                                alerta_inteligente += tipoSensor3 + " " + simboloSensor3 + " " + valorSensor3 + " ";
+                                console.log(alerta_inteligente);
+                                sensor_agregado3 = 1;
 
-                        }else{
-                            alert("Este sensor ya fue agregado");
+                            }else{
+                                alert("Este sensor ya fue agregado");
+                            }
                         }
-                    }
 
-                    if (event.target.id == 'drop6'){
-                        console.log("drop6 time");
+                        if (event.target.id == 'drop6'){
+                            console.log("drop6 time");
 
-                        if (fecha_agregada == 0){
-                            alerta_inteligente += fecha;
-                            console.log(alerta_inteligente);
-                            fecha_agregada = 1;
+                            if (fecha_agregada == 0){
+                                alerta_inteligente += fecha;
+                                console.log(alerta_inteligente);
+                                fecha_agregada = 1;
 
-                        }else{
-                            alert("La fecha ya fue agregada");
+                            }else{
+                                alert("La fecha ya fue agregada");
+                            }
+                            sensor_agregado1 = 0;
+                            sensor_agregado2 = 0;
+                            sensor_agregado3 = 0;
+                            operador_agregado1 = 0;
+                            operador_agregado2 = 0;
+                            fecha_agregada = 0;
                         }
-                        sensor_agregado1 = 0;
-                        sensor_agregado2 = 0;
-                        sensor_agregado3 = 0;
-                        operador_agregado1 = 0;
-                        operador_agregado2 = 0;
-                        fecha_agregada = 0;
+                        //console.log("10");
+                    });
+                }
+
+                function addClass (element, className) {
+                    if (element.classList) {
+                        //console.log("11");
+                        return element.classList.add(className);
                     }
-                    //console.log("10");
+                    else {
+                        //console.log("12");
+                        element.className += ' ' + className;
+                    }
+                }
+
+                function removeClass (element, className) {
+                    if (element.classList) {
+                        //console.log("13");
+                        return element.classList.remove(className);
+                    }
+                    else {
+                        //console.log("14");
+                        element.className = element.className.replace(new RegExp(className + ' *', 'g'), '');
+                    }
+                }
+
+                interact(document).on('ready', function () {
+                    transformProp = 'transform' in document.body.style
+                        ? 'transform': 'webkitTransform' in document.body.style
+                        ? 'webkitTransform': 'mozTransform' in document.body.style
+                        ? 'mozTransform': 'oTransform' in document.body.style
+                        ? 'oTransform': 'msTransform' in document.body.style
+                        ? 'msTransform': null;
                 });
-            }
 
-            function addClass (element, className) {
-                if (element.classList) {
-                    //console.log("11");
-                    return element.classList.add(className);
+            }(window.interact));
+
+            var nombre_alerta_inteligente ;
+            //guardar alerta inteligente
+            function guardarAlertaInteligente(){
+                nombre_alerta_inteligente = document.getElementById('nombre_alerta_inteligente').value;
+
+                var xmlhttp = new XMLHttpRequest();
+                var url = "php/crearAlertaInteligente.php?nombre_alerta_inteligente="+nombre_alerta_inteligente+"&tipoSensor1="+tipoSensor1+"&simboloSensor1="+simboloSensor1+"&valorSensor1="+valorSensor1+"&tipoSensor2="+tipoSensor2+"&simboloSensor2="+simboloSensor2+"&valorSensor2="+valorSensor2+"&tipoSensor3="+tipoSensor3+"&simboloSensor3="+simboloSensor3+"&valorSensor3="+valorSensor3+"&tipoOperador2="+tipoOperador2+"&fecha="+fecha;
+
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        myFunction(xmlhttp.responseText);
+                    }
                 }
-                else {
-                    //console.log("12");
-                    element.className += ' ' + className;
-                }
-            }
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
 
-            function removeClass (element, className) {
-                if (element.classList) {
-                    //console.log("13");
-                    return element.classList.remove(className);
-                }
-                else {
-                    //console.log("14");
-                    element.className = element.className.replace(new RegExp(className + ' *', 'g'), '');
-                }
-            }
+                function myFunction(response) {
+                    console.log(response);
+                    var arr = JSON.parse(response);
+                    var i;
+                    var out = "";
 
-            interact(document).on('ready', function () {
-                transformProp = 'transform' in document.body.style
-                    ? 'transform': 'webkitTransform' in document.body.style
-                    ? 'webkitTransform': 'mozTransform' in document.body.style
-                    ? 'mozTransform': 'oTransform' in document.body.style
-                    ? 'oTransform': 'msTransform' in document.body.style
-                    ? 'msTransform': null;
-            });
+                    //        for(i = 0; i < arr.length; i++) {
+                    //            console.log(arr[i].success);
+                    //        }
+                }  
+            }//guardar alerta inteligente
 
-        }(window.interact));
-
-        var nombre_alerta_inteligente ;
-        //guardar alerta inteligente
-        function guardarAlertaInteligente(){
-            nombre_alerta_inteligente = document.getElementById('nombre_alerta_inteligente').value;
-
-            var xmlhttp = new XMLHttpRequest();
-            var url = "php/crearAlertaInteligente.php?nombre_alerta_inteligente="+nombre_alerta_inteligente+"&tipoSensor1="+tipoSensor1+"&simboloSensor1="+simboloSensor1+"&valorSensor1="+valorSensor1+"&tipoSensor2="+tipoSensor2+"&simboloSensor2="+simboloSensor2+"&valorSensor2="+valorSensor2+"&tipoSensor3="+tipoSensor3+"&simboloSensor3="+simboloSensor3+"&valorSensor3="+valorSensor3+"&tipoOperador2="+tipoOperador2+"&fecha="+fecha;
-
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    myFunction(xmlhttp.responseText);
-                }
-            }
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-
-            function myFunction(response) {
-                console.log(response);
-                var arr = JSON.parse(response);
-                var i;
-                var out = "";
-
-                //        for(i = 0; i < arr.length; i++) {
-                //            console.log(arr[i].success);
-                //        }
-            }  
-        }//guardar alerta inteligente
-
-        //------- DRAG AND DROP ----------
+            //------- DRAG AND DROP ----------
 
 
-    </script>
+        </script>
+    </div>
