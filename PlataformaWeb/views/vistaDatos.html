@@ -51,13 +51,37 @@
 
 
     <script>
-        window.onload = function(){
+        cargarGraficos();
+
+        function cargarGraficos(){
 
             var doughnutData = [
                 {
                     value: 0,
                 },{
-                    value:0,
+                    value: 0,
+                }
+                ,{
+                    value:5,
+                }
+            ];
+
+            var doughnutData2 = [
+                {
+                    value: 0, //rojo
+                },{
+                    value: 0,//verde
+                }
+                ,{
+                    value:5,//azul
+                }
+            ];
+
+            var doughnutData3 = [
+                {
+                    value: 0,
+                },{
+                    value: 0,
                 }
                 ,{
                     value:5,
@@ -67,10 +91,10 @@
             window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
 
             var ctx2 = document.getElementById("chart-area2").getContext("2d");
-            window.myDoughnut2 = new Chart(ctx2).Doughnut(doughnutData, {responsive : true});
+            window.myDoughnut2 = new Chart(ctx2).Doughnut(doughnutData2, {responsive : true});
 
             var ctx3 = document.getElementById("chart-area3").getContext("2d");
-            window.myDoughnut3 = new Chart(ctx3).Doughnut(doughnutData, {responsive : true});
+            window.myDoughnut3 = new Chart(ctx3).Doughnut(doughnutData3, {responsive : true});
 
 
 
@@ -80,30 +104,38 @@
                 var message = snapshot.val();
                 //console.log("child changed: "+message);
 
-                //console.log("gas :"+message.gas);
-                //console.log("temp :"+message.temperatura);
-                //console.log("hum :"+message.humedad);
+                //                console.log("gas :"+message.gas);
+                //                console.log("temp :"+message.temperatura);
+                //                console.log("hum :"+message.humedad);
+                //                console.log("mov :"+message.movimiento);
 
-                if (message.temperatura >= 50){
-                    myDoughnut.segments[0].value = message.temperatura;
-                    myDoughnut.segments[2].value = 0;
-                    myDoughnut.update();
-                    document.getElementById('dato_temperatura').innerHTML = message.temperatura + "ºC";
+                try {
+                    if (message.temperatura >= 50){
+                        myDoughnut.segments[0].value = message.temperatura;
+                        myDoughnut.segments[2].value = 0;
+                        myDoughnut.update();
+                        document.getElementById('dato_temperatura').innerHTML = message.temperatura + "ºC";
+                    }
+                    else{
+                        myDoughnut.segments[2].value = message.temperatura;
+                        myDoughnut.segments[0].value = 0;
+                        myDoughnut.update();
+                        document.getElementById('dato_temperatura').innerHTML = message.temperatura + "ºC";
+                    }
+
+                    myDoughnut2.segments[2].value = message.humedad;
+                    myDoughnut2.update();
+                    document.getElementById('dato_humedad').innerHTML = message.humedad + "%";
+
+                    myDoughnut3.segments[2].value = message.gas;
+                    myDoughnut3.update();
+                    document.getElementById('dato_gas').innerHTML = message.gas + "ppm";
                 }
-                else{
-                    myDoughnut.segments[2].value = message.temperatura;
-                    myDoughnut.segments[0].value = 0;
-                    myDoughnut.update();
-                    document.getElementById('dato_temperatura').innerHTML = message.temperatura + "ºC";
+                catch(err) {
+                   console.log("Problemas con firebase");
                 }
 
-                myDoughnut2.segments[2].value = message.humedad;
-                myDoughnut2.update();
-                document.getElementById('dato_humedad').innerHTML = message.humedad + "%";
 
-                myDoughnut3.segments[2].value = message.gas;
-                myDoughnut3.update();
-                document.getElementById('dato_gas').innerHTML = message.gas + "ppm";
 
             });
 

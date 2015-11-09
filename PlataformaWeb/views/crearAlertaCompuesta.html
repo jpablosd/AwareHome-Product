@@ -7,20 +7,17 @@
                     <span class="card-title activator grey-text text-darken-4">Crear Alerta Compuesta</span>
 
                     <div class="input-field col s12 m12 l12">
-                        <input name="nombre_alerta" id="nombre_alerta_simple" type="text" class="validate">
+                        <input name="nombre_alerta" id="nombre_alerta_compuesta" type="text" class="validate">
                         <label for="nombre_alerta">Nombre Alerta</label>
                     </div>
                     <div>
                         <div class="input-field col s6 m6 l6">
-                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                            <select id="alertaSimple" class="browser-default" onchange="selectAlertaSimple0(this.value)">
                                 <option value="" disabled selected>Escoja alerta</option>
-                                <option value="1">alerta 1</option>
-                                <option value="2">alerta 2</option>
-                                <option value="3">alerta 3</option>
                             </select>
                         </div>
                         <div class="input-field col s6 m6 l6">
-                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                            <select class="browser-default" onchange="selectOperador0(this.value)">
                                 <option value="" disabled selected>Escoja operador</option>
                                 <option value="1">AND</option>
                                 <option value="2">OR</option>
@@ -29,19 +26,18 @@
                     </div>
                     <div>
                         <div class="input-field col s6 m6 l6">
-                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                            <select id="alertaSimple0" class="browser-default" onchange="selectAlertaSimple00(this.value)">
                                 <option value="" disabled selected>Escoja alerta</option>
-                                <option value="1">alerta 1</option>
-                                <option value="2">alerta 2</option>
-                                <option value="3">alerta 3</option>
                             </select>
                         </div>
                         <div class="input-field col s6 m6 l6">
-                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                            <select id="operador" class="browser-default" onchange="selectOperador00(this.value)">
                                 <option value="" disabled selected>Escoja operador</option>
-                                <option value="0">VACIO</option>
+<!--
+                                <option value="3">VACIO</option>
                                 <option value="1">AND</option>
                                 <option value="2">OR</option>
+-->
                             </select>
                         </div>
                     </div>
@@ -50,9 +46,23 @@
 
                     </div>
 
-                    <div class="input-field col s12 m12 l12 center-align">
-                        <!-- <a class="waves-effect waves-light btn">Stuff</a>-->
-                        <a  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" onclick="agregarComposicion()">add</i></a>
+                    <div class="col s12 m12 l12"> 
+                        <div class="col s4 m5 l5">
+                            <br>                        
+                        </div>
+                        <div class="input-field col s4 m2 l2 center-align">
+                            <!-- <a class="waves-effect waves-light btn">Stuff</a>-->
+                            <a id="add"  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" onclick="agregarComposicion()">add</i></a>
+                        </div>
+
+                        <!--
+<div class="input-field col s2 m1 l1 center-align">
+<a  class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">remove</i></a>
+</div>
+-->
+                        <div class="col s4 m5 l5">
+                            <br>
+                        </div>
                     </div>
                     <div class="col s12 m12 l12">
                         <br><br>
@@ -76,67 +86,67 @@
     <div class="modal-content">
         <h4>Asignar Repetición</h4>
         <div class="row">
-<!--
-            <div class="col s12 m12 l12">
-                <p></p>
+            <!--
+<div class="col s12 m12 l12">
+<p></p>
 -->
-<!--
-                <div class="card">
-                    <div class="card-content">
+            <!--
+<div class="card">
+<div class="card-content">
 -->
-                        <ul id="lista" class="collection">
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test1" />
-                                    <label for="test1">Los Lunes</label>
-                                </p>   
-                            </li>
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test2" />
-                                    <label for="test2">Los Martes</label>
-                                </p>
-                            </li>
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test3" />
-                                    <label for="test3">Los Miercoles</label>
-                                </p>   
-                            </li>
+            <ul id="lista" class="collection">
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test1" />
+                        <label for="test1">Los Lunes</label>
+                    </p>   
+                </li>
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test2" />
+                        <label for="test2">Los Martes</label>
+                    </p>
+                </li>
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test3" />
+                        <label for="test3">Los Miercoles</label>
+                    </p>   
+                </li>
 
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test4" />
-                                    <label for="test4">Los Jueves</label>
-                                </p>   
-                            </li>                            <li class="collection-item">
-                            <p>
-                                <input type="checkbox" id="test5" />
-                                <label for="test5">Los Viernes</label>
-                            </p>   
-                            </li>
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test6" />
-                                    <label for="test6">Los Sabado</label>
-                                </p>   
-                            </li>
-                            <li class="collection-item">
-                                <p>
-                                    <input type="checkbox" id="test7" />
-                                    <label for="test7">Los Domingo</label>
-                                </p>   
-                            </li>
-                        </ul>
-<!--
-                    </div>
-                </div>
-                </div>
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test4" />
+                        <label for="test4">Los Jueves</label>
+                    </p>   
+                </li>                            
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test5" />
+                        <label for="test5">Los Viernes</label>
+                    </p>   
+                </li>
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test6" />
+                        <label for="test6">Los Sabado</label>
+                    </p>   
+                </li>
+                <li class="collection-item">
+                    <p>
+                        <input type="checkbox" id="test7" />
+                        <label for="test7">Los Domingo</label>
+                    </p>   
+                </li>
+            </ul>
+            <!--
+</div>
+</div>
+</div>
 -->
-            
         </div>
         <div class="modal-footer">
-            <a class="waves-effect waves-green btn-flat modal-action modal-close">Aceptar</a>
+            <a class="waves-effect waves-green btn-flat modal-action modal-close" onclick="verRepeticiones()">Aceptar</a>
         </div>
     </div>
 </div>
@@ -144,26 +154,386 @@
 
 
 <script>
-    function crearAlertaCompuesta(){
-        alert("asdas");
+
+
+    var indexAlerta=0;
+    var composicion = 2;
+
+    function agregarComposicion(){ 
+        composicion = composicion + 1;
+        if (indexAlerta >= 2){
+            alert("No Puedes Agregar Más Alertas.");
+            document.getElementById('add').style.display = 'none';
+        }
+        else{
+            indexAlerta = indexAlerta + 1;
+            var hola = '<div class="input-field col s6 m6 l6"><select id="alertaSimple'+indexAlerta+'" class="browser-default" onchange="selectAlertaSimple'+indexAlerta+'(this.value)">';
+
+            hola += '<option value="" disabled selected>Escoja alerta</option>';
+
+            hola += '</select></div>'
+            hola += '<div class="input-field col s6 m6 l6"><select class="browser-default" onchange="selectOperador'+indexAlerta+'(this.value)">';
+            hola += '<option value="" disabled selected>Escoja operador</option><option value="3">VACIO</option><option value="1">AND</option><option value="2">OR</option>';
+            hola +='</select></div>';
+
+            document.getElementById('agregarDatos').innerHTML += hola;
+            cargarAlertasSimple();  
+        }
     }
 
-    function agregarComposicion(){      
-
-        var hola = '<div class="input-field col s6 m6 l6"><select class="browser-default">';
-
-        hola += '<option value="" disabled selected>Escoja alerta</option><option value="1">alerta 1</option><option value="2">alerta 2</option><option value="3">alerta 3</option>';
-
-        hola += '</select></div>'
-        hola += '<div class="input-field col s6 m6 l6"><select class="browser-default" >';
-        hola += '<option value="" disabled selected>Escoja operador</option><option value="0">VACIO</option><option value="1">AND</option><option value="2">OR</option>';
-        hola +='</select></div>';
-
-        document.getElementById('agregarDatos').innerHTML += hola;
-    }
     function verRepeticion(){
         $('#repeticion').openModal();
     }
+
+    cargarAlertasSimples();
+    function cargarAlertasSimples(){
+        var out = "";
+        $("#alertaSimple").prepend(out);
+        $("#alertaSimple2").prepend(out);
+
+        //document.getElementById("lista").innerHTML = out;
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verActualizarAlertas.php";
+
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function myFunction(response) {
+            console.log(response);
+
+            var arr = JSON.parse(response);
+            var i;
+
+            for(i = 0; i < arr.length; i++) {
+                //                console.log(arr[i].nombre_alerta);
+                //                console.log(arr[i].sensor);
+                //                console.log(arr[i].signo);
+                //                console.log(arr[i].valor);
+                //                console.log(arr[i].estado);
+                var estado;
+                if (arr[i].estado == 1){
+                    estado = "Activada";
+                }else{
+                    estado = "Desactivada";
+                }
+                var sensor;
+                if (arr[i].sensor == 1){
+                    sensor = "Temperatura";
+                }
+                else if(arr[i].sensor == 2){
+                    sensor = "Humedad";
+                }
+                else if(arr[i].sensor == 3){
+                    sensor = "Gas";
+                }
+                else if(arr[i].sensor == 4){
+                    sensor = "Movimiento";
+                }
+
+                out +=  "<option value="+arr[i].id_alerta+">"+arr[i].nombre_alerta+"</option>";
+                //console.log(arr[i].nombre_alerta);
+                //lista
+            }
+            //document.getElementById("lista").innerHTML = out;
+            //$("#lista").html(out);
+            $("#alertaSimple").prepend(out);
+            $("#alertaSimple0").prepend(out);
+        }
+    }
+
+    cargarOperadores();
+
+    function cargarOperadores(){
+        var out = "";
+        $("#operador").prepend(out);
+        //document.getElementById("lista").innerHTML = out;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verOperadores.php";
+
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function myFunction(response) {
+            console.log(response);
+
+            var arr = JSON.parse(response);
+            var i;
+
+            for(i = 0; i < arr.length; i++) {
+
+                out +=  "<option value="+arr[i].id_operador+">"+arr[i].operador+"</option>";
+                //console.log(arr[i].nombre_alerta);
+                //lista
+            }
+            //document.getElementById("lista").innerHTML = out;
+            //$("#lista").html(out);
+            $("#operador").prepend(out);
+
+        }
+    }
+    //cargar alerta simple para el nuevo select
+    function cargarAlertasSimple(){
+        var out = "";
+        var id="alertaSimple"+indexAlerta;
+        console.log(id);
+
+        $("#"+id).prepend(out);
+
+
+        //document.getElementById("lista").innerHTML = out;
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verActualizarAlertas.php";
+
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function myFunction(response) {
+            console.log(response);
+
+            var arr = JSON.parse(response);
+            var i;
+
+            for(i = 0; i < arr.length; i++) {
+                //                console.log(arr[i].nombre_alerta);
+                //                console.log(arr[i].sensor);
+                //                console.log(arr[i].signo);
+                //                console.log(arr[i].valor);
+                //                console.log(arr[i].estado);
+                var estado;
+                if (arr[i].estado == 1){
+                    estado = "Activada";
+                }else{
+                    estado = "Desactivada";
+                }
+                var sensor;
+                if (arr[i].sensor == 1){
+                    sensor = "Temperatura";
+                }
+                else if(arr[i].sensor == 2){
+                    sensor = "Humedad";
+                }
+                else if(arr[i].sensor == 3){
+                    sensor = "Gas";
+                }
+                else if(arr[i].sensor == 4){
+                    sensor = "Movimiento";
+                }
+
+                out +=  "<option value="+arr[i].id_alerta+">"+arr[i].nombre_alerta+"</option>";
+                //console.log(arr[i].nombre_alerta);
+                //lista
+            }
+            //document.getElementById("lista").innerHTML = out;
+            //$("#lista").html(out);
+            $("#"+id).prepend(out);
+
+        }
+    }
+
+
+    var idAlertaSimple0;
+    function selectAlertaSimple0(value){
+        idAlertaSimple0 = value;
+        console.log("select alerta simple 0 "+value);
+    }    
+    var idAlertaSimple00;
+    function selectAlertaSimple00(value){
+        idAlertaSimple00 = value;
+        console.log("select alerta simple 00 "+value);
+    }
+    var idAlertaSimple1;
+    function selectAlertaSimple1(value){
+        idAlertaSimple1 = value;
+        console.log("select alerta simple 1 "+value);
+    }
+    var idAlertaSimple2;
+    function selectAlertaSimple2(value){
+        idAlertaSimple2 = value;
+
+        console.log("select alerta simple 2 "+value);
+    }
+
+    var operador0;
+    function selectOperador0(value){
+        operador0 = value;
+        console.log("select operador simple 0 "+operador0);
+    }
+    var operador00;
+    function selectOperador00(value){
+        operador00 = value;
+        console.log("select operador simple 00 "+operador00);
+    }
+    var operador1;
+    function selectOperador1(value){
+        operador1 = value;
+        console.log("select operador simple 1 "+operador1);
+    }
+    var operador2;
+    function selectOperador2(value){
+        operador2 = value;
+        console.log("select operador simple 2 "+operador2);
+    }
+
+    var lunes = false;
+    var martes = false;
+    var miercoles = false;
+    var jueves = false;
+    var viernes = false;
+    var sabado = false;
+    var domingo = false;
+
+    function verRepeticiones(){
+        lunes = document.getElementById("test1").checked;
+        martes = document.getElementById("test2").checked;
+        miercoles = document.getElementById("test3").checked;
+        jueves = document.getElementById("test4").checked;
+        viernes = document.getElementById("test5").checked;
+        sabado = document.getElementById("test6").checked;
+        domingo = document.getElementById("test7").checked;
+        
+        if(lunes == true){
+            lunes = 1;
+        }
+        else{
+            lunes = 0;
+        }
+                
+        if(martes == true){
+            martes = 1;
+        }
+        else{
+            martes = 0;
+        }
+                
+        if(miercoles == true){
+            miercoles = 1;
+        }
+        else{
+            miercoles = 0;
+        }
+                
+        if(jueves == true){
+            jueves = 1;
+        }
+        else{
+            jueves = 0;
+        }
+                
+        if(viernes == true){
+            viernes = 1;
+        }
+        else{
+            viernes = 0;
+        }
+                
+        if(sabado == true){
+            sabado = 1;
+        }
+        else{
+            sabado = 0;
+        }
+                
+        if(domingo == true){
+            domingo = 1;
+        }
+        else{
+            domingo = 0;
+        }
+                console.log("lunes: "+lunes);
+                console.log("martes: "+martes);
+                console.log("miercoles: "+miercoles);
+                console.log("jueves: "+jueves);
+                console.log("viernes: "+viernes);
+                console.log("sabado: "+sabado);
+                console.log("domingo: "+domingo);
+    }
+
+
+
+
+    function crearAlertaCompuesta(){
+        var url = "";
+        var alertaCompuesta="";
+        var nombreAlertaCompuesta = document.getElementById("nombre_alerta_compuesta").value;
+
+        if(nombreAlertaCompuesta == ""){
+            alert("Escriba un nombre para la alerta primero");
+        }
+        else{
+            if(composicion <= 2){
+                if(idAlertaSimple0 == undefined){
+                    alert("Escoja alerta 1");
+                }
+                if(idAlertaSimple00 == undefined){
+                    alert("Escoja alerta 2");
+                }
+                else{
+                    console.log("else");
+                    //alertaCompuesta = idAlertaSimple0 + " " + operador0 + " " + idAlertaSimple00 + " " + operador00;
+
+                    url = "php/crearAlertaCompuesta.php?nombre_alerta_compuesta=" + nombreAlertaCompuesta + "&id_alerta_0=" + idAlertaSimple0 + "&operador0=" + operador0 + "&id_alerta_00=" + idAlertaSimple00 + "&operador00=" + operador00 + "&lunes=" + lunes + "&martes=" + martes + "&miercoles=" + miercoles + "&jueves="+ jueves + "&viernes=" + viernes+"&sabado=" + sabado + "&domingo=" + domingo + "&orden="+2;
+                    console.log(url);
+                    //                    url += "nombre_alerta_compuesta=" + nombreAlertaCompuesta + "&id_alerta_0=" + idAlertaSimple0 + "&operador_0=" + operador0 + "&id_alerta_00=" + idAlertaSimple00 + "&operador00=" + operador00 + "&lunes=" + lunes + "&martes=" + martes + "&miercoles=" + miercoles + "&jueves="+ jueves + "&viernes=" + viernes + "&sabado=" + sabado + "&domingo=" + domingo + "&orden="2;
+                    //console.log(url);
+                }
+            }else if(composicion == 3){
+                console.log("composicion 3");
+                //alertaCompuesta = idAlertaSimple0 + " " + operador0 + " " + idAlertaSimple00 + " " + operador00 + " " + idAlertaSimple1 + " " + operador1;
+
+                url = "php/crearAlertaCompuesta.php?nombre_alerta_compuesta=" + nombreAlertaCompuesta + "&id_alerta_0="+idAlertaSimple0+"&operador0="+operador0+"&id_alerta_00="+idAlertaSimple00+"&operador00="+operador00+"&id_alerta_1="+idAlertaSimple1+"&operador1="+operador1+"&lunes="+lunes+"&martes="+martes+"&miercoles="+miercoles+"&jueves="+jueves+"&viernes="+viernes+"&sabado="+sabado+"&domingo="+domingo+"&orden="+3;
+                console.log(url);
+
+            }else if(composicion == 4){
+                console.log("composicion 4");
+                //  alertaCompuesta = idAlertaSimple0 + " " + operador0 + " " + idAlertaSimple00 + " " + operador00 + " " + idAlertaSimple1 + " " + operador1 + " " + idAlertaSimple2 + " " + operador2; 
+                //
+                url = "php/crearAlertaCompuesta.php?nombre_alerta_compuesta=" + nombreAlertaCompuesta + "&id_alerta_0=" + idAlertaSimple0 + "&operador0=" + operador0 + "&id_alerta_00=" + idAlertaSimple00 + "&operador00=" + operador00 + "&id_alerta_1=" + idAlertaSimple1 + "&operador1=" + operador1 + "&id_alerta_2=" + idAlertaSimple2 + "&operador2=" + operador2 + "&lunes=" + lunes + "&martes=" + martes + "&miercoles=" + miercoles + "&jueves=" + jueves + "&viernes=" + viernes + "&sabado=" + sabado + "&domingo=" + domingo + "&orden="+4;
+                console.log(url);
+
+            }
+
+            //alert("Alerta " + alertaCompuesta);
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            function myFunction(response) {
+                console.log(response);
+                var arr = JSON.parse(response);
+                var i;
+                var out = "";
+
+                for(i = 0; i < arr.length; i++) {
+                    console.log(arr[i].success);
+                }
+                Materialize.toast('Nueva Alerta Compuesta Creada!', 4000);
+            }
+        }//else
+    }//crear alerta compuesta
+
+
 </script>
 
 

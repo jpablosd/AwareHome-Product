@@ -19,8 +19,8 @@ verAlertas($usuario_id_usuario);
 
 function verAlertas($usuario_id_usuario){		  
     $response = array();
-    
-    $query = " SELECT b.nombre_alerta, b.estado, b.sensor, b.signo, b.valor 
+
+    $query = " SELECT b.id_alerta, b.nombre_alerta, b.estado, b.sensor, b.signo, b.valor 
 FROM hogar a, alerta b WHERE b.hogar_id_hogar = a.id_hogar AND a.usuario_id_usuario = '$usuario_id_usuario'";  
     $result = mysql_query($query) or die(mysql_error());
     // check for empty result
@@ -31,6 +31,7 @@ FROM hogar a, alerta b WHERE b.hogar_id_hogar = a.id_hogar AND a.usuario_id_usua
         while ($row = mysql_fetch_array($result)) {
             // temp user array
             $datos = array();
+            $datos["id_alerta"] = $row["id_alerta"];
             $datos["nombre_alerta"] = $row["nombre_alerta"];
             $datos["estado"]     = $row["estado"];
             $datos["sensor"]     = $row["sensor"];

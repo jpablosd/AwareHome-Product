@@ -1,4 +1,4 @@
-<div>
+<div onload="drawChart()">
     <br>
     <!-- DATOS -->
     <div id="ver_datos" class="row col s12 m12 l12">
@@ -36,10 +36,10 @@
     <!-- DATOS -->
     <script>
 
-        google.load('visualization', '1', {"callback" : drawChart, 'packages': ['corechart']});
 
 
         function drawChart() {
+        google.load('visualization', '1', {"callback" : drawChart, 'packages': ['corechart']});
 
             var myDataRef = new Firebase('https://awarehome.firebaseio.com/');
             // Update our GUI to change a user"s status.
@@ -96,6 +96,7 @@
                 };
                 var chartGas = new google.visualization.PieChart(document.getElementById('gas'));
                 chartGas.draw(dataGas, optionsGas);
+                
             });//child_changed
         }//drawChart
     </script>

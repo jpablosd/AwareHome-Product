@@ -3,7 +3,7 @@
 define("DB_HOST", "localhost");
 define("DB_USER", "root");//cambiar por el nombre de usuario definido en la configuracion de la BD.
 define("DB_PASSWORD", "root");//Modificar por el password 
-define("DB_DATABASE", "awarehome-septiembre");//Nombre de la base de datos 
+define("DB_DATABASE", "jpablosd_awarehome");//Nombre de la base de datos 
 
 
 class DB_Connect {
