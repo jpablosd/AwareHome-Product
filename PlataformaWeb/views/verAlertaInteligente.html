@@ -1,23 +1,25 @@
 <!-- VER ALERTAS INTELIGENTES -->
-<div id="ver_alertas_inteligentes" class="row ">
-    <div class="col s12 m1 l2 "><p></p></div>
-    <div class="z-depth-3">
-        <ul id="lista_alertas_inteligentes" class="collection col s12 m11 l12">
+<div id="ver_alertas_inteligentes" class="row">
+    <div class="col s12 m12 l12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <ul id="lista_alertas_inteligentes" class="collection">
 
-<!--
-            <li class="collection-item avatar">
-                <i class="mdi-action-assessment circle green"></i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"></a>
-            </li>
+                    <!--
+<li class="collection-item avatar">
+<i class="mdi-action-assessment circle green"></i>
+<span class="title">Title</span>
+<p>First Line <br>
+Second Line
+</p>
+<a href="#!" class="secondary-content"></a>
+</li>
 -->
 
-        </ul>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col s12 m1 l2"><p></p></div>
 </div>
 <!-- VER ALERTAS INTELIGENTES-->
 
@@ -35,7 +37,7 @@
 <!-- Graficos de los datos-->
 
 <script>
-verAlertaCompuesta();
+    verAlertaCompuesta();
     function verAlertaCompuesta(){
 
         var out="";
@@ -66,13 +68,13 @@ verAlertaCompuesta();
                     estado = "Desactivada";
                 }
 
-                
+
                 out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta_compuesta+"</span><p> "+arr[i].nombre_alerta+" "+arr[i].operador+"<br>"+estado+"</p><a href='#!' class='secondary-content'></a></li>";
                 //lista
             }
             //document.getElementById("lista").innerHTML = out;
             //$("#lista").html(out);
-$("#lista_alertas_inteligentes").prepend(out);        }
+            $("#lista_alertas_inteligentes").prepend(out);        }
 
 
     }

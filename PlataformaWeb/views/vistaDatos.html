@@ -41,7 +41,8 @@
                     </div>
 
                     <div class="col s4 m4 l4">
-                        <object id="front-page-logo"  data="images/luz_verde.png" style="height: 5%; width: 5%; "></object>
+<!--                        <object id="front-page-logo"  data="images/luz_verde.png" style="height: 5%; width: 5%; "></object>-->
+                        <img src="images/luz_verde.png" id="movimiento" style="height: 5%; width: 5%;"/>
                     </div>
                 </div>
             </div>
@@ -96,8 +97,6 @@
             var ctx3 = document.getElementById("chart-area3").getContext("2d");
             window.myDoughnut3 = new Chart(ctx3).Doughnut(doughnutData3, {responsive : true});
 
-
-
             var myDataRef = new Firebase('https://awarehome.firebaseio.com/');
             // Update our GUI to change a user"s status.
             myDataRef.on("child_changed", function(snapshot) {
@@ -110,7 +109,7 @@
                 //                console.log("mov :"+message.movimiento);
 
                 try {
-                    if (message.temperatura >= 50){
+                    if (message.temperatura >= 30){
                         myDoughnut.segments[0].value = message.temperatura;
                         myDoughnut.segments[2].value = 0;
                         myDoughnut.update();
@@ -130,6 +129,16 @@
                     myDoughnut3.segments[2].value = message.gas;
                     myDoughnut3.update();
                     document.getElementById('dato_gas').innerHTML = message.gas + "ppm";
+                    
+                    //movimiento
+                    if(message.movimiento == 1){
+                        document.getElementById('movimiento').src = "images/luz_roja.png";
+                    }else if(message.movimiento == 0){
+                        document.getElementById('movimiento').src = "images/luz_verde.png";
+                    }else{
+                        document.getElementById('movimiento').src = "images/luz_verde.png";
+                    }
+                    
                 }
                 catch(err) {
                    console.log("Problemas con firebase");

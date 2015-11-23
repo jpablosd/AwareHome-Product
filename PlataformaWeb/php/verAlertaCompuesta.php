@@ -17,8 +17,8 @@ verAlertaCompuesta();
 function verAlertaCompuesta(){
     $response = array();
 
-    $query = "SELECT distinct nombre_alerta_compuesta, nombre_alerta, operador, estado_alerta FROM alerta_compuesta a,  composicion b, operador c, alerta d WHERE a.hogar_id_hogar = 1 AND b.alerta_compuesta_id_alerta_compuesta = a.id_alerta_compuesta AND c.id_operador = b.operador_id_operador AND b.alerta_id_alerta = d.id_alerta";  
-    
+    $query = "SELECT distinct id_alerta_compuesta, nombre_alerta_compuesta, nombre_alerta, operador, estado_alerta FROM alerta_compuesta a,  composicion b, operador c, alerta d WHERE a.hogar_id_hogar = 1 AND b.alerta_compuesta_id_alerta_compuesta = a.id_alerta_compuesta AND c.id_operador = b.operador_id_operador AND b.alerta_id_alerta = d.id_alerta";  
+
     $result = mysql_query($query) or die(mysql_error());
     // check for empty result
     if (mysql_num_rows($result) > 0) {
@@ -28,6 +28,7 @@ function verAlertaCompuesta(){
         while ($row = mysql_fetch_array($result)) {
             // temp user array
             $datos = array();
+            $datos["id_alerta_compuesta"] = $row["id_alerta_compuesta"];
             $datos["nombre_alerta_compuesta"] = $row["nombre_alerta_compuesta"];
             $datos["nombre_alerta"] = $row["nombre_alerta"];
             $datos["operador"]     = $row["operador"];

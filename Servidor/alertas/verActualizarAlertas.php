@@ -25,7 +25,7 @@ function verAlertas($usuario_id_usuario){
 
 	$response = array();
 
-	$query = "SELECT nombre_alerta, estado FROM alerta WHERE usuario_id_usuario = '$usuario_id_usuario'";  
+	$query = "SELECT nombre_alerta, estado FROM alerta a, hogar b, usuario c WHERE a.hogar_id_hogar = b.id_hogar AND b.usuario_id_usuario = c.id_usuario AND c.id_usuario = '$usuario_id_usuario'";  
 	$result = mysql_query($query) or die(mysql_error());
     
     
@@ -89,13 +89,13 @@ function actualiza_estado_de_alertas(){
     {       
         //datos de la regla
         //$regla = "SELECT id_regla_basica, sensor_temperatura_humedad_id_sensor_temperatura_humedad, usuario_id_usuario, nombre_regla, sensor, simbolo, dato, estado FROM regla_basica WHERE id_regla_basica = '$i'";        
-        $regla = "SELECT id_alerta, sensor_id_sensor, usuario_id_usuario, nombre_alerta, nombre_sensor, simbolo_alerta, dato, estado FROM alerta WHERE id_alerta = '$i'";
+        $regla = "SELECT id_alerta, sensor_id_sensor, nombre_alerta, nombre_sensor, simbolo_alerta, dato, estado FROM alerta WHERE id_alerta = '$i'";
 	$sentencia=mysql_query($regla);
         //echo $regla;
 	while($rs=mysql_fetch_array($sentencia,MYSQL_BOTH)){
             $id_regla_basica = $rs['id_alerta'];
             $sensor_temperatura_humedad_id_sensor_temperatura_humedad = $rs['sensor_id_sensor'];
-            $usuario_id_usuario = $rs['usuario_id_usuario'];
+        //    $usuario_id_usuario = $rs['usuario_id_usuario'];
             $nombre_regla = $rs['nombre_alerta'];                  
             $sensor = $rs['nombre_sensor'];
             $simbolo = $rs['simbolo_alerta'];

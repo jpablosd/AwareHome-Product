@@ -45,6 +45,9 @@ awarehome.config(['$routeProvider', function($routeProvider){
     when('/test',{
         templateUrl: 'views/crearAlertaCompuesta.html'
     }).
+    when('/configuracion',{
+        templateUrl: 'views/configuracion.html'
+    }).
     otherwise({
         redirecTo: '/',
         templateUrl: 'app.html#/verDatos'

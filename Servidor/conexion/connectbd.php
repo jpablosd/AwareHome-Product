@@ -4,9 +4,9 @@
  * Database config variables
  */
 define("DB_HOST", "localhost");
-define("DB_USER", "awareho1");//cambiar por el nombre de usuario definido en la configuracion de la BD.
-define("DB_PASSWORD", "UA9JxmZEEJB1");//Modificar por el password elegido
-define("DB_DATABASE", "awareho1_home");//Nombre de la base de datos reemplazar si se utilizo otro diferente al mencionado en el tutorial.
+define("DB_USER", "root");//cambiar por el nombre de usuario definido en la configuracion de la BD.
+define("DB_PASSWORD", "root");//Modificar por el password elegido
+define("DB_DATABASE", "jpablosd_awarehome");//Nombre de la base de datos reemplazar si se utilizo otro diferente al mencionado en el tutorial.
 
 
 class DB_Connect {

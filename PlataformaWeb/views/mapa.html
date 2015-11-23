@@ -3,10 +3,8 @@
         <!--        <div class="col s2 m1 l1 "><p></p></div>-->
         <div class="col s12 m12 l12">
             <div class="card z-depth-3">
-                <div class="card-content">
+                <div>
                     <div id="mapCanvas" ></div>
-
-
                 </div>
             </div>
         </div>
@@ -90,39 +88,20 @@ Second Line
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    var nombreCasa;
-    var latLng = new google.maps.LatLng(-33.0134008,-71.5420014);
-
+    var marker = new google.maps.Marker();
 
     verHogar();
-
-    var marker = new google.maps.Marker({
-        position: latLng,
-        title: 'arr[0].nombre_hogar',
-        map: map,
-        draggable: true
-    });
-
     cargarAlertas();
 
 
-    if (estadoAlertaMarker == 1){
-        marker.setIcon("images/marker_red.png");
-    }else{
-        marker.setIcon("images/marker_green.png");
-    }
-
-
-    // Add dragging event listeners.
-    google.maps.event.addListener(marker, 'click', function() {
-        //alert("asdnasj");
-        $('#modal1').openModal();
-    });
-
     function verHogar(){
+        var lat = 0;
+        var lng = 0;
+        var nombreHogar = "";
+        var direccion = "";
+
         var xmlhttp = new XMLHttpRequest();
         var url = "php/verHogar.php";
-
         xmlhttp.onreadystatechange=function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 myFunction(xmlhttp.responseText);
@@ -132,13 +111,40 @@ Second Line
         xmlhttp.send();
 
         function myFunction(response) {
-
             //console.log(response);
             var arr = JSON.parse(response);
-            latLng = google.maps.LatLng(arr[0].lat, arr[0].lng);
-            nombreCasa = arr[0].nombre_hogar;
-            //console.log(arr[0].nombre_hogar);
+            lat = arr[0].lat;
+            lng = arr[0].lng;
+            nombreHogar = arr[0].nombre_hogar;
+            direccion = arr[0].direccion;
+
+            ver(lat, lng, nombreHogar, direccion);
         }
+    }
+
+    function ver(lat, lng, nombre, direccion){
+        //        console.log(lat);
+        //        console.log(lng);
+        //        console.log(nombre);
+        //        console.log(direccion);
+        var nombreCasa = nombre;
+        var latHogar=lat;
+        var lngHogar = lng;
+        var direccionHogar = direccion;
+
+        var latLng = new google.maps.LatLng(latHogar,lngHogar);
+
+        marker = new google.maps.Marker({
+            position: latLng,
+            title: nombreCasa,
+            map: map,
+            draggable: false
+        });
+        // Add dragging event listeners.
+        google.maps.event.addListener(marker, 'click', function() {
+            //alert("asdnasj");
+            $('#modal1').openModal();
+        });
     }
 
 
@@ -146,6 +152,8 @@ Second Line
 
     //------------------- VER ALERTAS ----------------------
     function cargarAlertas(){
+        estadoAlertaMarker = 0;
+
         var out = "";
         document.getElementById("lista").innerHTML = out;
 
@@ -161,24 +169,23 @@ Second Line
         xmlhttp.send();
 
         function myFunction(response) {
-            console.log(response);
+            //console.log(response);
 
             var arr = JSON.parse(response);
             var i;
 
             for(i = 0; i < arr.length; i++) {
-                console.log(arr[i].nombre_alerta);
-                console.log(arr[i].sensor);
-                console.log(arr[i].signo);
-                console.log(arr[i].valor);
-                console.log(arr[i].estado);
+                //                console.log(arr[i].nombre_alerta);
+                //                console.log(arr[i].sensor);
+                //                console.log(arr[i].signo);
+                //                console.log(arr[i].valor);
+                //                console.log(arr[i].estado);
                 var estado;
                 if (arr[i].estado == 1){
                     estado = "Activada";
                     estadoAlertaMarker = 1;
                 }else{
                     estado = "Desactivada";
-                    estadoAlertaMarker = 0;
                 }
                 var sensor;
                 if (arr[i].sensor == 1){
@@ -193,6 +200,11 @@ Second Line
 
                 out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta+"</span><p>"+sensor+" "+arr[i].signo+" "+arr[i].valor+"<br>"+estado+"</p><a href='#!' class='secondary-content'><i class='mdi-action-grade'></i></a></li>";
                 //lista
+            }
+            if (estadoAlertaMarker == 1){
+                marker.setIcon("images/marker_red.png");
+            }else{
+                marker.setIcon("images/marker_green.png");
             }
             //document.getElementById("lista").innerHTML = out;
             //$("#lista").html(out);
