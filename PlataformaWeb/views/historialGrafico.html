@@ -1,0 +1,136 @@
+<div>
+    <div class="row ">
+        <!--        <div class="col s2 m1 l1"><p></p></div>-->
+        <div class="col s12 m12 l12">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <h4>Historial</h4>                    
+                    <div class="row">
+                        <div class="col s6 m6 l5">
+                            <!--                    <input id="fecha" placeholder="Fecha" type="date" class="datepicker">-->
+                            <input id="fecha" type="date" name="fecha">
+                        </div>
+                        <div class="col s6 m6 l7">
+                            <select class="browser-default" onchange="buscarDatos(this.value)">
+                                <option value="" disabled selected>Seleccione Sensor</option>
+                                <option value="temperatura">Temperatura</option>
+                                <option value="humedad">Humedad</option>
+                                <option value="gas">Gas</option>
+                                <option value="movimiento">Movimiento</option>
+
+                            </select>
+                        </div>
+
+                        <!--
+<div class="col s3 m3 l2 center">
+<label>Real Time</label>
+<div class="switch">
+<label>
+Off
+<input type="checkbox">
+<span class="lever"></span>
+On
+</label>
+</div>
+</div>
+-->
+                    </div>
+                    <!--                    <span class="card-title activator grey-text text-darken-4">Historial</span>-->
+                    <div class="progress" id="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                    <div id="curve_chart" class="grafico s12 m12 l12"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--        <div class="col s2 m1 l1"><p></p></div>-->
+    </div>
+</div>
+
+<script>
+    document.getElementById('progress').style.display = 'none';
+
+    //------------------- HISTORIAL -----------------------------
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+
+
+
+    var fecha;
+    var sensorGrafico;
+    function buscarDatos(valor){
+        document.getElementById('progress').style.display = 'block';
+        //        document.getElementById('curve_chart').style.display = 'none';
+
+
+        fecha = document.getElementById("fecha").value;
+        sensorGrafico = valor;
+        google.load('visualization', '1', {"callback" : drawChartHistorial, 'packages': ['corechart']});
+        google.setOnLoadCallback(drawChartHistorial);
+
+    }
+
+    function drawChartHistorial() {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verDatosGrafico.php?fecha="+fecha;
+        console.log(url);
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log("cargando1");
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        function myFunction(response) {
+            //console.log(response);
+            var arr = JSON.parse(response);
+            console.log(arr.message);
+            if(arr.message == "no hay datos por ahora"){
+                document.getElementById('progress').style.display = 'none';
+                //document.getElementById('curve_chart').style.display = 'none';
+                alert("No hay datos en esta fecha");
+                javascript_abort();
+            }
+
+            var hola = [['Fecha', 'Medición']];
+
+            for(var i = 0; i < arr.length; i++) {
+                if (arr[i].sensor == sensorGrafico){
+                    var fecha = arr[i].fecha;
+                    var hora = fecha.split(" ");
+                    //console.log(hora[1]);
+                    var med = parseInt(arr[i].medicion);
+                    hola.push([hora[1],med]);
+                }
+            }
+
+            var data = google.visualization.arrayToDataTable(hola);
+            var options = {
+                title: 'Historial '+sensorGrafico,
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+
+            console.log("cargando2");
+            document.getElementById('progress').style.display = 'none';
+            //document.getElementById('curve_chart').style.display = 'block';
+
+        }//myFunction
+    }
+
+    function javascript_abort()
+    {
+        throw new Error('This is not an error. This is just to abort javascript');
+    }
+    //------------------- HISTORIAL -----------------------------
+
+
+</script>

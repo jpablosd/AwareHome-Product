@@ -1,0 +1,80 @@
+<!-- VER ALERTAS INTELIGENTES -->
+<div id="ver_alertas_inteligentes" class="row">
+    <div class="col s12 m12 l12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <ul id="lista_alertas_inteligentes" class="collection">
+
+                    <!--
+<li class="collection-item avatar">
+<i class="mdi-action-assessment circle green"></i>
+<span class="title">Title</span>
+<p>First Line <br>
+Second Line
+</p>
+<a href="#!" class="secondary-content"></a>
+</li>
+-->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- VER ALERTAS INTELIGENTES-->
+
+<!-- Graficos de los datos -->
+<!--
+
+<div id="ver_alertas_inteligentes" class="row ">
+<div class="col s12 m1 l2 "><p></p></div>
+<div class="z-depth-3">
+<canvas id="canvas" col s12 m11 l12></canvas>
+</div>
+<div class="col s12 m1 l2"><p></p></div>
+</div>
+-->
+<!-- Graficos de los datos-->
+
+<script>
+    verAlertaCompuesta();
+    function verAlertaCompuesta(){
+
+        var out="";
+        $("#lista_alertas_inteligentes").prepend(out);
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verAlertasCompuestas.php";
+
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function myFunction(response) {
+            console.log(response);
+
+            var arr = JSON.parse(response);
+            var i;
+            for(i = 0; i < arr.length; i++) {
+//                console.log(arr[i].id_alerta_compuesta);
+//                console.log(arr[i].nombre_alerta_compuesta);
+//                console.log(arr[i].alerta1);
+//                console.log(arr[i].operador);
+//                console.log(arr[i].alerta2);
+//                console.log(arr[i].estado);
+
+                out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta_compuesta+"</span><p> "+arr[i].alerta1+" "+arr[i].operador+" "+arr[i].alerta2+"<br>"+arr[i].estado+"</p><a href='#!' class='secondary-content'></a></li>";
+                //lista
+            }
+
+            $("#lista_alertas_inteligentes").prepend(out);        
+        }
+
+
+    }
+
+</script>

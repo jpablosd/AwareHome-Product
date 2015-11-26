@@ -1,0 +1,425 @@
+<div>
+    <div class="row">
+        <!--        <div class="col s2 m1 l1 "><p></p></div>-->
+        <div class="col s12 m12 l12">
+            <div class="card z-depth-3">
+                <div class="card-content">
+                    <span class="card-title grey-text text-darken-4">Configuración</span>
+                    <br><br>
+
+
+                    <p>Actualizar hogar</p>
+                    <div class="col s12 m12 l12">
+                        <div class="input-field col s12 m12 l4">
+                            <a class="waves-effect waves-light btn" onclick="actualizarHogar()">Actualizar Hogar</a>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 m12 l12">
+                        <br>
+                        <br>
+                    </div>     
+
+                    <p>Configure la distancia mínima para activar las notificaciones</p>
+                    <div class="col s12 m12 l12">
+                        <div class="input-field col s12 m12 l4">
+                            <input name="nombre_alerta" id="metros" type="text" class="validate" onchange="verMetros(this.value)">
+                            <label>Metros (50 mínimos)</label>
+                        </div>
+                        <br>
+                        <div class="col s12 m12 l8">
+                            <a class="waves-effect waves-light btn" onclick="guardarMetros()">Guardar</a>
+                        </div>
+                    </div>
+
+
+                    <!--                    <a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Debe ingresar metros aceptables">Hover me!</a>-->
+
+                    <div class="col s12 m12 l12">
+                        <br>
+                        <br>
+                    </div>
+
+
+
+                    <p>Configuración para las alertas de falso positivo</p>
+                    <div class="col s12 m12 l12">
+                        <!-- para asignar falso positivo -->
+                        <div class="input-field col s12 m12 l4">
+                            <select class="browser-default" id="alerta_simple" onchange="selectAlertaSimple(this.value)">
+                                <option value="" disabled selected>Escoger Alerta</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12 m12 l3">
+                            <input name="nombre_alerta" id="repeticiones_alerta_simple" type="text" class="validate">
+                            <label>Nº de repeticiones</label>
+                        </div>
+                        <div class="input-field col s12 m12 l3">
+                            <input name="nombre_alerta" id="tiempo_repeticiones_alerta_simple" type="text" class="validate">
+                            <label>Tiempo (segundos)</label>
+                        </div>
+                        <div class="col s12 m12 l2">
+                            <br>
+                            <a class="waves-effect waves-light btn" onclick="falsoPositivoAlertaSimple()">Guardar</a>
+                        </div>
+                    </div>
+
+
+                    <div class="col s12 m12 l12">
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+
+                    <!--
+<p>Configuración para las alertas (Compuestas) de falso positivo</p>
+<div class="col s12 m12 l12">
+<div class="input-field col s12 m12 l3">
+<select class="browser-default" id="alerta_inteligente" onchange="selectAlertaCompuesta(this.value)">
+<option value="" disabled selected>Escoger Alerta</option>
+</select>
+</div>
+<div class="input-field col s12 m12 l3">
+<input name="nombre_alerta" id="repeticiones_alerta_compuesta" type="text" class="validate">
+<label>Nº de repeticiones</label>
+</div>
+<div class="input-field col s12 m12 l3">
+<input name="nombre_alerta" id="tiempo_repeticiones_alerta_compuesta" type="text" class="validate">
+<label>Tiempo (segundos)</label>
+</div>
+<div class="col s12 m12 l3">
+<br>
+<a class="waves-effect waves-light btn" onclick="falsoPositivoAlertaCompuesta()">Guardar</a>
+</div>
+</div>
+-->
+
+
+                    <div class="col s12 m12 l12">
+                        <br><br><br><br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+
+
+<div id="modalActualizarHogar" class="modal">
+    <div class="modal-content">
+        <h4>Actualizar Hogar</h4>
+        <div class="col s12 m12 l12">
+            <div>
+                <div id="mapa" ></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--            <a href="#/configuracion" class="waves-effect waves-green btn-flat modal-action modal-close" >Aceptar</a>-->
+            <a class="waves-effect waves-light btn modal-action modal-close" onclick="guardarNuevoHogar()">Guardar</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.getElementById('modalActualizarHogar').style.display = 'none';
+
+    //    function guardarMetros(){
+    //        var metros = document.getElementById("metros").value;
+    //        console.log(metros);
+    //    }
+
+    //select alerta
+    var idAlertaGuardar = "";
+    var tipoAlerta = "";
+    function selectAlertaSimple(idAlerta){
+        console.log(idAlerta);
+        idAlertaGuardar = idAlerta;
+
+        tipoAlerta = idAlerta.split(",");
+        idAlertaGuardar = tipoAlerta[0];
+        tipoAlerta = tipoAlerta[1];
+    }
+
+    function falsoPositivoAlertaSimple(){
+        var tiempo = document.getElementById("tiempo_repeticiones_alerta_simple").value;
+        var repeticiones = document.getElementById("repeticiones_alerta_simple").value;
+        //        console.log(tiempo);
+        //        console.log(repeticiones);
+        //        console.log(idAlertaGuardar);
+        //        console.log(tipoAlerta);
+
+        if(tipoAlerta == "simple"){
+
+            //            console.log(idAlertaGuardar);
+            //            console.log(tipoAlerta);
+            //            console.log(repeticiones);
+            //            console.log(tiempo);
+
+            var xmlhttp = new XMLHttpRequest();
+            var url = "php/falsoPositivoAlerta.php?repeticion="+repeticiones+"&tiempo="+tiempo+"&idAlerta="+idAlertaGuardar;
+            console.log(url);  
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            function myFunction(response) {
+                console.log(response);
+                var arr = JSON.parse(response); 
+            }  
+
+        }else if(tipoAlerta = "compuesta"){
+            //            console.log(idAlertaGuardar);
+            //            console.log(tipoAlerta);
+            //            console.log(repeticiones);
+            //            console.log(tiempo);
+            var xmlhttp = new XMLHttpRequest();
+            var url = "php/falsoPositivoAlertaCompuesta.php?repeticion="+repeticiones+"&tiempo="+tiempo+"&idAlertaCompuesta="+idAlertaGuardar;
+            console.log(url);  
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            function myFunction(response) {
+                console.log(response);
+                var arr = JSON.parse(response); 
+            } 
+
+        }else{
+            console.log("tienes problemas");
+        }
+
+
+    }//falsoPositivoAlertaSimple
+
+
+    //    var idAlertaCompuestaGuardar = "";
+    //    function selectAlertaCompuesta(idAlertaCompuesta){
+    //        console.log(idAlertaCompuesta);
+    //        idAlertaCompuestaGuardar = idAlertaCompuesta;
+    //    }
+
+    //    function falsoPositivoAlertaCompuesta(){
+    //        var tiempo = document.getElementById("tiempo_repeticiones_alerta_compuesta").value;
+    //        var repeticiones = document.getElementById("repeticiones_alerta_compuesta").value;
+    //        console.log(tiempo);
+    //        console.log(repeticiones);
+    //        var xmlhttp = new XMLHttpRequest();
+    //        var url = "php/falsoPositivoAlertaCompuesta.php?repeticion="+repeticiones+"&tiempo="+tiempo+"&idAlertaCompuesta="+idAlertaCompuestaGuardar;
+    //        console.log(url);  
+    //        xmlhttp.onreadystatechange=function() {
+    //            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //                myFunction(xmlhttp.responseText);
+    //            }
+    //        }
+    //        xmlhttp.open("GET", url, true);
+    //        xmlhttp.send();
+    //        function myFunction(response) {
+    //            console.log(response);
+    //            var arr = JSON.parse(response); 
+    //        }      
+    //    }
+
+
+    var out = "";
+    cargarAlertasSimple();
+    //cargar alerta simple para el nuevo select
+    function cargarAlertasSimple(){
+        $("#alerta_simple").prepend(out);
+        //document.getElementById("lista").innerHTML = out;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verActualizarAlertas.php";
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        function myFunction(response) {
+            console.log(response);
+            var arr = JSON.parse(response);
+            var i;
+            for(i = 0; i < arr.length; i++) {
+                var estado;
+                if (arr[i].estado == 1){
+                    estado = "Activada";
+                }else{
+                    estado = "Desactivada";
+                }
+                var sensor;
+                if (arr[i].sensor == 1){
+                    sensor = "Temperatura";
+                }
+                else if(arr[i].sensor == 2){
+                    sensor = "Humedad";
+                }
+                else if(arr[i].sensor == 3){
+                    sensor = "Gas";
+                }
+                else if(arr[i].sensor == 4){
+                    sensor = "Movimiento";
+                }
+                out +=  "<option value="+arr[i].id_alerta+",simple"+">"+arr[i].nombre_alerta+" - Alerta Simple</option>";
+            }
+            $("#alerta_simple").prepend(out);
+        }
+    }
+
+    verAlertaCompuesta();
+    function verAlertaCompuesta(){
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/verAlertaCompuesta.php";
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        function myFunction(response) {
+            console.log(response);
+            var arr = JSON.parse(response);
+            var i;
+            for(i = 0; i < arr.length; i++) {
+                var estado;
+                if (arr[i].estado_alerta == 1){
+                    estado = "Activada";
+                }else{
+                    estado = "Desactivada";
+                }
+                out += "<option value="+arr[i].id_alerta_compuesta+",compuesta"+">"+arr[i].nombre_alerta_compuesta+" - Alerta Compuesta</option>";
+            }   
+        }
+    }
+
+
+
+    var metros = "";
+    function verMetros(metros){
+        if(metros < 50){
+            document.getElementById("metros").className = "invalid";
+            Materialize.toast('Debe ingresar datos válidos', 3000);
+            document.getElementById("metros").value = 0;
+        }else{
+            document.getElementById("metros").className = "validate";
+        }
+        console.log(metros);
+    }
+
+
+    function guardarMetros(){
+        metros = document.getElementById("metros").value;
+        if(metros < 50){
+            document.getElementById("metros").className = "invalid";
+            Materialize.toast('Debe ingresar datos válidos', 3000);
+            document.getElementById("metros").value = 0;
+        }else{
+            document.getElementById("metros").className = "validate";
+
+            var xmlhttp = new XMLHttpRequest();
+            var url = "php/configurarDistanciaAlerta.php?id_usuario=1&metros="+metros+"&id_hogar=1";
+            console.log(url);  
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            function myFunction(response) {
+                console.log(response);
+                var arr = JSON.parse(response); 
+            } 
+        }
+    }
+
+    var latitudNueva;
+    var longitudNueva;
+    var direccionNueva;
+
+    function actualizarHogar(){
+        var geocoder;
+        var infowindow = new google.maps.InfoWindow();
+
+        $('#modalActualizarHogar').openModal();
+        var mapDiv = document.getElementById('mapa');
+        mapDiv.style.width = '100% !important';
+        mapDiv.style.height ='600px';
+
+        var map = new google.maps.Map(mapDiv, {
+            center: new google.maps.LatLng(-33.0065,-71.5427),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        geocoder = new google.maps.Geocoder();
+        //initial marker position
+        var marker = new google.maps.Marker({
+            map: map, 
+            position: new google.maps.LatLng(0,0)
+        });
+
+        //insert event listener here
+        google.maps.event.addListener(map, 'click', function(event) {
+            geocoder.geocode({'latLng': event.latLng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    //set the map center to the latlng where the user clicked on map
+                    map.setCenter(results[0].geometry.location);
+                    //place the marker the latlng where the user clicked on map
+                    marker.setPosition(results[0].geometry.location);
+                    //display formatted address in info window when marker is clicked
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(map, marker);
+
+                    latitudNueva = event.latLng.lat();
+                    longitudNueva = event.latLng.lng();
+                    direccionNueva = results[0].formatted_address;
+                }
+                else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+            //            console.log(results[0].formatted_address);
+            //            console.log(event.latLng.lat());
+            //            console.log(event.latLng.lng());
+        });
+    }
+
+    function guardarNuevoHogar(){
+        //        console.log(latitudNueva);
+        //        console.log(longitudNueva);
+        //        console.log(direccionNueva);
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "php/actualizarHogar.php?direccion_hogar="+direccionNueva+"&lat_hogar="+latitudNueva+"&lng_hogar="+longitudNueva+"&id_hogar=1";
+        console.log(url);  
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myFunction(xmlhttp.responseText);
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        function myFunction(response) {
+            console.log(response);
+            var arr = JSON.parse(response); 
+            if(arr.success == 1){
+                Materialize.toast('Hogar Actualizado', 3000);
+            }
+        } 
+    }
+
+</script>

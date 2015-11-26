@@ -12,10 +12,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.splunk.mint.Mint;
 
 import cl.awarehome.aplicacion.R;
 import cl.awarehome.aplicacion.conexion.*;
+
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -79,15 +84,16 @@ public class Datos extends Activity{
 	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.datos);
-
 		Mint.initAndStartSession(Datos.this, "d609afeb");
 
-		user = (TextView) findViewById(R.id.usuario);
+		Firebase.setAndroidContext(this);
 
+		//user = (TextView) findViewById(R.id.usuario);
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			usuario  = extras.getString("usuario");//usuario
-			user.setText(usuario);
+			//user.setText(usuario);
 			Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();	
 
 			new DatosUsuario().execute();
@@ -101,6 +107,8 @@ public class Datos extends Activity{
 		valor_gas = (TextView) findViewById(R.id.gas);
 		fecha = (TextView) findViewById(R.id.fecha);
 
+		
+		/*
 		//Creamos el Timer
 		Timer timer = new Timer();
 		//Empezando des de el segundo 0
@@ -111,6 +119,11 @@ public class Datos extends Activity{
 				FuncionParaEsteHilo();
 			}
 		}, 0, 5000); //cada 5 segundos
+		*/
+		
+		
+		
+		
 	}//onCreate
 
 	/*
@@ -120,6 +133,35 @@ public class Datos extends Activity{
 	}
 	 */
 
+	@Override
+	protected void onResume() {
+
+		// TODO Auto-generated method stub
+		/**Firebase */
+		Firebase ref2 = new Firebase("https://awarehome.firebaseio.com/sensores");
+
+		ref2.addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot snapshot) {
+					System.out.print("temperatura: "+ snapshot.child("temperatura").getValue().toString());
+					System.out.print("humedad: "+snapshot.child("humedad").getValue().toString());
+					System.out.print("gas: "+snapshot.child("gas").getValue().toString());
+					temp.setText(snapshot.child("temperatura").getValue().toString()+"ºC");
+					hum.setText(snapshot.child("humedad").getValue().toString()+"%");
+					valor_gas.setText(snapshot.child("gas").getValue().toString());
+			}
+			@Override
+			public void onCancelled(FirebaseError firebaseError) {
+				System.out.println("The read failed: " + firebaseError.getMessage());
+			}
+		});
+		
+		super.onResume();
+
+	}
+
+	
+	
 	private void FuncionParaEsteHilo()
 	{
 		//Esta función es llamada des de dentro del Timer
@@ -245,11 +287,14 @@ public class Datos extends Activity{
 						fecha_dato = c.getString(TAG_FECHA);
 					}
 				}else{
-					//no empleados found
-					Intent i = new Intent(getApplicationContext(),Datos.class);
+					//no datos found
+					
+					//Intent i = new Intent(getApplicationContext(),Datos.class);
 					//closing all previus activities
-					i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					startActivity(i);
+					//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					//startActivity(i);
+					
+					new CargaDeDatos().execute();
 				}
 			}catch(JSONException e){
 				e.printStackTrace();
@@ -266,6 +311,7 @@ public class Datos extends Activity{
 			hum.setText(h+"%");
 			String g = String.valueOf(gas);
 			valor_gas.setText(g);
+			//valor_gas.setText("gas");
 			fecha.setText(fecha_dato);
 			//float lat = Float.parseFloat(lati);	
 		}
@@ -289,6 +335,7 @@ public class Datos extends Activity{
 			Toast.makeText(getApplicationContext(), "Crear alerta", Toast.LENGTH_LONG).show();
 			Intent a=new Intent(Datos.this, CrearAlerta.class);
             a.putExtra("id_usuario",id_usuario_app);
+            a.putExtra("nombre_usuario", usuario);
 			startActivity(a);
 			//finish();
 			return true;
@@ -297,6 +344,7 @@ public class Datos extends Activity{
 			Toast.makeText(getApplicationContext(), "Monitorear alerta", Toast.LENGTH_LONG).show(); 
 			Intent b=new Intent(Datos.this, VerAlertas.class);
 			b.putExtra("id_usuario",id_usuario_app);
+			b.putExtra("nombre_usuario", usuario);
 			startActivity(b);
 			//finish();
 			return true;
@@ -309,15 +357,17 @@ public class Datos extends Activity{
 			finish();
 			return true;
 
-        case R.id.Opc4:
-             //cerrar  sesion nos regresa a la ventana anterior.
-             Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
-             Intent d=new Intent(Datos.this, AgregarHogar.class);
-             startActivity(d);
-             d.putExtra("id_usuario",id_usuario_app);
-             d.putExtra("usuario", usuario);
-             //finish();
-             return true;
+//        case R.id.Opc4:
+//             //cerrar  sesion nos regresa a la ventana anterior.
+//             Toast.makeText(getApplicationContext(), "Agregando Hogar ", Toast.LENGTH_LONG).show();
+//             Intent d=new Intent(Datos.this, PersonalizarHogar.class);
+//             d.putExtra("id_usuario",id_usuario_app);
+//             Toast.makeText(getApplicationContext(), "id_usuario: "+id_usuario_app, Toast.LENGTH_LONG).show();	
+//             d.putExtra("usuario", usuario);
+//             Toast.makeText(getApplicationContext(), "usuario: "+usuario, Toast.LENGTH_LONG).show();
+//             startActivity(d);
+//             finish();
+//             return true;
 
 		default:
 			return super.onOptionsItemSelected(item);
