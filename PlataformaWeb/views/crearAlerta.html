@@ -16,7 +16,7 @@
                         <div class="input-field col s12">
                             <label>Seleccione:</label>
                             <br><br>
-                            <select class="browser-default" onchange="sensorAlertaSimple(this.value)">
+                            <select id="sensor" class="browser-default" onchange="sensorAlertaSimple(this.value)">
                                 <option value="" disabled selected>Escoja sensor</option>
                                 <option value="1">Temperatura</option>
                                 <option value="2">Humedad</option>
@@ -28,7 +28,7 @@
 
                         <br>
                         <div class="input-field col s6">
-                            <select class="browser-default" onchange="simboloAlertaSimple(this.value)">
+                            <select id="simbolo" class="browser-default" onchange="simboloAlertaSimple(this.value)">
                                 <option value="" disabled selected >Escoja símbolo</option>
                                 <option value="<">Menor</option>
                                 <option value=">">Mayor</option>
@@ -102,6 +102,10 @@
             Materialize.toast('Alerta Creada!', 4000);
             document.getElementById('nombre_alerta_simple').value = "";
             document.getElementById('dato_alerta_simple').value = "";
+            
+            document.getElementById("sensor").selectedIndex = 0;
+            document.getElementById("simbolo").selectedIndex = 0;
+
         }
     }
     //CREACION DE ALERTA SIMPLE

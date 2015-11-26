@@ -1,4 +1,9 @@
 <?php
+
+/*
+    GUARDA LA CONFIGURACION DEL FALSO POSITIVO DE LA ALERTA SIMPLE
+*/
+
 require_once 'conexion/connectbd.php';
 
 // connecting to db
@@ -12,7 +17,7 @@ falsoPositivoAlerta($repeticion, $tiempo, $id_Alerta);
 
 function falsoPositivoAlerta($repeticion, $tiempo, $id_Alerta){
 
-    $query = "Insert into falso_positivo_alerta (repeticion, tiempo, alerta_id_alerta) VALUES ('$repeticion', '$tiempo', '$id_Alerta')";  
+    $query = "Insert into falso_positivo_alerta (repeticion, tiempo, contador, estado, alerta_id_alerta) VALUES ('$repeticion', '$tiempo', 0, 0, '$id_Alerta')";  
 
     $result = mysql_query($query) or die(mysql_error());
 

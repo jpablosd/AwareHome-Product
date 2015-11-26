@@ -44,7 +44,7 @@ Second Line
         $("#lista_alertas_inteligentes").prepend(out);
 
         var xmlhttp = new XMLHttpRequest();
-        var url = "php/verAlertaCompuesta.php";
+        var url = "php/verAlertasCompuestas.php";
 
         xmlhttp.onreadystatechange=function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -59,22 +59,20 @@ Second Line
 
             var arr = JSON.parse(response);
             var i;
-
             for(i = 0; i < arr.length; i++) {
-                var estado;
-                if (arr[i].estado_alerta == 1){
-                    estado = "Activada";
-                }else{
-                    estado = "Desactivada";
-                }
+//                console.log(arr[i].id_alerta_compuesta);
+//                console.log(arr[i].nombre_alerta_compuesta);
+//                console.log(arr[i].alerta1);
+//                console.log(arr[i].operador);
+//                console.log(arr[i].alerta2);
+//                console.log(arr[i].estado);
 
-
-                out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta_compuesta+"</span><p> "+arr[i].nombre_alerta+" "+arr[i].operador+"<br>"+estado+"</p><a href='#!' class='secondary-content'></a></li>";
+                out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta_compuesta+"</span><p> "+arr[i].alerta1+" "+arr[i].operador+" "+arr[i].alerta2+"<br>"+arr[i].estado+"</p><a href='#!' class='secondary-content'></a></li>";
                 //lista
             }
-            //document.getElementById("lista").innerHTML = out;
-            //$("#lista").html(out);
-            $("#lista_alertas_inteligentes").prepend(out);        }
+
+            $("#lista_alertas_inteligentes").prepend(out);        
+        }
 
 
     }

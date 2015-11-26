@@ -17,7 +17,7 @@
                             </select>
                         </div>
                         <div class="input-field col s6 m6 l6">
-                            <select class="browser-default" onchange="selectOperador0(this.value)">
+                            <select id="operador0" class="browser-default" onchange="selectOperador0(this.value)">
                                 <option value="" disabled selected>Escoja operador</option>
                                 <option value="1">AND</option>
                                 <option value="2">OR</option>
@@ -33,10 +33,10 @@
                         <div class="input-field col s6 m6 l6">
                             <select id="operador" class="browser-default" onchange="selectOperador00(this.value)">
                                 <option value="" disabled selected>Escoja operador</option>
-<!--
-                                <option value="3">VACIO</option>
-                                <option value="1">AND</option>
-                                <option value="2">OR</option>
+                                <!--
+<option value="3">VACIO</option>
+<option value="1">AND</option>
+<option value="2">OR</option>
 -->
                             </select>
                         </div>
@@ -172,7 +172,7 @@
             hola += '<option value="" disabled selected>Escoja alerta</option>';
 
             hola += '</select></div>'
-            hola += '<div class="input-field col s6 m6 l6"><select class="browser-default" onchange="selectOperador'+indexAlerta+'(this.value)">';
+            hola += '<div class="input-field col s6 m6 l6"><select id="operador'+indexAlerta+'" class="browser-default" onchange="selectOperador'+indexAlerta+'(this.value)">';
             hola += '<option value="" disabled selected>Escoja operador</option><option value="3">VACIO</option><option value="1">AND</option><option value="2">OR</option>';
             hola +='</select></div>';
 
@@ -407,62 +407,62 @@
         viernes = document.getElementById("test5").checked;
         sabado = document.getElementById("test6").checked;
         domingo = document.getElementById("test7").checked;
-        
+
         if(lunes == true){
             lunes = 1;
         }
         else{
             lunes = 0;
         }
-                
+
         if(martes == true){
             martes = 1;
         }
         else{
             martes = 0;
         }
-                
+
         if(miercoles == true){
             miercoles = 1;
         }
         else{
             miercoles = 0;
         }
-                
+
         if(jueves == true){
             jueves = 1;
         }
         else{
             jueves = 0;
         }
-                
+
         if(viernes == true){
             viernes = 1;
         }
         else{
             viernes = 0;
         }
-                
+
         if(sabado == true){
             sabado = 1;
         }
         else{
             sabado = 0;
         }
-                
+
         if(domingo == true){
             domingo = 1;
         }
         else{
             domingo = 0;
         }
-                console.log("lunes: "+lunes);
-                console.log("martes: "+martes);
-                console.log("miercoles: "+miercoles);
-                console.log("jueves: "+jueves);
-                console.log("viernes: "+viernes);
-                console.log("sabado: "+sabado);
-                console.log("domingo: "+domingo);
+        console.log("lunes: "+lunes);
+        console.log("martes: "+martes);
+        console.log("miercoles: "+miercoles);
+        console.log("jueves: "+jueves);
+        console.log("viernes: "+viernes);
+        console.log("sabado: "+sabado);
+        console.log("domingo: "+domingo);
     }
 
 
@@ -529,6 +529,17 @@
                     console.log(arr[i].success);
                 }
                 Materialize.toast('Nueva Alerta Compuesta Creada!', 4000);
+
+                document.getElementById("nombre_alerta_compuesta").value = null;
+
+                document.getElementById("alertaSimple").selectedIndex = 0;
+                document.getElementById("operador0").selectedIndex = 0;
+                document.getElementById("alertaSimple0").selectedIndex = 0;
+                document.getElementById("operador").selectedIndex = 3;
+                document.getElementById("alertaSimple1").selectedIndex = 0;
+                document.getElementById("operador1").selectedIndex = 0;
+                document.getElementById("alertaSimple2").selectedIndex = 0;
+                document.getElementById("operador2").selectedIndex = 0;
             }
         }//else
     }//crear alerta compuesta

@@ -1,5 +1,5 @@
-<div>
-    <div id="ver_alertas" class="row">
+<div id="mapa">
+    <div class="row">
         <!--        <div class="col s2 m1 l1 "><p></p></div>-->
         <div class="col s12 m12 l12">
             <div class="card z-depth-3">
@@ -9,70 +9,71 @@
             </div>
         </div>
     </div>
-</div>   
+</div>  
 
+<style>
+    #sensor1 {
+        position: absolute;
+        left: 500px;
+        top: 470px;
+        z-index: 1;
+    }
+    #sensor2 {
+        position: absolute;
+        left: 180px;
+        top: 470px;
+        z-index: 1;
+    }
+    #sensor3 {
+        position: absolute;
+        left: 180px;
+        top: 200px;
+        z-index: 1;
+    }
+</style>
 
-<!-- CREAR ALERTA INTELIGENTE -->
-<!--
-<div class="content">
-<div class="col s12 m12 l12">
-<div class="card z-depth-3">
-<div class="card-content">
-<div class="col s12 m12 l12">
-<div id="mapCanvas" ></div>
-</div>
-</div>
-</div>
-</div>
-</div>
--->
+<div id="verPlanoHogar" class="row">
+    <!--        <div class="col s2 m1 l1"><p></p></div>-->
+    <div class="col s12 m12 l12">
+        <div class="card z-depth-3">
+            <div class="card-content">
+                <h4>Hogar</h4>                    
+                <div class="row">
+                    <div class="col s12 m12 l12">
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Hogar</h4>
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <p></p>
-                <div class="card">
-                    <div class="card-content">
-                        <div >
-                            <img  id="plano" src="images/plano.jpg">
-                        </div>
-                        <ul id="lista" class="collection col s12 m11 l12">
-                            <!--
-<li class="collection-item avatar">
-<i class="mdi-action-assessment circle green"></i>
-<span class="title">Title</span>
-<p>First Line <br>
-Second Line
-</p>
-<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
-</li>
--->
-                        </ul>
+<!--                        <img id="plano" class="materialboxed" src="images/plano.jpg">-->
+                        <img id="plano" class="materialboxed" width="700" src="images/plano.jpg">
+                        <img id="sensor1" src="images/marker_red.png"> <!-- Movimiento -->
+                        <img id="sensor2" src="images/marker_green.png"><!-- Temperatura y Humedad -->
+                        <img id="sensor3" src="images/marker_green.png"><!-- Gas -->
 
                     </div>
+
+                    <!--
+<ul id="lista" class="collection col s12 m11 l12">
+</ul>
+-->
+
+                    <div class="input-field col s12 m12 l12">
+                        <a class="waves-effect waves-light btn" onclick="volver()" >Volver</a>
+                    </div>
+                    <br><br>
                 </div>
+
             </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#/verMapa" class="waves-effect waves-green btn-flat modal-action modal-close">Aceptar</a>
         </div>
     </div>
 </div>
 
 
-
-
-
-
-
-
 <script>
+
+
     var estadoAlertaMarker = 0;
 
-    document.getElementById('modal1').style.display = 'none';
+    //document.getElementById('modal1').style.display = 'none';
+    document.getElementById("verPlanoHogar").style.display = 'none';
+    document.getElementById("mapa").style.display = 'block';
 
     //    var modal = document.getElementById('plano');
     //    modal.style.width = '500px !important';
@@ -143,19 +144,32 @@ Second Line
         // Add dragging event listeners.
         google.maps.event.addListener(marker, 'click', function() {
             //alert("asdnasj");
-            $('#modal1').openModal();
+            //$('#modal1').openModal();
+            document.getElementById("verPlanoHogar").style.display = 'block';
+            $('.materialboxed').materialbox();
+
+            document.getElementById("mapa").style.display = 'none';
         });
     }
 
+    function volver(){
+        document.getElementById("verPlanoHogar").style.display = 'none';
+        document.getElementById("mapa").style.display = 'block';   
+    }
 
 
 
     //------------------- VER ALERTAS ----------------------
     function cargarAlertas(){
+
+        document.getElementById('sensor1').src = "images/marker_green.png";
+        document.getElementById('sensor2').src = "images/marker_green.png";
+        document.getElementById('sensor3').src = "images/marker_green.png";
+
         estadoAlertaMarker = 0;
 
         var out = "";
-        document.getElementById("lista").innerHTML = out;
+        //document.getElementById("lista").innerHTML = out;
 
         var xmlhttp = new XMLHttpRequest();
         var url = "php/verActualizarAlertas.php";
@@ -197,8 +211,30 @@ Second Line
                 else if(arr[i].sensor == 3){
                     sensor = "Gas";
                 }
+                else if(arr[i].sensor == 4){
+                    sensor = "Movimiento";
+                }
 
-                out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta+"</span><p>"+sensor+" "+arr[i].signo+" "+arr[i].valor+"<br>"+estado+"</p><a href='#!' class='secondary-content'><i class='mdi-action-grade'></i></a></li>";
+
+                if(sensor == "Temperatura" && estado == "Activada"){
+                    document.getElementById('sensor2').src = "images/marker_red.png";
+                    console.log(sensor + " " + estado);
+                }
+                if(sensor == "Humedad" && estado == "Activada"){
+                    document.getElementById('sensor2').src = "images/marker_red.png";
+                    console.log(sensor + " " + estado);
+                }
+                if(sensor == "Gas" && estado == "Activada"){
+                    document.getElementById('sensor3').src = "images/marker_red.png";
+                    console.log(sensor + " " + estado);
+                }
+                if(sensor == "Movimiento" && estado == "Activada"){
+                    document.getElementById('sensor1').src = "images/marker_red.png";
+                    console.log(sensor + " " + estado);
+                }
+
+
+                out += "<li class='collection-item avatar'><i class='mdi-action-assessment circle green'></i><span class='title'>"+arr[i].nombre_alerta+"</span><p>"+sensor+" "+arr[i].signo+" "+arr[i].valor+"<br>"+estado+"</p><a href='#!' class='secondary-content'></a></li>";
                 //lista
             }
             if (estadoAlertaMarker == 1){
@@ -206,10 +242,9 @@ Second Line
             }else{
                 marker.setIcon("images/marker_green.png");
             }
-            //document.getElementById("lista").innerHTML = out;
-            //$("#lista").html(out);
 
-            $("#lista").prepend(out);
+
+            // $("#lista").prepend(out);
         }
     }
     //------------------- VER ALERTAS ----------------------
